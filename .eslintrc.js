@@ -42,7 +42,7 @@ module.exports = {
     'react/require-default-props': 'error',
     'react-hooks/exhaustive-deps': 'error',
     'react-hooks/rules-of-hooks': 'error',
-    'react/jsx-no-literals': ['error'],
+    'react/jsx-no-literals': ['off'],
     'react/jsx-filename-extension': ['warn', { extensions: ['.js', '.jsx'] }],
     'react/prop-types': 'off',
     'react/react-in-jsx-scope': 'off',
