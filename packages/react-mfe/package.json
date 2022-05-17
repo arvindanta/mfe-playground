@@ -15,6 +15,7 @@
     "start": "kill-port 9001 && cross-env PORT=9001 react-scripts start",
     "build": "PUBLIC_URL=http://localhost:9001 react-scripts build",
     "test": "react-scripts test",
+    "test:ci": "react-scripts test --watchAll=false",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
