@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@freshworks/crayons": "^3.5.0-beta.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^13.5.0",
@@ -13,7 +14,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "kill-port 9000 && cross-env PORT=9000 react-scripts start",
+    "start": "kill-port 9000 && react-scripts start",
     "build": "PUBLIC_URL=http://localhost:9000 react-scripts build",
     "test": "react-scripts test",
     "test:ci": "react-scripts test --watchAll=false",
