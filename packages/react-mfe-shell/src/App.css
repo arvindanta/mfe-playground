@@ -36,3 +36,18 @@
     transform: rotate(360deg);
   }
 }
+
+.App_container {
+  display: flex;
+  width: 100vw;
+  justify-content: flex-start;
+}
+.sidebar {
+  flex: 1;
+}
+.content {
+  flex: 2;
+}
+.statusbar {
+  flex: 1;
+}
