@@ -19,8 +19,8 @@
     "start": "kill-port 9001 && react-scripts start",
     "server": "kill-port 9001 && node server",
     "build": "PUBLIC_URL=http://localhost:9001 react-scripts build",
-    "test": "react-scripts test",
-    "test:ci": "react-scripts test --watchAll=false",
+    "test": "react-scripts test --transformIgnorePatterns '/node_modules/(?!(@freshworks|@stencil)/).*/'",
+    "test:ci": "react-scripts test --watchAll=false --transformIgnorePatterns '/node_modules/(?!(@freshworks|@stencil)/).*/'",
     "eject": "react-scripts eject"
   },
   "browserslist": {
