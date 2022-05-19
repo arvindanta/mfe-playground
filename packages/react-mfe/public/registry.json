@@ -1,0 +1,29 @@
+{
+  "production": {
+    "0.1.0": {
+      "entrypoints": [
+        "static/css/main.e6da7776.css",
+        "static/js/main.365a1be8.js"
+      ],
+      "appUrl": "http://localhost:9001/"
+    }
+  },
+  "staging": {
+    "0.1.0": {
+      "entrypoints": [
+        "static/css/main.e6da7776.css",
+        "static/js/main.365a1be8.js"
+      ],
+      "appUrl": "http://localhost:9001/"
+    }
+  },
+  "dev": {
+    "0.1.0": {
+      "entrypoints": [
+        "static/css/main.e6da7776.css",
+        "static/js/main.365a1be8.js"
+      ],
+      "appUrl": "http://localhost:9001/"
+    }
+  }
+}

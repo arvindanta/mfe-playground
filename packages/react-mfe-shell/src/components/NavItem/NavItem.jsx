@@ -16,7 +16,7 @@ const NavItem = (props) => {
       exact='true'
       to={to}
       className={style.navItem}
-      activeClassName={style.activeNavItem}
+      // activeClassName={style.activeNavItem}
     >
       <FwIcon size='20' name={Icon} className={style.navIcon}></FwIcon>
       <span className={style.navLabel}>{label}</span>

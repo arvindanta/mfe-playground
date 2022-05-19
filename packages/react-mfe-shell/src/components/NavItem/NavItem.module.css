@@ -7,12 +7,12 @@
 
 .navItem:hover,
 .navItem:focus {
-  background-color: #1e3a8a;
+  background-color: rgb(18, 52, 77);
 }
 
 .activeNavItem {
   color: #dbeafe;
-  background-color: #1e3a8a;
+  background-color: rgb(18, 52, 77);
 }
 
 .navIcon {
