@@ -5,9 +5,14 @@ export const sideMenu = [
     to: '/',
   },
   {
-    label: 'Profile',
+    label: 'MFE',
     Icon: 'help',
-    to: '/profile',
+    to: '/mfe',
+  },
+  {
+    label: 'About',
+    Icon: 'explore',
+    to: '/about',
   },
   {
     label: 'Settings',
@@ -15,7 +20,7 @@ export const sideMenu = [
     to: '/settings',
     children: [
       {
-        label: 'Account',
+        label: 'About',
         Icon: 'agent',
         to: 'account',
       },

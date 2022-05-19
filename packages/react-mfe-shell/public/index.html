@@ -16,6 +16,20 @@
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <style>
+      .statusbar {
+        min-width: 30vw;
+        background-color: rgb(38, 35, 35);
+        height: 100vh;
+        color: white;
+        font-size: medium;
+        text-align: left;
+        padding: 8px;
+        box-sizing: border-box;
+        font-family: Consolas, Monaco, Lucida Console, Liberation Mono,
+          DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+      }
+    </style>
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -32,13 +46,17 @@
     <script type="module">
       import { MFEController } from 'https://d3el5jsqgryo0a.cloudfront.net/platform-application/index.esm.js';
       // import { MFEController } from 'http://localhost:8080/platform-application/index.esm.js';
-
       console.log({ MFEController });
     </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <div style="display: flex; width: 100vw">
+      <div id="root" style="flex: 2"></div>
+      <div class="statusbar" id="statusbar">
+        <div style="text-align: center; font-weight: bold">Statusbar</div>
+      </div>
+    </div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

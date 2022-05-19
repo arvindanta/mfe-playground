@@ -11,7 +11,7 @@ import Routing from './components/Routing/Routing';
 
 function App(props) {
   return (
-    <div className='App'>
+    <div className='App-mfe'>
       <Navbar />
       <Routes>
         <Route path='/' element={<Contact {...props} />} />

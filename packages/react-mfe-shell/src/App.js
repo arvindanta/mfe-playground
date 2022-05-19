@@ -4,11 +4,11 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import NotFound from './components/NotFound/NotFound';
 import About from './components/About/About';
-import Contact from './components/Contact/Contact';
-import Communication from './components/Communication/Communication';
-import Routing from './components/Routing/Routing';
+import MFE from './components/MFE/MFE';
 import Sidebar from './components/Sidebar/Sidebar';
-import Statusbar from './components/Statusbar/Statusbar';
+// import Statusbar from './components/Statusbar/Statusbar';
+
+import './util';
 
 function App(props) {
   return (
@@ -18,18 +18,13 @@ function App(props) {
           <Sidebar />
           <div className='content'>
             <Routes>
-              <Route path='/' element={<Contact {...props} />} />
+              <Route path='/' element={<About />} />
               <Route path='/about' element={<About />} />
-              <Route path='/contact' element={<Contact {...props} />} />
-              <Route
-                path='/communication'
-                element={<Communication {...props} />}
-              />
-              <Route path='/routing' element={<Routing {...props} />} />
+              <Route path='/mfe/*' element={<MFE {...props} />} />
               <Route path='*' element={<NotFound />} />
             </Routes>
           </div>
-          <Statusbar />
+          {/* <Statusbar /> */}
         </div>
       </BrowserRouter>
     </div>

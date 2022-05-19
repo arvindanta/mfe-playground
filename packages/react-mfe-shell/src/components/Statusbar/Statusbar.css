@@ -1,6 +1,12 @@
 .statusbar {
-  min-width: 15vw;
+  min-width: 30vw;
   background-color: rgb(38, 35, 35);
   height: 100vh;
   color: white;
+  font-size: medium;
+  text-align: left;
+  padding: 8px;
+  box-sizing: border-box;
+  font-family: Consolas, Monaco, Lucida Console, Liberation Mono,
+    DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
 }
