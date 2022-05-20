@@ -1,9 +1,13 @@
 import React, { useEffect, useRef } from 'react';
 
+import { useNavigate } from 'react-router-dom';
+
 import { MFEController } from '../../controller';
 
 function MFE() {
   const ref = useRef(null);
+
+  const navigate = useNavigate();
 
   window.log('Loading MFE - reactMFE');
   useEffect(() => {
@@ -19,9 +23,20 @@ function MFE() {
       }
     );
 
+    const removeSubscriber1 = MFEController.init('mfe1').__mfe_subscribe?.(
+      'route_change',
+      (msg) => {
+        console.info(`${msg}`);
+        window.log(`Routing Message received from MFE ${JSON.stringify(msg)}`);
+        window.log(`Navigation to route ${msg.payload.to}`);
+        navigate(msg.payload.to);
+      }
+    );
+
     return () => {
       window.log('Unmounting MFE - reactMFE');
       removeSubscriber();
+      removeSubscriber1();
     };
   });
 
