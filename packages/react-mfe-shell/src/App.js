@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 import './App.css';
 import NotFound from './components/NotFound/NotFound';
@@ -13,20 +13,18 @@ import './util';
 function App(props) {
   return (
     <div className='App'>
-      <BrowserRouter>
-        <div className='App_container'>
-          <Sidebar />
-          <div className='content'>
-            <Routes>
-              <Route path='/' element={<About />} />
-              <Route path='/about' element={<About />} />
-              <Route path='/mfe/*' element={<MFE {...props} />} />
-              <Route path='*' element={<NotFound />} />
-            </Routes>
-          </div>
-          {/* <Statusbar /> */}
+      <div className='App_container'>
+        <Sidebar />
+        <div className='content'>
+          <Routes>
+            <Route path='/' element={<About />} />
+            <Route path='/about' element={<About />} />
+            <Route path='/mfe/*' element={<MFE {...props} />} />
+            <Route path='*' element={<NotFound />} />
+          </Routes>
         </div>
-      </BrowserRouter>
+        {/* <Statusbar /> */}
+      </div>
     </div>
   );
 }
