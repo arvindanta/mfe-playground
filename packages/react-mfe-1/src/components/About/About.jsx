@@ -1,7 +1,7 @@
 import React from 'react';
 
 function About() {
-  return <div>About App shell</div>;
+  return <div>About MFE 2</div>;
 }
 
 export default About;

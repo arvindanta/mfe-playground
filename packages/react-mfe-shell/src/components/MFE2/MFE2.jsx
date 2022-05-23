@@ -4,18 +4,18 @@ import { useNavigate } from 'react-router-dom';
 
 import { MFEController } from '../../controller';
 
-function MFE() {
+function MFE2() {
   const ref = useRef(null);
 
   const navigate = useNavigate();
 
-  window.log('Loading MFE - reactMFE');
+  window.log('Loading MFE - reactMFE2');
   useEffect(() => {
     ref.current.appProps = {
-      routerBasePath: '/mfe',
+      routerBasePath: '/mfe2',
     };
 
-    const removeSubscriber = MFEController.init('mfe1').__mfe_subscribe?.(
+    const removeSubscriber = MFEController.init('mfe2').__mfe_subscribe?.(
       'from_child_react',
       (msg) => {
         console.info(`${msg}`);
@@ -23,7 +23,7 @@ function MFE() {
       }
     );
 
-    const removeSubscriber1 = MFEController.init('mfe1').__mfe_subscribe?.(
+    const removeSubscriber1 = MFEController.init('mfe2').__mfe_subscribe?.(
       'route_change',
       (msg) => {
         console.info(`${msg}`);
@@ -34,25 +34,25 @@ function MFE() {
     );
 
     return () => {
-      window.log('Unmounting MFE - reactMFE');
+      window.log('Unmounting MFE - reactMFE2');
       removeSubscriber();
       removeSubscriber1();
     };
-  });
+  }, [navigate]);
 
   return (
     <div>
       <mfe-application
         ref={ref}
-        app-id='reactMFE'
-        instance-id='mfe1'
+        app-id='reactMFE2'
+        instance-id='mfe2'
         style={{ '--mfe-width': 'calc(58vw)' }}
-        id='x'
-        registry-url='http://localhost:9001'
+        id='y'
+        registry-url='http://localhost:9002'
         version='0.1.1'
       ></mfe-application>
     </div>
   );
 }
 
-export default MFE;
+export default MFE2;

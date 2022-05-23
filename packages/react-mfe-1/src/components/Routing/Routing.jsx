@@ -3,13 +3,13 @@ import { FwButton } from '@freshworks/crayons/react';
 import { MFEEventInstance } from '../../controller';
 function Routing() {
   const mfeToShell = (route) => {
-    window.log('sending message for routing to App Shell from MFE reactMFE1');
+    window.log('sending message for routing to App Shell from MFE reactMFE2');
 
     MFEEventInstance.__mfe_publish?.({
       eventName: 'route_change',
       action: {
-        type: 'from_child reactMFE1',
-        sender: 'reactMFE1',
+        type: 'from_child reactMFE2',
+        sender: 'reactMFE2',
       },
       payload: { from: window.location.pathname, to: route },
     });
@@ -22,8 +22,9 @@ function Routing() {
       </FwButton>
 
       <br />
+      <br />
 
-      <FwButton onClick={() => mfeToShell('/mfe2/communication')}>
+      <FwButton onClick={() => mfeToShell('/mfe1/about')}>
         Inter routing. Change Route in App Shell to load another MFE - Deep
         Linking
       </FwButton>

@@ -8,7 +8,7 @@ import About from './components/About/About';
 
 import { createMFEInstance, MFEController } from './controller';
 
-const APP_ID = 'reactMFE1';
+const APP_ID = 'reactMFE2';
 
 const rootConfig = {
   mount: async (container, appProps) => {

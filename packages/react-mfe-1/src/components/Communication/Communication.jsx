@@ -5,15 +5,15 @@ import { MFEEventInstance } from '../../controller';
 
 function Communication() {
   const mfeToShell = () => {
-    window.log('sending message to App Shell from MFE reactMFE1');
+    window.log('sending message to App Shell from MFE reactMFE2');
 
     MFEEventInstance.__mfe_publish?.({
       eventName: 'from_child_react',
       action: {
-        type: 'from_child reactMFE1',
-        sender: 'reactMFE1',
+        type: 'from_child reactMFE2',
+        sender: 'reactMFE2',
       },
-      payload: 'from child reactMFE1',
+      payload: 'from child reactMFE2',
     });
   };
 

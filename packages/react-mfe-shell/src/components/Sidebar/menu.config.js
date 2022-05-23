@@ -1,3 +1,4 @@
+import { MFEController } from '../../controller';
 export const sideMenu = [
   {
     label: 'Home',
@@ -5,9 +6,90 @@ export const sideMenu = [
     to: '/',
   },
   {
-    label: 'MFE',
+    label: 'MFE1',
     Icon: 'help',
-    to: '/mfe',
+    to: '/mfe1',
+    children: [
+      {
+        label: 'send message to MFE1',
+        Icon: 'freshchat',
+        onClick: (e) => {
+          e.preventDefault();
+          window.log('sending message to MFE reactMFE1 from App Shell');
+
+          MFEController.init('mfe1').__mfe_publish?.({
+            eventName: 'from_app_shell',
+            action: {
+              type: 'from_app_shell',
+              sender: 'app shell',
+            },
+            payload: 'from app shell',
+          });
+        },
+      },
+      {
+        label: 'change route in MFE1',
+        Icon: 'forward',
+        onClick: (e) => {
+          e.preventDefault();
+          window.log(
+            'sending message to MFE reactMFE1 to change route from App Shell'
+          );
+
+          MFEController.init('mfe1').__mfe_publish?.({
+            eventName: 'route_change_app_shell',
+            action: {
+              type: 'from_app_shell',
+              sender: 'app shell',
+            },
+            payload: { to: 'about' },
+          });
+        },
+      },
+    ],
+  },
+  {
+    label: 'MFE2',
+    Icon: 'help',
+    to: '/mfe2',
+    children: [
+      {
+        label: 'send message to MFE2',
+        Icon: 'freshchat',
+        onClick: (e) => {
+          e.preventDefault();
+          window.log('sending message to MFE reactMFE2 from App Shell');
+
+          MFEController.init('mfe2').__mfe_publish?.({
+            eventName: 'from_app_shell',
+            action: {
+              type: 'from_app_shell',
+              sender: 'app shell',
+            },
+            payload: 'from app shell',
+          });
+        },
+      },
+      {
+        label: 'change route in MFE2',
+        Icon: 'forward',
+        onClick: (e) => {
+          e.preventDefault();
+          window.log(
+            'sending message to MFE reactMFE2 to change route from App Shell'
+          );
+
+          MFEController.init('mfe2').__mfe_publish?.({
+            eventName: 'route_change_app_shell',
+            action: {
+              type: 'from_app_shell',
+              sender: 'app shell',
+            },
+            payload: { to: 'about' },
+          });
+        },
+      },
+    ],
   },
   {
     label: 'About',

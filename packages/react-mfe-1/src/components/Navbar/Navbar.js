@@ -15,7 +15,7 @@ const Navbar = () => {
   return (
     <nav className='navbar'>
       <h1 className='navbar-logo'>
-        React MFE <i className='fab fa-react'></i>
+        React MFE 1 <i className='fab fa-react'></i>
       </h1>
       <div className='menu-icon' onClick={handleClick}>
         <i className={active ? 'fas fa-times' : 'fas fa-bars'}></i>
