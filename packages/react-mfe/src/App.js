@@ -13,7 +13,7 @@ import Routing from './components/Routing/Routing';
 function App(props) {
   const navigate = useNavigate();
   useEffect(() => {
-    const removeSubscriber = MFEEventInstance.__mfe_subscribe?.(
+    const removeSubscriber = MFEEventInstance.subscribe?.(
       'from_app_shell',
       (msg) => {
         console.info(`${msg}`);
@@ -27,7 +27,7 @@ function App(props) {
       }
     );
 
-    const removeSubscriber1 = MFEEventInstance.__mfe_subscribe?.(
+    const removeSubscriber1 = MFEEventInstance.subscribe?.(
       'route_change_app_shell',
       (msg) => {
         console.info(`${msg}`);
