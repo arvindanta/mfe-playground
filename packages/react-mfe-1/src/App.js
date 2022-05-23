@@ -17,7 +17,13 @@ function App(props) {
       'from_app_shell',
       (msg) => {
         console.info(`${msg}`);
-        window.log(`Message received from app shell ${JSON.stringify(msg)}`);
+        window.log(
+          `Message received from app shell <pre>${JSON.stringify(
+            msg,
+            null,
+            2
+          )}</pre>`
+        );
       }
     );
 
@@ -26,7 +32,11 @@ function App(props) {
       (msg) => {
         console.info(`${msg}`);
         window.log(
-          `Routing Message received from app shell ${JSON.stringify(msg)}`
+          `Routing Message received from app shell <pre>${JSON.stringify(
+            msg,
+            null,
+            2
+          )}</pre>`
         );
         window.log(`Navigation to route ${msg.payload.to}`);
         navigate(msg.payload.to);

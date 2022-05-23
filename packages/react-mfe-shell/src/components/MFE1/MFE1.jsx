@@ -19,7 +19,9 @@ function MFE() {
       'from_child_react',
       (msg) => {
         console.info(`${msg}`);
-        window.log(`Message received from MFE ${JSON.stringify(msg)}`);
+        window.log(
+          `Message received from MFE <pre>${JSON.stringify(msg, null, 2)}</pre>`
+        );
       }
     );
 
@@ -27,7 +29,13 @@ function MFE() {
       'route_change',
       (msg) => {
         console.info(`${msg}`);
-        window.log(`Routing Message received from MFE ${JSON.stringify(msg)}`);
+        window.log(
+          `Routing Message received from MFE <pre>${JSON.stringify(
+            msg,
+            null,
+            2
+          )}</pre>`
+        );
         window.log(`Navigation to route ${msg.payload.to}`);
         navigate(msg.payload.to);
       }
