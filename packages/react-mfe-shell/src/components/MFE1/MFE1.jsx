@@ -4,8 +4,6 @@ import { useNavigate } from 'react-router-dom';
 
 import { MFEController } from '../../controller';
 
-import { FwButton } from '@freshworks/crayons/react';
-
 function MFE() {
   const ref = useRef(null);
 
@@ -44,7 +42,6 @@ function MFE() {
 
   return (
     <div>
-      <FwButton></FwButton>
       <mfe-application
         ref={ref}
         app-id='reactMFE1'
