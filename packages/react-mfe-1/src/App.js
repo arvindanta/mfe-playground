@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
-import { MFEEventInstance } from './controller';
+import { MFEInstance } from './controller';
 
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
@@ -13,7 +13,7 @@ import Routing from './components/Routing/Routing';
 function App(props) {
   const navigate = useNavigate();
   useEffect(() => {
-    const removeSubscriber = MFEEventInstance.subscribe?.(
+    const removeSubscriber = MFEInstance.subscribe?.(
       'from_app_shell',
       (msg) => {
         console.info(`${msg}`);
@@ -27,7 +27,7 @@ function App(props) {
       }
     );
 
-    const removeSubscriber1 = MFEEventInstance.subscribe?.(
+    const removeSubscriber1 = MFEInstance.subscribe?.(
       'route_change_app_shell',
       (msg) => {
         console.info(`${msg}`);

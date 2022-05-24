@@ -1,13 +1,13 @@
 import React from 'react';
 import { FwButton } from '@freshworks/crayons/react';
 
-import { MFEEventInstance } from '../../controller';
+import { MFEInstance } from '../../controller';
 
 function Communication() {
   const mfeToShell = () => {
     window.log('sending message to App Shell from MFE reactMFE1');
 
-    MFEEventInstance.publish?.({
+    MFEInstance.publish?.({
       eventName: 'from_child_react',
       action: {
         type: 'from_child reactMFE1',

@@ -1,11 +1,11 @@
 import React from 'react';
 import { FwButton } from '@freshworks/crayons/react';
-import { MFEEventInstance } from '../../controller';
+import { MFEInstance } from '../../controller';
 function Routing() {
   const mfeToShell = (route) => {
     window.log('sending message for routing to App Shell from MFE reactMFE1');
 
-    MFEEventInstance.publish?.({
+    MFEInstance.publish?.({
       eventName: 'route_change',
       action: {
         type: 'from_child reactMFE1',
