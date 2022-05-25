@@ -43,10 +43,27 @@ function WebcMFE1() {
       }
     );
 
+    const removeSubscriber2 = MFEController.namespace('mfe3').subscribe?.(
+      'from_child_webc_api',
+      (data) => {
+        window.log(
+          `Message received from webcMFE <pre>${JSON.stringify(
+            data?.payload?.params || {},
+            null,
+            2
+          )}</pre>`
+        );
+
+        const cb1 = data?.payload?.cb;
+        cb1?.({ response: { result: 1 } });
+      }
+    );
+
     return () => {
       window.log('Unmounting MFE - webcMFE1');
       removeSubscriber();
       removeSubscriber1();
+      removeSubscriber2();
     };
   }, [navigate]);
 
@@ -61,9 +78,24 @@ function WebcMFE1() {
     });
   };
 
+  const triggerToMFE = async () => {
+    const resp = await MFEController.trigger('mfe3', { id: 1 });
+    window.log(
+      `Getting response from MFE <pre>${JSON.stringify(resp, null, 2)}</pre>`
+    );
+  };
+
   return (
     <div>
       <FwButton onClick={sendToMFE}>Send message to MFE</FwButton>
+      <br />
+      <br />
+      <FwButton onClick={triggerToMFE}>
+        Call Trigger in MFE and get result
+      </FwButton>
+
+      <hr />
+      <hr />
 
       <mfe-application
         ref={ref}
