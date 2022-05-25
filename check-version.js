@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 const semver = require('semver');
 const { execSync } = require('child_process');
 const { engines } = require('./package.json');

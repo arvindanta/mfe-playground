@@ -1,0 +1,9 @@
+.sidebar {
+  background-color: rgb(38, 73, 102);
+  height: 100%;
+  min-width: 12vw;
+  min-height: 100vh;
+  border-right: 1px solid rgb(38, 35, 35);
+  --fw-icon-color: white;
+  box-sizing: border-box;
+}
