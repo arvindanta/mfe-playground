@@ -17,7 +17,7 @@ const rootConfig = {
       return;
     }
 
-    createMFEInstance(appProps.instanceId);
+    createMFEInstance(appProps.instanceId || 'test-id');
 
     console.info(
       `MOUNTING: instance ${appProps.instanceId} of app group ${APP_ID}, `,

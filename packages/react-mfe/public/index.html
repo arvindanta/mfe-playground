@@ -25,14 +25,28 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
-    <script src="https://d3el5jsqgryo0a.cloudfront.net/platform-application/platform-application.js"></script>
-    <!-- <script src="http://localhost:8080/platform-application/platform-application.js"></script> -->
 
+    <!-- <script type="importmap">
+      {
+        "imports": {
+          "@freshworks/crayons-1": "https://unpkg.com/@freshworks/crayons@v3/react/index.js?module"
+        }
+      }
+    </script> -->
+    <!-- <script src="https://d3el5jsqgryo0a.cloudfront.net/platform-application/platform-application.js"></script> -->
+    <!-- <script src="http://localhost:8080/platform-application/platform-application.js"></script> -->
+    <!--//"@freshworks/crayons-1": "https://unpkg.com/@freshworks/crayons@v3/react/index.js"-->
     <script type="module">
       import { MFEController } from 'https://d3el5jsqgryo0a.cloudfront.net/platform-application/index.esm.js';
       //import { MFEController } from 'http://localhost:8080/platform-application/index.esm.js';
       console.log({ MFEController });
     </script>
+
+    <!-- <script type="module">
+      import { FwButton } from '@freshworks/crayons-1';
+      // //import { MFEController } from 'http://localhost:8080/platform-application/index.esm.js';
+      // console.log({ FwButton });
+    </script> -->
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
