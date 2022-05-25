@@ -6,6 +6,8 @@ template.innerHTML = `
         <button id="x">Send Message to App Shell</button>
         <br/><br/>
         <button id="y">Send Message to App Shell to change route</button>
+        <br/><br/>
+        <button id="z">Send Message to App Shell with callback</button>
 `;
 
 class MyComponent extends HTMLElement {
@@ -22,13 +24,14 @@ class MyComponent extends HTMLElement {
 
     const sendMess = this.shadowRoot.querySelector('button#x');
     const sendRouteMess = this.shadowRoot.querySelector('button#y');
-
+    const sendCbMess = this.shadowRoot.querySelector('button#z');
     sendMess.addEventListener('click', this.handleSendMess);
     sendRouteMess.addEventListener('click', this.handleSendRouteMess);
+    sendCbMess.addEventListener('click', this.handleSendCbMess);
   }
 
   handleSendMess() {
-    window.log('publishing event 1 - from_child_webc from webc');
+    window.log('publishing event from_child_webc from webc');
     MFEInstance?.publish?.({
       eventName: 'from_child_webc',
       action: {
@@ -36,7 +39,27 @@ class MyComponent extends HTMLElement {
         sender: 'webcMFE1',
       },
       payload: 'from child webcMFE1',
-      targetOrigin: this.appProps?.shellUrl,
+      // targetOrigin: this.appProps?.shellUrl,
+    });
+  }
+
+  handleSendCbMess() {
+    window.log('publishing event  - from_child_webc_api from webc');
+    MFEInstance?.publish?.({
+      eventName: 'from_child_webc_api',
+      action: {
+        type: 'from_child webc api',
+        sender: 'webcMFE1',
+      },
+      payload: {
+        params: { id: 1 },
+        cb: (res) => {
+          window.log(
+            `Response from parent <pre>${JSON.stringify(res, null, 2)}</pre>`
+          );
+        },
+      },
+      // targetOrigin: this.appProps?.shellUrl,
     });
   }
 
@@ -56,7 +79,7 @@ class MyComponent extends HTMLElement {
     });
   }
 
-  trigger(params) {
+  async trigger(params) {
     window.log(
       `Trigger called in web component from wrapper with <pre>${JSON.stringify(
         params,
@@ -64,6 +87,7 @@ class MyComponent extends HTMLElement {
         2
       )}</pre>`
     );
+    return { response: { params } };
   }
 }
 export { MyComponent };

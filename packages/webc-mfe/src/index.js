@@ -3,8 +3,8 @@ import { MyComponent } from './component';
 
 const APP_ID = 'webcMFE1';
 
-const ELEM_TYPE_MAPPING = {
-  'webc-1': 'webc-1',
+const TYPE_ELEM_MAPPING = {
+  'webc-1': { tag: 'webc-1', cmp: MyComponent },
 };
 
 let webcmp = null;
@@ -20,20 +20,19 @@ const rootConfig = {
     // eslint-disable-next-line default-case
     switch (appProps.type) {
       case 'webc-1': {
-        const tag = ELEM_TYPE_MAPPING[appProps.type];
+        const { tag, cmp } = TYPE_ELEM_MAPPING[appProps.type];
         webcmp = document.createElement(tag);
         webcmp.appProps = appProps;
 
         // for stencil usecases , make sure the esm bundle is added to manifest. the below can be ignored
         if (!window.customElements.get(tag)) {
-          customElements.define(tag, MyComponent);
+          customElements.define(tag, cmp);
         }
 
         createMFEInstance(appProps.instanceId || 'test-webcid', webcmp);
       }
     }
-
-    container.appendChild(webcmp);
+    if (webcmp) container.appendChild(webcmp);
   },
   unmount: (container) => {
     console.info(`UNMOUNT: ${APP_ID}`);

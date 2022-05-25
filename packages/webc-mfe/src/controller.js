@@ -12,7 +12,7 @@ export function createMFEInstance(namespace, cmp) {
         )}</pre>`
       );
       window.log(`webc tag is ${cmp.tagName}`);
-      cmp?.trigger(params);
+      return cmp?.trigger?.(params);
     },
   });
 }
