@@ -92,6 +92,11 @@ export const sideMenu = [
     ],
   },
   {
+    label: 'WebcMFE1',
+    Icon: 'alert',
+    to: '/webcmfe1',
+  },
+  {
     label: 'About',
     Icon: 'explore',
     to: '/about',

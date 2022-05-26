@@ -5,7 +5,7 @@ const log = (msg) => {
     '<span>' +
     new Date().toLocaleTimeString() +
     '</span>&nbsp;&nbsp;' +
-    "<span style='color:green'>" +
+    "<span style='color:#7ff488'>" +
     msg +
     '</span>';
 };
