@@ -1,19 +1,19 @@
 {
   "production": {
     "0.1.0": {
-      "entrypoints": ["stencil-mfe/stencil-mfe.js"],
+      "entrypoints": [{ "src": "stencil-mfe/stencil-mfe.js" }],
       "appUrl": "http://localhost:8002/"
     }
   },
   "staging": {
     "0.1.0": {
-      "entrypoints": ["stencil-mfe/stencil-mfe.js"],
+      "entrypoints": [{ "src": "stencil-mfe/stencil-mfe.js" }],
       "appUrl": "http://localhost:8002/"
     }
   },
   "dev": {
     "0.1.0": {
-      "entrypoints": ["stencil-mfe/stencil-mfe.js"],
+      "entrypoints": [{ "src": "stencil-mfe/stencil-mfe.js" }],
       "appUrl": "http://localhost:8002/"
     }
   }
