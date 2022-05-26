@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script type="module">
+      import { MFEController } from 'https://d3el5jsqgryo0a.cloudfront.net/platform-application/index.esm.js';
+      //import { MFEController } from 'http://localhost:8080/platform-application/index.esm.js';
+      console.log({ MFEController });
+    </script>
+    <script
+      type="module"
+      defer
+      src="http://localhost:8002/stencil-mfe/index.esm.js"
+    ></script>
+    <script
+      type="module"
+      defer
+      src="http://localhost:8002/stencil-mfe/stencil-mfe.esm.js"
+    ></script>
+  </head>
+  <body>
+    <div id="stencilroot"></div>
+  </body>
+</html>

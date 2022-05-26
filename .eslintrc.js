@@ -113,6 +113,7 @@ module.exports = {
           { extensions: ['.js', '.jsx', '.tsx', '.ts'] },
         ],
         'react/no-unescaped-entities': ['off'],
+        'react/no-unknown-property': ['off'],
       },
     },
   ],

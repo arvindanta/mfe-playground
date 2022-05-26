@@ -14,6 +14,19 @@
 | `middle` | `middle`  | The middle name | `string` | `undefined` |
 
 
+## Methods
+
+### `trigger(params: any) => Promise<{ response: { params: any; }; }>`
+
+
+
+#### Returns
+
+Type: `Promise<{ response: { params: any; }; }>`
+
+
+
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

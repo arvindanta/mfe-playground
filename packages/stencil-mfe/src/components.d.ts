@@ -6,6 +6,9 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface FwSample1 {
+        "trigger": (params: any) => Promise<{ response: { params: any; }; }>;
+    }
     interface MyComponent {
         /**
           * The first name
@@ -19,9 +22,16 @@ export namespace Components {
           * The middle name
          */
         "middle": string;
+        "trigger": (params: any) => Promise<{ response: { params: any; }; }>;
     }
 }
 declare global {
+    interface HTMLFwSample1Element extends Components.FwSample1, HTMLStencilElement {
+    }
+    var HTMLFwSample1Element: {
+        prototype: HTMLFwSample1Element;
+        new (): HTMLFwSample1Element;
+    };
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
     }
     var HTMLMyComponentElement: {
@@ -29,10 +39,13 @@ declare global {
         new (): HTMLMyComponentElement;
     };
     interface HTMLElementTagNameMap {
+        "fw-sample1": HTMLFwSample1Element;
         "my-component": HTMLMyComponentElement;
     }
 }
 declare namespace LocalJSX {
+    interface FwSample1 {
+    }
     interface MyComponent {
         /**
           * The first name
@@ -48,6 +61,7 @@ declare namespace LocalJSX {
         "middle"?: string;
     }
     interface IntrinsicElements {
+        "fw-sample1": FwSample1;
         "my-component": MyComponent;
     }
 }
@@ -55,6 +69,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "fw-sample1": LocalJSX.FwSample1 & JSXBase.HTMLAttributes<HTMLFwSample1Element>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
     }

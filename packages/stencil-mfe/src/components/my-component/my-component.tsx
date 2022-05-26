@@ -1,4 +1,4 @@
-import { Component, Prop, Host, h } from '@stencil/core';
+import { Component, Prop, Host, h, Method } from '@stencil/core';
 import { format } from '../../utils/utils';
 
 @Component({
@@ -24,6 +24,18 @@ export class MyComponent {
 
   private getText(): string {
     return format(this.first, this.middle, this.last);
+  }
+
+  @Method()
+  async trigger(params: any) {
+    (window as any).log(
+      `Calling trigger in my-compoment <pre>${JSON.stringify(
+        params,
+        null,
+        2
+      )}</pre>`
+    );
+    return { response: { params } };
   }
 
   render() {

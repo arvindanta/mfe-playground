@@ -51,5 +51,6 @@ window.onload = () => {
   rootConfig.mount(document.getElementById('webroot'), {
     title: 'test',
     ...appProps,
+    type: 'webc-1',
   });
 };

@@ -97,6 +97,11 @@ export const sideMenu = [
     to: '/webcmfe1',
   },
   {
+    label: 'StencilMFE1',
+    Icon: 'agent',
+    to: '/stencilmfe1',
+  },
+  {
     label: 'About',
     Icon: 'explore',
     to: '/about',
