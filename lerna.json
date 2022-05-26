@@ -2,11 +2,18 @@
   "packages": ["packages/*"],
   "npmClient": "yarn",
   "version": "independent",
+  "nohoist": [
+    "**/@types/jest",
+    "**/jest",
+    "**/@jest",
+    "**/@jest/**",
+    "**/jest-**/**",
+    "**/jest/**",
+    "**/jest-cli",
+    "**/puppeteer"
+  ],
 
   "command": {
-    "bootstrap": {
-      "hoist": true
-    },
     "version": {
       "message": "chore(release): publish",
       "ignoreChanges": ["**/*.md", "**/*.mdx"]
