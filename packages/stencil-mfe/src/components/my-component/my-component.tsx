@@ -29,7 +29,7 @@ export class MyComponent {
   render() {
     return (
       <Host>
-        <div>Hello, World! Im {this.getText()}</div>
+        <div>Hello, World! I'm {this.getText()}</div>
       </Host>
     );
   }
