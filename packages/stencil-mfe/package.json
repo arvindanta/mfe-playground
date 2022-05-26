@@ -24,7 +24,7 @@
     "start": "stencil build --dev --watch --serve --port=8002",
     "server": "kill-port 8002 && node server",
     "test": "stencil test --spec --e2e",
-    "test:ci": "stencil test --spec --e2e",
+    "test:ci": "stencil test --spec --e2e --passWithNoTests",
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate"
   },
