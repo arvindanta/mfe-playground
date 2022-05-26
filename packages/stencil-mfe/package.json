@@ -22,7 +22,8 @@
     "build": "stencil build --docs",
     "prestart": "kill-port 8002",
     "start": "stencil build --dev --watch --serve --port=8002",
-    "test": "stencil test --spec --e2e",
+    "test1": "stencil test --spec --e2e",
+    "test1:ci": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate"
   },
