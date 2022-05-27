@@ -9,11 +9,10 @@ const log = (msg) => {
     msg +
     '</span>';
 };
-setTimeout(() => {
-  document.querySelector('#clear-log').addEventListener('click', (e) => {
-    e.preventDefault();
-    document.querySelector('#status-content').innerHTML = '';
-  });
-}, 0);
+document.querySelector('#clear-log').addEventListener('click', (e) => {
+  e.preventDefault();
+  document.querySelector('#status-content').innerHTML = '';
+});
+
 window.log = log;
 export { log };
