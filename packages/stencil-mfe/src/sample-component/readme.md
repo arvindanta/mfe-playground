@@ -5,6 +5,13 @@
 <!-- Auto Generated Below -->
 
 
+## Properties
+
+| Property   | Attribute   | Description | Type  | Default     |
+| ---------- | ----------- | ----------- | ----- | ----------- |
+| `appProps` | `app-props` |             | `any` | `undefined` |
+
+
 ## Methods
 
 ### `trigger(params: any) => Promise<{ response: { params: any; }; }>`

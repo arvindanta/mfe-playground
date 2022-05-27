@@ -19,9 +19,12 @@ const rootConfig = {
 
     // eslint-disable-next-line default-case
 
-    const { tag } = TYPE_ELEM_MAPPING[appProps.type];
+    const { tag } = TYPE_ELEM_MAPPING[appProps.componentType];
     webcmp = document.createElement(tag);
     webcmp.appProps = appProps;
+    Object.keys(appProps).forEach((k) => {
+      webcmp[k] = appProps[k];
+    });
 
     // for stencil usecases , make sure the esm bundle is added to manifest. the below can be ignored
     // if (!window.customElements.get(tag)) {
@@ -49,6 +52,6 @@ window.onload = () => {
   rootConfig.mount(document.getElementById('stencilroot'), {
     title: 'test',
     ...appProps,
-    type: 'fw-sample1',
+    componentType: 'fw-sample1',
   });
 };

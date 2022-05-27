@@ -7,9 +7,11 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface FwSample1 {
+        "appProps": any;
         "trigger": (params: any) => Promise<{ response: { params: any; }; }>;
     }
     interface MyComponent {
+        "appProps": any;
         /**
           * The first name
          */
@@ -45,8 +47,10 @@ declare global {
 }
 declare namespace LocalJSX {
     interface FwSample1 {
+        "appProps"?: any;
     }
     interface MyComponent {
+        "appProps"?: any;
         /**
           * The first name
          */

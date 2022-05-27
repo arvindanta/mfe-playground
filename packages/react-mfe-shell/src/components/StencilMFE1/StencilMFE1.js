@@ -12,11 +12,14 @@ function StencilMFE1() {
   window.log('Loading MFE - StencilMFE1');
   useEffect(() => {
     ref.current.appProps = {
-      type: 'my-component',
+      componentType: 'fw-sample1',
+      first: 'first',
+      middle: 'middle',
+      last: 'last',
     };
 
     const removeSubscriber = MFEController.namespace('mfe4').subscribe?.(
-      'from_child_webc',
+      'from_child_stencil_webc',
       (msg) => {
         window.log(
           `Message received from webcMFE <pre>${JSON.stringify(
@@ -44,7 +47,7 @@ function StencilMFE1() {
     );
 
     const removeSubscriber2 = MFEController.namespace('mfe4').subscribe?.(
-      'from_child_webc_api',
+      'from_child_stencil_webc_api',
       (data) => {
         window.log(
           `Message received from webcMFE <pre>${JSON.stringify(
@@ -55,7 +58,7 @@ function StencilMFE1() {
         );
 
         const cb1 = data?.payload?.cb;
-        cb1?.({ response: { result: 1 } });
+        cb1?.({ response: { result: 112123 } });
       }
     );
 
@@ -79,7 +82,7 @@ function StencilMFE1() {
   };
 
   const triggerToMFE = async () => {
-    const resp = await MFEController.trigger('mfe4', { id: 1 });
+    const resp = await MFEController.trigger('mfe4', { id: 1123123123 });
     window.log(
       `Getting response from MFE <pre>${JSON.stringify(resp, null, 2)}</pre>`
     );
