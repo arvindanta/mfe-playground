@@ -18,11 +18,14 @@ const rootConfig = {
     console.info(`MOUNT: ${APP_ID}`, container, appProps);
 
     // eslint-disable-next-line default-case
-    switch (appProps.type) {
+    switch (appProps.componentType) {
       case 'webc-1': {
-        const { tag, cmp } = TYPE_ELEM_MAPPING[appProps.type];
+        const { tag, cmp } = TYPE_ELEM_MAPPING[appProps.componentType];
         webcmp = document.createElement(tag);
         webcmp.appProps = appProps;
+        Object.keys(appProps).forEach((k) => {
+          webcmp[k] = appProps[k];
+        });
 
         // for stencil usecases , make sure the esm bundle is added to manifest. the below can be ignored
         if (!window.customElements.get(tag)) {
@@ -51,6 +54,6 @@ window.onload = () => {
   rootConfig.mount(document.getElementById('webroot'), {
     title: 'test',
     ...appProps,
-    type: 'webc-1',
+    componentType: 'webc-1',
   });
 };

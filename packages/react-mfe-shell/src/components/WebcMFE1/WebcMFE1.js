@@ -12,7 +12,7 @@ function WebcMFE1() {
   window.log('Loading MFE - webcMFE1');
   useEffect(() => {
     ref.current.appProps = {
-      type: 'webc-1',
+      componentType: 'webc-1',
     };
 
     const removeSubscriber = MFEController.namespace('mfe3').subscribe?.(
