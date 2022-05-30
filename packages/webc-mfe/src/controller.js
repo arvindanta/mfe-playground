@@ -1,8 +1,7 @@
-let MFEInstance = null;
 const MFEController = window.MFEController;
 
 export function createMFEInstance(namespace, cmp) {
-  MFEInstance = MFEController.initialiseInstance(namespace, {
+  MFEController.initialiseInstance(namespace, {
     trigger: async (params) => {
       window.log(
         `Calling trigger in ${namespace} with <pre>${JSON.stringify(
@@ -17,4 +16,4 @@ export function createMFEInstance(namespace, cmp) {
   });
 }
 
-export { MFEController, MFEInstance };
+export { MFEController };

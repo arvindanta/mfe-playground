@@ -7,7 +7,6 @@ const TYPE_ELEM_MAPPING = {
   'webc-1': { tag: 'webc-1', cmp: MyComponent },
 };
 
-let webcmp = null;
 const rootConfig = {
   mount: async (container, appProps) => {
     if (!container) {
@@ -16,7 +15,7 @@ const rootConfig = {
     }
 
     console.info(`MOUNT: ${APP_ID}`, container, appProps);
-
+    let webcmp = null;
     // eslint-disable-next-line default-case
     switch (appProps.componentType) {
       case 'webc-1': {
@@ -36,11 +35,14 @@ const rootConfig = {
       }
     }
     if (webcmp) container.appendChild(webcmp);
+
+    return () => {
+      console.info(`UNMOUNT: ${APP_ID} - Instance Id - ${appProps.instanceId}`);
+      const { tag } = TYPE_ELEM_MAPPING[appProps.componentType];
+      container.remove(tag);
+    };
   },
-  unmount: (container) => {
-    console.info(`UNMOUNT: ${APP_ID}`);
-    container.remove(webcmp);
-  },
+
   async get(params) {
     console.info('params', APP_ID, params);
     return params;

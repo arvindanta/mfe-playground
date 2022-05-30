@@ -1,4 +1,4 @@
-import { Component, State, h, Method, Prop } from '@stencil/core';
+import { Element, Component, State, h, Method, Prop } from '@stencil/core';
 
 // plain import works because stencil components inside stencil project is auto identified and defined as custom elements.
 import '@freshworks/crayons/dist/components/fw-button';
@@ -7,23 +7,30 @@ import '@freshworks/crayons/dist/components/fw-button';
 // import { defineCustomElement} from '@freshworks/crayons/dist/components/fw-button';
 // defineCustomElement();
 
-import { MFEInstance } from '../controller';
+import { MFEController } from '../controller';
 
 @Component({
   tag: 'fw-sample1',
   shadow: false,
 })
 export class Sample {
+  @Element() el;
   @State() showCard = true;
 
   @Prop() appProps;
 
+  instanceId: string;
+
   componentWillLoad() {
-    MFEInstance?.subscribe?.('from_app_shell', (msg) => {
-      (window as any).log(
-        `msg from outside for is <pre>${JSON.stringify(msg, null, 2)}</pre>`
-      );
-    });
+    this.instanceId = MFEController.getInstanceId(this.el);
+    MFEController.namespace(this.instanceId)?.subscribe?.(
+      'from_app_shell',
+      (msg) => {
+        (window as any).log(
+          `msg from outside for is <pre>${JSON.stringify(msg, null, 2)}</pre>`
+        );
+      }
+    );
   }
 
   handleClick = (): void => {
@@ -35,7 +42,7 @@ export class Sample {
     (window as any).log(
       'publishing event from_child_stencil_webc from stencil webc'
     );
-    MFEInstance?.publish?.({
+    MFEController.namespace(this.instanceId)?.publish?.({
       eventName: 'from_child_stencil_webc',
       action: {
         type: 'from_child stencilwebc',
@@ -50,7 +57,7 @@ export class Sample {
     (window as any).log(
       'publishing event  - from_child_stencil_webc_api from stencil webc'
     );
-    MFEInstance?.publish?.({
+    MFEController.namespace(this.instanceId)?.publish?.({
       eventName: 'from_child_stencil_webc_api',
       action: {
         type: 'from_child stencil webc api',
@@ -70,7 +77,7 @@ export class Sample {
 
   handleSendRouteMess = () => {
     (window as any).log('sending route change message event from stencilMFE1');
-    MFEInstance?.publish?.({
+    MFEController.namespace(this.instanceId)?.publish?.({
       eventName: 'route_change',
       action: {
         type: 'navigate',

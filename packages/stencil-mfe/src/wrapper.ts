@@ -7,14 +7,13 @@ const TYPE_ELEM_MAPPING = {
   'my-component': { tag: 'my-component' },
 };
 
-let webcmp = null;
 const rootConfig = {
   mount: async (container, appProps) => {
     if (!container) {
       console.info(`APP - ${APP_ID} container not found`);
       return;
     }
-
+    let webcmp = null;
     console.info(`MOUNT: ${APP_ID}`, container, appProps);
 
     // eslint-disable-next-line default-case
@@ -34,11 +33,14 @@ const rootConfig = {
     createMFEInstance(appProps.instanceId || 'test-swebcid', webcmp);
 
     if (webcmp) container.appendChild(webcmp);
+
+    return () => {
+      console.info(`UNMOUNT: ${APP_ID} - Instance Id - ${appProps.instanceId}`);
+      const { tag } = TYPE_ELEM_MAPPING[appProps.componentType];
+      container.remove(tag);
+    };
   },
-  unmount: (container) => {
-    console.info(`UNMOUNT: ${APP_ID}`);
-    container.remove(webcmp);
-  },
+
   async get(params) {
     console.info('params', APP_ID, params);
     return params;

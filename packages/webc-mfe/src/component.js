@@ -1,4 +1,4 @@
-import { MFEInstance } from './controller';
+import { MFEController } from './controller';
 
 const template = document.createElement('template');
 template.innerHTML = `
@@ -16,23 +16,34 @@ class MyComponent extends HTMLElement {
     this.attachShadow({ mode: 'open' });
     this.shadowRoot.appendChild(template.content.cloneNode(true));
 
-    MFEInstance?.subscribe?.('from_app_shell', (msg) => {
-      window.log(
-        `msg from outside for is <pre>${JSON.stringify(msg, null, 2)}</pre>`
-      );
-    });
-
     const sendMess = this.shadowRoot.querySelector('button#x');
     const sendRouteMess = this.shadowRoot.querySelector('button#y');
     const sendCbMess = this.shadowRoot.querySelector('button#z');
-    sendMess.addEventListener('click', this.handleSendMess);
-    sendRouteMess.addEventListener('click', this.handleSendRouteMess);
-    sendCbMess.addEventListener('click', this.handleSendCbMess);
+    sendMess.addEventListener('click', this.handleSendMess.bind(this));
+    sendRouteMess.addEventListener(
+      'click',
+      this.handleSendRouteMess.bind(this)
+    );
+    sendCbMess.addEventListener('click', this.handleSendCbMess.bind(this));
+  }
+
+  connectedCallback() {
+    this.instanceId = MFEController.getInstanceId(this.shadowRoot);
+    window.log(`instance id is ${this.instanceId}`);
+
+    MFEController.namespace(this.instanceId)?.subscribe?.(
+      'from_app_shell',
+      (msg) => {
+        window.log(
+          `msg from outside for is <pre>${JSON.stringify(msg, null, 2)}</pre>`
+        );
+      }
+    );
   }
 
   handleSendMess() {
     window.log('publishing event from_child_webc from webc');
-    MFEInstance?.publish?.({
+    MFEController.namespace(this.instanceId)?.publish?.({
       eventName: 'from_child_webc',
       action: {
         type: 'from_child webc',
@@ -45,7 +56,7 @@ class MyComponent extends HTMLElement {
 
   handleSendCbMess() {
     window.log('publishing event  - from_child_webc_api from webc');
-    MFEInstance?.publish?.({
+    MFEController.namespace(this.instanceId)?.publish?.({
       eventName: 'from_child_webc_api',
       action: {
         type: 'from_child webc api',
@@ -65,7 +76,7 @@ class MyComponent extends HTMLElement {
 
   handleSendRouteMess() {
     window.log('sending route change message event from webcMFE1');
-    MFEInstance?.publish?.({
+    MFEController.namespace(this.instanceId)?.publish?.({
       eventName: 'route_change',
       action: {
         type: 'navigate',

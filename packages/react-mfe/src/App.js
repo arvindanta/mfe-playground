@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
-import { MFEInstance } from './controller';
+import { MFEController } from './controller';
 
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
@@ -12,13 +12,16 @@ import Routing from './components/Routing/Routing';
 
 function App(props) {
   const navigate = useNavigate();
+  const ref = useRef(null);
+
   useEffect(() => {
-    const removeSubscriber = MFEInstance.subscribe?.(
+    const instanceId = MFEController.getInstanceId(ref.current);
+    console.info(`instance Id is ${instanceId}`);
+    const removeSubscriber = MFEController.namespace(instanceId)?.subscribe?.(
       'from_app_shell',
       (msg) => {
-        console.info(`${msg}`);
         window.log(
-          `Message received from app shell <pre>${JSON.stringify(
+          `Message received for instance - ${instanceId} from app shell <pre>${JSON.stringify(
             msg,
             null,
             2
@@ -27,7 +30,7 @@ function App(props) {
       }
     );
 
-    const removeSubscriber1 = MFEInstance.subscribe?.(
+    const removeSubscriber1 = MFEController.namespace(instanceId)?.subscribe?.(
       'route_change_app_shell',
       (msg) => {
         console.info(`${msg}`);
@@ -47,10 +50,10 @@ function App(props) {
       removeSubscriber();
       removeSubscriber1();
     };
-  });
+  }, [navigate]);
 
   return (
-    <div className='App-mfe'>
+    <div className='App-mfe' ref={ref}>
       <Navbar />
       <Routes>
         <Route path='/' element={<Contact {...props} />} />
