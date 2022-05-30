@@ -1,0 +1,44 @@
+{
+  "name": "stencil-mfe",
+  "version": "0.0.1",
+  "description": "Stencil Component Starter",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.js",
+  "es2015": "dist/esm/index.mjs",
+  "es2017": "dist/esm/index.mjs",
+  "types": "dist/types/index.d.ts",
+  "collection": "dist/collection/collection-manifest.json",
+  "collection:main": "dist/collection/index.js",
+  "unpkg": "dist/stencil-mfe/stencil-mfe.esm.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ionic-team/stencil-component-starter.git"
+  },
+  "files": [
+    "dist/",
+    "loader/"
+  ],
+  "scripts": {
+    "build": "stencil build --docs",
+    "prestart": "kill-port 8002",
+    "start": "stencil build --dev --watch --serve --port=8002",
+    "server": "kill-port 8002 && node server",
+    "test": "stencil test --spec --e2e",
+    "test:ci": "stencil test --spec --e2e --passWithNoTests",
+    "test.watch": "stencil test --spec --e2e --watchAll",
+    "generate": "stencil generate"
+  },
+  "dependencies": {
+    "@freshworks/crayons": "^3.5.0-beta.0",
+    "@stencil/core": "2.9.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.22",
+    "jest": "^26.4.2",
+    "jest-cli": "^26.4.2",
+    "puppeteer": "^13.0.1",
+    "cors": "^2.8.5",
+    "express": "^4.18.1"
+  },
+  "license": "MIT"
+}

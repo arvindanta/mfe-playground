@@ -7,7 +7,6 @@ const TYPE_ELEM_MAPPING = {
   'webc-1': { tag: 'webc-1', cmp: MyComponent },
 };
 
-let webcmp = null;
 const rootConfig = {
   mount: async (container, appProps) => {
     if (!container) {
@@ -16,13 +15,16 @@ const rootConfig = {
     }
 
     console.info(`MOUNT: ${APP_ID}`, container, appProps);
-
+    let webcmp = null;
     // eslint-disable-next-line default-case
-    switch (appProps.type) {
+    switch (appProps.componentType) {
       case 'webc-1': {
-        const { tag, cmp } = TYPE_ELEM_MAPPING[appProps.type];
+        const { tag, cmp } = TYPE_ELEM_MAPPING[appProps.componentType];
         webcmp = document.createElement(tag);
         webcmp.appProps = appProps;
+        Object.keys(appProps).forEach((k) => {
+          webcmp[k] = appProps[k];
+        });
 
         // for stencil usecases , make sure the esm bundle is added to manifest. the below can be ignored
         if (!window.customElements.get(tag)) {
@@ -33,11 +35,14 @@ const rootConfig = {
       }
     }
     if (webcmp) container.appendChild(webcmp);
+
+    return () => {
+      console.info(`UNMOUNT: ${APP_ID} - Instance Id - ${appProps.instanceId}`);
+      const { tag } = TYPE_ELEM_MAPPING[appProps.componentType];
+      container.remove(tag);
+    };
   },
-  unmount: (container) => {
-    console.info(`UNMOUNT: ${APP_ID}`);
-    container.remove(webcmp);
-  },
+
   async get(params) {
     console.info('params', APP_ID, params);
     return params;
@@ -51,5 +56,6 @@ window.onload = () => {
   rootConfig.mount(document.getElementById('webroot'), {
     title: 'test',
     ...appProps,
+    componentType: 'webc-1',
   });
 };

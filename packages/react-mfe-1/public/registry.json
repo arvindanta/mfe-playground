@@ -2,8 +2,10 @@
   "production": {
     "0.1.0": {
       "entrypoints": [
-        "static/css/main.917188f9.css",
-        "static/js/main.4819e01a.js"
+        {
+          "src": "static/css/main.917188f9.css"
+        },
+        { "src": "static/js/main.4340e98d.js" }
       ],
       "appUrl": "http://localhost:9002/"
     }
@@ -11,17 +13,22 @@
   "staging": {
     "0.1.0": {
       "entrypoints": [
-        "static/css/main.917188f9.css",
-        "static/js/main.4819e01a.js"
+        {
+          "src": "static/css/main.917188f9.css"
+        },
+        { "src": "static/js/main.4340e98d.js" }
       ],
       "appUrl": "http://localhost:9002/"
     }
   },
+
   "dev": {
     "0.1.0": {
       "entrypoints": [
-        "static/css/main.917188f9.css",
-        "static/js/main.4819e01a.js"
+        {
+          "src": "static/css/main.917188f9.css"
+        },
+        { "src": "static/js/main.4340e98d.js" }
       ],
       "appUrl": "http://localhost:9002/"
     }

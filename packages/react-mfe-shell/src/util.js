@@ -1,5 +1,5 @@
 const log = (msg) => {
-  const container = document.querySelector('#statusbar');
+  const container = document.querySelector('#status-content');
   container.innerHTML +=
     '<br/><br/>' +
     '<span>' +
@@ -9,5 +9,10 @@ const log = (msg) => {
     msg +
     '</span>';
 };
+document.querySelector('#clear-log').addEventListener('click', (e) => {
+  e.preventDefault();
+  document.querySelector('#status-content').innerHTML = '';
+});
+
 window.log = log;
 export { log };

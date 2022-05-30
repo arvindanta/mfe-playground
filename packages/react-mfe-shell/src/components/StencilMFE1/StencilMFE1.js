@@ -4,19 +4,22 @@ import { useNavigate } from 'react-router-dom';
 import { FwButton } from '@freshworks/crayons/react';
 import { MFEController } from '../../controller';
 
-function WebcMFE1() {
+function StencilMFE1() {
   const ref = useRef(null);
 
   const navigate = useNavigate();
 
-  window.log('Loading MFE - webcMFE1');
+  window.log('Loading MFE - StencilMFE1');
   useEffect(() => {
     ref.current.appProps = {
-      componentType: 'webc-1',
+      componentType: 'fw-sample1',
+      first: 'first',
+      middle: 'middle',
+      last: 'last',
     };
 
-    const removeSubscriber = MFEController.namespace('mfe3').subscribe?.(
-      'from_child_webc',
+    const removeSubscriber = MFEController.namespace('mfe4').subscribe?.(
+      'from_child_stencil_webc',
       (msg) => {
         window.log(
           `Message received from webcMFE <pre>${JSON.stringify(
@@ -28,7 +31,7 @@ function WebcMFE1() {
       }
     );
 
-    const removeSubscriber1 = MFEController.namespace('mfe3').subscribe?.(
+    const removeSubscriber1 = MFEController.namespace('mfe4').subscribe?.(
       'route_change',
       (msg) => {
         window.log(
@@ -43,8 +46,8 @@ function WebcMFE1() {
       }
     );
 
-    const removeSubscriber2 = MFEController.namespace('mfe3').subscribe?.(
-      'from_child_webc_api',
+    const removeSubscriber2 = MFEController.namespace('mfe4').subscribe?.(
+      'from_child_stencil_webc_api',
       (data) => {
         window.log(
           `Message received from webcMFE <pre>${JSON.stringify(
@@ -55,12 +58,12 @@ function WebcMFE1() {
         );
 
         const cb1 = data?.payload?.cb;
-        cb1?.({ response: { result: 1 } });
+        cb1?.({ response: { result: 112123 } });
       }
     );
 
     return () => {
-      window.log('Unmounting MFE - webcMFE1');
+      window.log('Unmounting MFE - StencilMFE1');
       removeSubscriber();
       removeSubscriber1();
       removeSubscriber2();
@@ -68,7 +71,7 @@ function WebcMFE1() {
   }, [navigate]);
 
   const sendToMFE = () => {
-    MFEController.namespace('mfe3').publish?.({
+    MFEController.namespace('mfe4').publish?.({
       eventName: 'from_app_shell',
       action: {
         type: 'from_app_shell',
@@ -79,7 +82,7 @@ function WebcMFE1() {
   };
 
   const triggerToMFE = async () => {
-    const resp = await MFEController.trigger('mfe3', { id: 1 });
+    const resp = await MFEController.trigger('mfe4', { id: 1123123123 });
     window.log(
       `Getting response from MFE <pre>${JSON.stringify(resp, null, 2)}</pre>`
     );
@@ -99,15 +102,15 @@ function WebcMFE1() {
 
       <mfe-application
         ref={ref}
-        app-id='webcMFE1'
-        instance-id='mfe3'
+        app-id='stencilMFE1'
+        instance-id='mfe4'
         style={{ '--mfe-width': 'calc(58vw)' }}
         id='z'
-        registry-url='http://localhost:8001'
+        registry-url='http://localhost:8002'
         version='0.1.1'
       ></mfe-application>
     </div>
   );
 }
 
-export default WebcMFE1;
+export default StencilMFE1;

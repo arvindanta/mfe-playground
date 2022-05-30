@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
+
 import { FwButton } from '@freshworks/crayons/react';
-import { MFEInstance } from '../../controller';
+import { MFEController } from '../../controller';
 function Routing() {
+  const ref = useRef(null);
+  const instanceId = useRef(null);
+
+  useEffect(() => {
+    instanceId.current = MFEController.getInstanceId(ref.current);
+  }, []);
   const mfeToShell = (route) => {
     window.log('sending message for routing to App Shell from MFE reactMFE2');
 
-    MFEInstance.publish?.({
+    MFEController.namespace(instanceId.current).publish?.({
       eventName: 'route_change',
       action: {
         type: 'from_child reactMFE2',
@@ -15,7 +22,7 @@ function Routing() {
     });
   };
   return (
-    <>
+    <div ref={ref}>
       <h1>Routing</h1>
       <FwButton onClick={() => mfeToShell('/about')}>
         Inter routing. Change Route in App Shell
@@ -28,7 +35,7 @@ function Routing() {
         Inter routing. Change Route in App Shell to load another MFE - Deep
         Linking
       </FwButton>
-    </>
+    </div>
   );
 }
 

@@ -12,6 +12,7 @@ const APP_ID = 'reactMFE1';
 
 const rootConfig = {
   mount: async (container, appProps) => {
+    let root = null;
     if (!container) {
       console.info(`APP - ${APP_ID} container not found`);
       return;
@@ -25,18 +26,19 @@ const rootConfig = {
       appProps
     );
 
-    const root = ReactDOM.createRoot(container);
+    root = ReactDOM.createRoot(container);
     root.render(
       <BrowserRouter basename={appProps.routerBasePath}>
         <App {...appProps} />
       </BrowserRouter>
     );
-  },
-  unmount: async (container, appProps) => {
-    console.info(
-      `UNMOUNTING: instance ${appProps.instanceId} of app group ${APP_ID}`
-    );
-    ReactDOM.unmountComponentAtNode(container);
+
+    return () => {
+      console.info(
+        `UNMOUNTING: instance ${appProps.instanceId} of app group ${APP_ID}`
+      );
+      root?.unmount();
+    };
   },
 
   xyzmount: async (container, appProps) => {
@@ -45,19 +47,19 @@ const rootConfig = {
       container,
       appProps
     );
-
+    createMFEInstance(appProps.instanceId || 'test-id');
     const root = ReactDOM.createRoot(container);
     root.render(
       <BrowserRouter basename={appProps.routerBasePath}>
         <About {...appProps} />
       </BrowserRouter>
     );
-  },
-  xyzunmount: async (container, appProps) => {
-    console.info(
-      `UNMOUNTING: instance ${appProps.instanceId} of app group ${APP_ID}`
-    );
-    ReactDOM.unmountComponentAtNode(container);
+    return () => {
+      console.info(
+        `UNMOUNTING: instance ${appProps.instanceId} of app group ${APP_ID}`
+      );
+      root?.unmount();
+    };
   },
 
   async get(params) {
@@ -67,7 +69,6 @@ const rootConfig = {
 };
 
 MFEController?.registerApplication?.(APP_ID, rootConfig);
-
 window.onload = () => {
   const appProps = MFEController.getMFEQueryParams();
 

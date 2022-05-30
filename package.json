@@ -8,9 +8,21 @@
     "node": ">=14.17.0",
     "npm": ">=7.24.1"
   },
-  "workspaces": [
-    "./packages/*"
-  ],
+  "workspaces": {
+    "packages": [
+      "./packages/*"
+    ],
+    "nohoist": [
+      "**/@types/jest",
+      "**/jest",
+      "**/@jest",
+      "**/@jest/**",
+      "**/jest-**/**",
+      "**/jest/**",
+      "**/jest-cli",
+      "**/puppeteer"
+    ]
+  },
   "scripts": {
     "build:packages": "lerna run build --stream",
     "build": "lerna run build --stream",

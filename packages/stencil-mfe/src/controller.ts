@@ -1,16 +1,16 @@
-const MFEController = window.MFEController;
+const MFEController = (window as any).MFEController;
 
-export function createMFEInstance(namespace, cmp) {
+export function createMFEInstance(namespace: string, cmp: any) {
   MFEController.initialiseInstance(namespace, {
     trigger: async (params) => {
-      window.log(
+      (window as any).log(
         `Calling trigger in ${namespace} with <pre>${JSON.stringify(
           params,
           null,
           2
         )}</pre>`
       );
-      window.log(`webc tag is ${cmp.tagName}`);
+      (window as any).log(`webc tag is ${cmp.tagName}`);
       return cmp?.trigger?.(params);
     },
   });
