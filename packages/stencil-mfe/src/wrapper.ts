@@ -1,5 +1,7 @@
 import { MFEController, createMFEInstance } from './controller';
 
+(window as any).log = (window as any).log || (() => {});
+
 const APP_ID = 'stencilMFE1';
 
 const TYPE_ELEM_MAPPING = {

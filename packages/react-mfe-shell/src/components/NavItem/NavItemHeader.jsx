@@ -80,8 +80,12 @@ const NavItemHeader = (props) => {
                   e.preventDefault();
                   onClick?.(e);
                 }}
-                className={style.navItem}
-                activeClassName={style.activeNavItem}
+                // activeClassName is replaced with className for react-router-v6
+                className={({ isActive }) =>
+                  isActive
+                    ? `${style.navItem} ${style.activeNavItem}`
+                    : `${style.navItem}`
+                }
               >
                 <FwIcon
                   name={Icon}

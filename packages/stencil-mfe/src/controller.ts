@@ -13,7 +13,6 @@ const stub: any = {
   getMFEQueryParams: () => {},
   get: async () => {},
 };
-(window as any).log = (window as any).log || (() => {});
 
 const MFEController = (window as any).MFEController || stub;
 

@@ -7,7 +7,7 @@ import App from './App';
 import About from './components/About/About';
 
 import { createMFEInstance, MFEController } from './controller';
-
+window.log = window.log || (() => {});
 const APP_ID = 'reactMFE1';
 
 const rootConfig = {
