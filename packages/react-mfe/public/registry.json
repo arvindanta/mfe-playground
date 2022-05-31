@@ -3,9 +3,9 @@
     "0.1.0": {
       "entrypoints": [
         {
-          "src": "static/css/main.917188f9.css"
+          "src": "static/css/main.05c7345a.css"
         },
-        { "src": "static/js/main.617e6d81.js" }
+        { "src": "static/js/main.967c56bf.js" }
       ],
       "appUrl": "http://localhost:9001/"
     }
@@ -14,9 +14,9 @@
     "0.1.0": {
       "entrypoints": [
         {
-          "src": "static/css/main.917188f9.css"
+          "src": "static/css/main.05c7345a.css"
         },
-        { "src": "static/js/main.617e6d81.js" }
+        { "src": "static/js/main.967c56bf.js" }
       ],
       "appUrl": "http://localhost:9001/"
     }
@@ -26,9 +26,9 @@
     "0.1.0": {
       "entrypoints": [
         {
-          "src": "static/css/main.917188f9.css"
+          "src": "static/css/main.05c7345a.css"
         },
-        { "src": "static/js/main.617e6d81.js" }
+        { "src": "static/js/main.967c56bf.js" }
       ],
       "appUrl": "http://localhost:9001/"
     }

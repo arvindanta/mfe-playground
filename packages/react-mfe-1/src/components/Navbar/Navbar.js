@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import menuItems from './Menuitems';
 import './Navbar.css';
 
@@ -24,9 +24,16 @@ const Navbar = () => {
         {menuItems.map((item, index) => {
           return (
             <li key={index}>
-              <Link to={item.url} className={item.cName}>
+              <NavLink
+                exact='true'
+                to={item.url}
+                // activeClassName is replaced with className for react-router-v6
+                className={({ isActive }) =>
+                  isActive ? `${item.cName} active-nav-links` : `${item.cName}`
+                }
+              >
                 {item.title}
-              </Link>
+              </NavLink>
             </li>
           );
         })}

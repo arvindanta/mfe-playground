@@ -35,6 +35,12 @@
   text-decoration: none;
   padding: 0.5rem 1rem;
 }
+
+.active-nav-links {
+  color: #dbeafe;
+  background-color: rgb(18, 52, 77);
+}
+
 @media (prefers-reduced-motion) {
   .nav-links:hover,
   .nav-links:focus {
