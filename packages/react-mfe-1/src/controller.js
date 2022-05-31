@@ -1,4 +1,21 @@
-const MFEController = window.MFEController;
+const stub = {
+  initialiseInstance: () => {},
+  namespace: () => {
+    return {
+      publish: () => {},
+      subscribe: () => {
+        return () => {};
+      },
+    };
+  },
+  registerApplication: () => {},
+  getInstanceId: () => {},
+  getMFEQueryParams: () => {},
+  get: async () => {},
+};
+window.log = window.log || (() => {});
+
+const MFEController = window.MFEController || stub;
 
 export function createMFEInstance(namespace) {
   MFEController.initialiseInstance(namespace, {
