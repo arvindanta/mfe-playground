@@ -15,8 +15,12 @@ const NavItem = (props) => {
     <NavLink
       exact='true'
       to={to}
-      className={style.navItem}
-      // activeClassName={style.activeNavItem}
+      // activeClassName is replaced with className for react-router-v6
+      className={({ isActive }) =>
+        isActive
+          ? `${style.navItem} + ${style.activeNavItem}`
+          : `${style.navItem}`
+      }
     >
       <FwIcon size='20' name={Icon} className={style.navIcon}></FwIcon>
       <span className={style.navLabel}>{label}</span>
