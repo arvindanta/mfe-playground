@@ -17,8 +17,10 @@
   },
   "scripts": {
     "start": "kill-port 9001 && react-scripts start",
+    "start1": "kill-port 9001 && craco start",
     "server": "kill-port 9001 && node server",
     "build": "PUBLIC_URL=http://localhost:9001 react-scripts build",
+    "build1": "PUBLIC_URL=http://localhost:9001 craco build",
     "test": "react-scripts test --transformIgnorePatterns '/node_modules/(?!(@freshworks|@stencil)/).*/'",
     "test:ci": "react-scripts test --watchAll=false --transformIgnorePatterns '/node_modules/(?!(@freshworks|@stencil)/).*/'",
     "eject": "react-scripts eject"
@@ -34,5 +36,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "craco": "^0.0.3"
   }
 }

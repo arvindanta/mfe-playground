@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
-import { MFEController } from './controller';
+import { MFEInstance } from './controller';
 
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
@@ -15,13 +15,13 @@ function App(props) {
   const ref = useRef(null);
 
   useEffect(() => {
-    const instanceId = MFEController.getInstanceId(ref.current);
-    console.info(`instance Id is ${instanceId}`);
-    const removeSubscriber = MFEController.namespace(instanceId)?.subscribe?.(
+    // const instanceId = MFEController.getInstanceId(ref.current);
+    // console.info(`instance Id is ${instanceId}`);
+    const removeSubscriber = MFEInstance?.subscribe?.(
       'from_app_shell',
       (msg) => {
         window.log(
-          `Message received for instance - ${instanceId} from app shell <pre>${JSON.stringify(
+          `Message received for instance - from app shell <pre>${JSON.stringify(
             msg,
             null,
             2
@@ -30,7 +30,7 @@ function App(props) {
       }
     );
 
-    const removeSubscriber1 = MFEController.namespace(instanceId)?.subscribe?.(
+    const removeSubscriber1 = MFEInstance?.subscribe?.(
       'route_change_app_shell',
       (msg) => {
         console.info(`${msg}`);

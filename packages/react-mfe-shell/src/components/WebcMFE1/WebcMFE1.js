@@ -6,7 +6,7 @@ import { MFEController } from '../../controller';
 
 function WebcMFE1() {
   const ref = useRef(null);
-  // const ref1 = useRef(null);
+  const ref1 = useRef(null);
 
   const navigate = useNavigate();
 
@@ -15,9 +15,9 @@ function WebcMFE1() {
     ref.current.appProps = {
       componentType: 'webc-1',
     };
-    // ref1.current.appProps = {
-    //   componentType: 'webc-1',
-    // };
+    ref1.current.appProps = {
+      componentType: 'webc-1',
+    };
 
     const removeSubscriber = MFEController.namespace('mfe3').subscribe?.(
       'from_child_webc',
@@ -150,7 +150,7 @@ function WebcMFE1() {
       ></mfe-application>
 
       {/* <h3>second instance</h3> */}
-      {/* <mfe-application
+      <mfe-application
         ref={ref1}
         app-id='webcMFE1'
         instance-id='mfe12'
@@ -158,7 +158,7 @@ function WebcMFE1() {
         id='asd'
         registry-url='http://localhost:8001'
         version='0.1.1'
-      ></mfe-application> */}
+      ></mfe-application>
     </div>
   );
 }

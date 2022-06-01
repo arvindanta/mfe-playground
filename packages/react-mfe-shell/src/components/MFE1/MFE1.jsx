@@ -6,7 +6,7 @@ import { MFEController } from '../../controller';
 
 function MFE() {
   const ref = useRef(null);
-  // const ref1 = useRef(null);
+  const ref1 = useRef(null);
 
   const navigate = useNavigate();
 
@@ -15,9 +15,9 @@ function MFE() {
     ref.current.appProps = {
       routerBasePath: '/mfe1',
     };
-    // ref1.current.appProps = {
-    //   routerBasePath: '/mfe1',
-    // };
+    ref1.current.appProps = {
+      routerBasePath: '/mfe1',
+    };
 
     const removeSubscriber = MFEController.namespace('mfe1').subscribe?.(
       'from_child_react',
@@ -28,18 +28,18 @@ function MFE() {
       }
     );
 
-    // const removeSubscriber10 = MFEController.namespace('mfe10').subscribe?.(
-    //   'from_child_react',
-    //   (msg) => {
-    //     window.log(
-    //       `Message received from MFE 10 <pre>${JSON.stringify(
-    //         msg,
-    //         null,
-    //         2
-    //       )}</pre>`
-    //     );
-    //   }
-    // );
+    const removeSubscriber10 = MFEController.namespace('mfe14').subscribe?.(
+      'from_child_react',
+      (msg) => {
+        window.log(
+          `Message received from MFE 10 <pre>${JSON.stringify(
+            msg,
+            null,
+            2
+          )}</pre>`
+        );
+      }
+    );
 
     const removeSubscriber1 = MFEController.namespace('mfe1').subscribe?.(
       'route_change',
@@ -60,7 +60,7 @@ function MFE() {
       window.log('Unmounting MFE - reactMFE1');
       removeSubscriber();
       removeSubscriber1();
-      // removeSubscriber10();
+      removeSubscriber10();
     };
   }, [navigate]);
 
@@ -72,6 +72,16 @@ function MFE() {
         instance-id='mfe1'
         style={{ '--mfe-width': 'calc(58vw)' }}
         id='x'
+        registry-url='http://localhost:9001'
+        version='0.1.1'
+      ></mfe-application>
+
+      <mfe-application
+        ref={ref1}
+        app-id='reactMFE1'
+        instance-id='mfe14'
+        style={{ '--mfe-width': 'calc(58vw)' }}
+        id='y'
         registry-url='http://localhost:9001'
         version='0.1.1'
       ></mfe-application>
