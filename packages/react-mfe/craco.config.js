@@ -5,7 +5,6 @@ module.exports = function () {
     webpack: {
       configure: (webpackConfig, { env, paths }) => {
         webpackConfig.output = {
-          ...webpackConfig.output,
           ...{
             filename: 'main.esm.js',
             path: path.resolve(__dirname, 'build'),
