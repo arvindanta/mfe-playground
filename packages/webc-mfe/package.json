@@ -5,17 +5,26 @@
   "main": "component.js",
   "scripts": {
     "test": "",
-    "start": "webpack --mode development",
-    "build": "webpack --mode production",
+    "start": "rollup --mode development",
+    "build": "rollup -c",
+    "build1": "webpack --mode production",
     "server": "kill-port 8001 && node server"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "webpack": "^5.72.1",
-    "webpack-cli": "^4.9.2",
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-flow": "^7.17.12",
+    "@rollup/plugin-babel": "^5.2.2",
+    "@rollup/plugin-commonjs": "^17.0.0",
+    "@rollup/plugin-dynamic-import-vars": "^1.4.1",
+    "@rollup/plugin-node-resolve": "^11.1.0",
     "cors": "^2.8.5",
-    "express": "^4.18.1"
+    "express": "^4.18.1",
+    "rollup": "^2.38.0",
+    "webpack": "^5.72.1",
+    "webpack-cli": "^4.9.2"
   }
 }
