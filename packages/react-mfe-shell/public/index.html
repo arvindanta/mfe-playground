@@ -45,17 +45,16 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App Shell</title>
-    <!-- <script src="https://d3el5jsqgryo0a.cloudfront.net/platform-application/platform-application.js"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/6.12.1/system.min.js"></script>
+    <script src="https://d3el5jsqgryo0a.cloudfront.net/platform-application/platform-application.js"></script>
 
-    <script
+    <!-- <script
       type="module"
       src="http://localhost:8080/platform-application/platform-application.esm.js"
-    ></script>
+    ></script> -->
 
     <script type="module">
-      // import { MFEController } from 'https://d3el5jsqgryo0a.cloudfront.net/platform-application/index.esm.js';
-      import { MFEController } from 'http://localhost:8080/platform-application/index.esm.js';
+       import { MFEController } from 'https://d3el5jsqgryo0a.cloudfront.net/platform-application/index.esm.js';
+      // import { MFEController } from 'http://localhost:8080/platform-application/index.esm.js';
       console.log({ MFEController });
     </script>
   </head>

@@ -1,5 +1,7 @@
 const stub = {
-  initialiseInstance: () => {},
+  initialiseInstance: () => {
+    return stub.namespace();
+  },
   namespace: () => {
     return {
       publish: () => {},
@@ -13,7 +15,6 @@ const stub = {
   getMFEQueryParams: () => {},
   get: async () => {},
 };
-
 const MFEController = window.MFEController || stub;
 let MFEInstance = null;
 export function createMFEInstance(namespace, cmp) {

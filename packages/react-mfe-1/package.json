@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@craco/craco": "^6.4.3",
     "@freshworks/crayons": "^3.5.0-beta.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
@@ -16,9 +17,12 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "kill-port 9002 && react-scripts start",
+    "start1": "kill-port 9002 && react-scripts start",
+    "start": "kill-port 9002 && craco start",
     "server": "kill-port 9002 && node server",
-    "build": "PUBLIC_URL=http://localhost:9002 react-scripts build",
+    "build1": "PUBLIC_URL=http://localhost:9002 react-scripts build",
+    "build": "PUBLIC_URL=http://localhost:9002 craco build",
+    "build-mfe": "PUBLIC_URL=http://localhost:9002 craco build --config craco.config-mfe.js",
     "test": "react-scripts test --transformIgnorePatterns '/node_modules/(?!(@freshworks|@stencil)/).*/'",
     "test:ci": "react-scripts test --watchAll=false --transformIgnorePatterns '/node_modules/(?!(@freshworks|@stencil)/).*/'",
     "eject": "react-scripts eject"

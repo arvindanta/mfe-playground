@@ -1,4 +1,7 @@
 node_modules/
+packages/**/react-mfe/**
+packages/**/react-mfe-1/**
+packages/**/react-mfe-shell/**
 packages/**/dist/
 packages/**/loader/
 packages/**/node_modules/

@@ -1,5 +1,7 @@
 const stub = {
-  initialiseInstance: () => {},
+  initialiseInstance: () => {
+    return stub.namespace();
+  },
   namespace: () => {
     return {
       publish: () => {},

@@ -1,14 +1,17 @@
-import React, { useEffect, useRef } from 'react';
+import React, { lazy, Suspense, useEffect, useRef } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import { MFEInstance } from './controller';
 
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
-import NotFound from './components/NotFound/NotFound';
-import About from './components/About/About';
 import Contact from './components/Contact/Contact';
-import Communication from './components/Communication/Communication';
-import Routing from './components/Routing/Routing';
+
+const NotFound = lazy(() => import('./components/NotFound/NotFound'));
+const About = lazy(() => import('./components/About/About'));
+const Communication = lazy(() =>
+  import('./components/Communication/Communication')
+);
+const Routing = lazy(() => import('./components/Routing/Routing'));
 
 function App(props) {
   const navigate = useNavigate();
@@ -17,7 +20,7 @@ function App(props) {
   useEffect(() => {
     // const instanceId = MFEController.getInstanceId(ref.current);
     // console.info(`instance Id is ${instanceId}`);
-    const removeSubscriber = MFEInstance?.subscribe?.(
+    const removeSubscriber = MFEInstance.subscribe?.(
       'from_app_shell',
       (msg) => {
         window.log(
@@ -30,7 +33,7 @@ function App(props) {
       }
     );
 
-    const removeSubscriber1 = MFEInstance?.subscribe?.(
+    const removeSubscriber1 = MFEInstance.subscribe?.(
       'route_change_app_shell',
       (msg) => {
         console.info(`${msg}`);
@@ -54,15 +57,17 @@ function App(props) {
 
   return (
     <div className='App-mfe' ref={ref}>
-      <Navbar />
-      <Routes>
-        <Route path='/' element={<Contact {...props} />} />
-        <Route path='/about' element={<About />} />
-        <Route path='/contact' element={<Contact {...props} />} />
-        <Route path='/communication' element={<Communication {...props} />} />
-        <Route path='/routing' element={<Routing {...props} />} />
-        <Route path='*' element={<NotFound />} />
-      </Routes>
+      <Suspense fallback={<h1>loading...</h1>}>
+        <Navbar />
+        <Routes>
+          <Route path='/' element={<Contact {...props} />} />
+          <Route path='/about' element={<About />} />
+          <Route path='/contact' element={<Contact {...props} />} />
+          <Route path='/communication' element={<Communication {...props} />} />
+          <Route path='/routing' element={<Routing {...props} />} />
+          <Route path='*' element={<NotFound />} />
+        </Routes>
+      </Suspense>
     </div>
   );
 }
