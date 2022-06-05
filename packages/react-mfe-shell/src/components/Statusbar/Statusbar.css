@@ -1,5 +1,5 @@
 .statusbar {
-  min-width: 30vw;
+  width: 30vw;
   background-color: rgb(38, 35, 35);
   height: 100vh;
   color: white;

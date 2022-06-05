@@ -18,7 +18,7 @@
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <style>
       .statusbar {
-        min-width: 30vw;
+        width: 30vw;
         background-color: rgb(38, 35, 35);
         height: 100vh;
         color: white;
@@ -46,14 +46,16 @@
     -->
     <title>React App Shell</title>
     <script src="https://d3el5jsqgryo0a.cloudfront.net/platform-application/platform-application.js"></script>
+    <script type="module" src="https://d3el5jsqgryo0a.cloudfront.net/platform-application/platform-application.esm.js"></script>
 
     <!-- <script
+      type="module"
       src="http://localhost:8080/platform-application/platform-application.esm.js"
     ></script> -->
 
     <script type="module">
        import { MFEController } from 'https://d3el5jsqgryo0a.cloudfront.net/platform-application/index.esm.js';
-      // import { MFEController } from 'http://localhost:8080/platform-application/index.esm.js';
+       // import { MFEController } from 'http://localhost:8080/platform-application/index.esm.js';
       console.log({ MFEController });
     </script>
   </head>

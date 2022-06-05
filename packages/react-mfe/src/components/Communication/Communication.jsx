@@ -8,7 +8,7 @@ function Communication() {
   // let instanceId = null;
 
   useEffect(() => {
-    // asdeslint-disable-next-line react-hooks/exhaustive-deps
+    //  eslint-disable-next-line react-hooks/exhaustive-deps
     //  instanceId = MFEController.getInstanceId(ref.current);
   });
 
