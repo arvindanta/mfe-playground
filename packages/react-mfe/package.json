@@ -20,9 +20,9 @@
     "start1": "kill-port 9001 && react-scripts start",
     "start": "kill-port 9001 && craco start",
     "server": "kill-port 9001 && node server",
-    "build1": "PUBLIC_URL=http://localhost:9001 react-scripts build",
-    "build": "PUBLIC_URL=http://localhost:9001 craco build",
-    "build-mfe": "PUBLIC_URL=http://localhost:9001 craco build --config craco.config-mfe.js",
+    "build1": "PUBLIC_URL=http://localhost:9001/ react-scripts build",
+    "build": "PUBLIC_URL=http://localhost:9001/ craco build",
+    "build-mfe": "PUBLIC_URL=http://localhost:9001/ craco build --config craco.config-mfe.js",
     "test": "react-scripts test --transformIgnorePatterns '/node_modules/(?!(@freshworks|@stencil)/).*/'",
     "test:ci": "react-scripts test --watchAll=false --transformIgnorePatterns '/node_modules/(?!(@freshworks|@stencil)/).*/'",
     "eject": "react-scripts eject"

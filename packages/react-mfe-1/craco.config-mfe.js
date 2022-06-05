@@ -9,9 +9,8 @@ module.exports = function () {
           ...{
             filename: 'static/js/main.esm.js',
             path: path.join(__dirname, 'build'),
-            library: {
-              type: 'system',
-            },
+            publicPath: process.env.PUBLIC_URL,
+            libraryTarget: 'system', 
           },
         };
         const htmlWebpackPluginInstance = webpackConfig.plugins.find(

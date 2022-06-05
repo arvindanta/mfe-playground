@@ -4,8 +4,8 @@ import { MFEInstance } from './controller';
 
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
-import Contact from './components/Contact/Contact';
 
+const Contact = lazy(() => import('./components/Contact/Contact'));
 const NotFound = lazy(() => import('./components/NotFound/NotFound'));
 const About = lazy(() => import('./components/About/About'));
 const Communication = lazy(() =>
