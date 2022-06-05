@@ -17,7 +17,7 @@ const stub = {
 };
 
 const MFEController = window.MFEController || stub;
-console.info("Top Level Functions here")
+console.info('Top Level Functions here');
 let MFEInstance = null;
 export function createMFEInstance(namespace) {
   MFEInstance = MFEController.initialiseInstance(namespace, {
