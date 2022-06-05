@@ -10,7 +10,7 @@ template.innerHTML = `
         <button id="z">Send Message to App Shell with callback</button>
 `;
 
-class MyComponent extends HTMLElement {
+class MyComponent2 extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
@@ -98,4 +98,4 @@ class MyComponent extends HTMLElement {
     return { response: { params } };
   }
 }
-export { MyComponent };
+export { MyComponent2 };

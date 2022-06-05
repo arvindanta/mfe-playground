@@ -1,27 +1,30 @@
-import React, { useEffect, useRef } from 'react';
+import React, { lazy, Suspense, useEffect, useRef } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
-import { MFEController } from './controller';
+import { MFEInstance } from './controller';
 
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
-import NotFound from './components/NotFound/NotFound';
-import About from './components/About/About';
-import Contact from './components/Contact/Contact';
-import Communication from './components/Communication/Communication';
-import Routing from './components/Routing/Routing';
+
+const Contact = lazy(() => import('./components/Contact/Contact'));
+const NotFound = lazy(() => import('./components/NotFound/NotFound'));
+const About = lazy(() => import('./components/About/About'));
+const Communication = lazy(() =>
+  import('./components/Communication/Communication')
+);
+const Routing = lazy(() => import('./components/Routing/Routing'));
 
 function App(props) {
   const navigate = useNavigate();
   const ref = useRef(null);
 
   useEffect(() => {
-    const instanceId = MFEController.getInstanceId(ref.current);
-    console.info(`instance Id is ${instanceId}`);
-    const removeSubscriber = MFEController.namespace(instanceId)?.subscribe?.(
+    // const instanceId = MFEController.getInstanceId(ref.current);
+    // console.info(`instance Id is ${instanceId}`);
+    const removeSubscriber = MFEInstance.subscribe?.(
       'from_app_shell',
       (msg) => {
         window.log(
-          `Message received for instance - ${instanceId} from app shell <pre>${JSON.stringify(
+          `Message received for instance - from app shell <pre>${JSON.stringify(
             msg,
             null,
             2
@@ -30,7 +33,7 @@ function App(props) {
       }
     );
 
-    const removeSubscriber1 = MFEController.namespace(instanceId)?.subscribe?.(
+    const removeSubscriber1 = MFEInstance.subscribe?.(
       'route_change_app_shell',
       (msg) => {
         console.info(`${msg}`);
@@ -54,15 +57,17 @@ function App(props) {
 
   return (
     <div className='App-mfe' ref={ref}>
-      <Navbar />
-      <Routes>
-        <Route path='/' element={<Contact {...props} />} />
-        <Route path='/about' element={<About />} />
-        <Route path='/contact' element={<Contact {...props} />} />
-        <Route path='/communication' element={<Communication {...props} />} />
-        <Route path='/routing' element={<Routing {...props} />} />
-        <Route path='*' element={<NotFound />} />
-      </Routes>
+      <Suspense fallback={<h1>loading...</h1>}>
+        <Navbar />
+        <Routes>
+          <Route path='/' element={<Contact {...props} />} />
+          <Route path='/about' element={<About />} />
+          <Route path='/contact' element={<Contact {...props} />} />
+          <Route path='/communication' element={<Communication {...props} />} />
+          <Route path='/routing' element={<Routing {...props} />} />
+          <Route path='*' element={<NotFound />} />
+        </Routes>
+      </Suspense>
     </div>
   );
 }

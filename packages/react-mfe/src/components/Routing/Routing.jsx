@@ -1,19 +1,19 @@
 import React, { useRef, useEffect } from 'react';
 import { FwButton } from '@freshworks/crayons/react';
-import { MFEController } from '../../controller';
+import { MFEInstance } from '../../controller';
 
 function Routing() {
   const ref = useRef(null);
-  const instanceId = useRef(null);
+  // const instanceId = useRef(null);
 
   useEffect(() => {
-    instanceId.current = MFEController.getInstanceId(ref.current);
+    //  instanceId.current = MFEController.getInstanceId(ref.current);
   }, []);
 
   const mfeToShell = (route) => {
     window.log('sending message for routing to App Shell from MFE reactMFE1');
 
-    MFEController.namespace(instanceId.current).publish?.({
+    MFEInstance.publish?.({
       eventName: 'route_change',
       action: {
         type: 'from_child reactMFE1',

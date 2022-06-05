@@ -7,7 +7,7 @@ const TYPE_ELEM_MAPPING = {
   'webc-1': { tag: 'webc-1', cmp: MyComponent },
 };
 
-const rootConfig = {
+export const rootConfig = {
   mount: async (container, appProps) => {
     if (!container) {
       console.info(`APP - ${APP_ID} container not found`);
@@ -20,15 +20,15 @@ const rootConfig = {
     switch (appProps.componentType) {
       case 'webc-1': {
         const { tag, cmp } = TYPE_ELEM_MAPPING[appProps.componentType];
-        webcmp = document.createElement(tag);
+        webcmp = document.createElement(tag + appProps.instanceId);
         webcmp.appProps = appProps;
         Object.keys(appProps).forEach((k) => {
           webcmp[k] = appProps[k];
         });
 
         // for stencil usecases , make sure the esm bundle is added to manifest. the below can be ignored
-        if (!window.customElements.get(tag)) {
-          customElements.define(tag, cmp);
+        if (!window.customElements.get(tag + appProps.instanceId)) {
+          customElements.define(tag + appProps.instanceId, cmp);
         }
 
         createMFEInstance(appProps.instanceId || 'test-webcid', webcmp);
@@ -49,7 +49,7 @@ const rootConfig = {
   },
 };
 
-MFEController?.registerApplication?.(APP_ID, rootConfig);
+// MFEController?.registerApplication?.(APP_ID, rootConfig);
 
 window.onload = () => {
   const appProps = MFEController.getMFEQueryParams();

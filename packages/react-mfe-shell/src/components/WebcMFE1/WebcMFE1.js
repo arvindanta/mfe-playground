@@ -6,6 +6,7 @@ import { MFEController } from '../../controller';
 
 function WebcMFE1() {
   const ref = useRef(null);
+  const ref1 = useRef(null);
 
   const navigate = useNavigate();
 
@@ -14,12 +15,28 @@ function WebcMFE1() {
     ref.current.appProps = {
       componentType: 'webc-1',
     };
+    ref1.current.appProps = {
+      componentType: 'webc-1',
+    };
 
     const removeSubscriber = MFEController.namespace('mfe3').subscribe?.(
       'from_child_webc',
       (msg) => {
         window.log(
           `Message received from webcMFE <pre>${JSON.stringify(
+            msg,
+            null,
+            2
+          )}</pre>`
+        );
+      }
+    );
+
+    const removeSubscriber123 = MFEController.namespace('mfe12').subscribe?.(
+      'from_child_webc',
+      (msg) => {
+        window.log(
+          `Message received from webcMFE 12 <pre>${JSON.stringify(
             msg,
             null,
             2
@@ -64,6 +81,7 @@ function WebcMFE1() {
       removeSubscriber();
       removeSubscriber1();
       removeSubscriber2();
+      removeSubscriber123();
     };
   }, [navigate]);
 
@@ -85,6 +103,24 @@ function WebcMFE1() {
     );
   };
 
+  const sendToMFE12 = () => {
+    MFEController.namespace('mfe12').publish?.({
+      eventName: 'from_app_shell',
+      action: {
+        type: 'from_app_shell',
+        sender: 'app shell',
+      },
+      payload: 'from app shell',
+    });
+  };
+
+  const triggerToMFE12 = async () => {
+    const resp = await MFEController.trigger('mfe12', { id: 1 });
+    window.log(
+      `Getting response from MFE <pre>${JSON.stringify(resp, null, 2)}</pre>`
+    );
+  };
+
   return (
     <div>
       <FwButton onClick={sendToMFE}>Send message to MFE</FwButton>
@@ -92,6 +128,12 @@ function WebcMFE1() {
       <br />
       <FwButton onClick={triggerToMFE}>
         Call Trigger in MFE and get result
+      </FwButton>
+      <FwButton onClick={sendToMFE12}>Send message to MFE12</FwButton>
+      <br />
+      <br />
+      <FwButton onClick={triggerToMFE12}>
+        Call Trigger in MFE and get result12
       </FwButton>
 
       <hr />
@@ -103,6 +145,17 @@ function WebcMFE1() {
         instance-id='mfe3'
         style={{ '--mfe-width': 'calc(58vw)' }}
         id='z'
+        registry-url='http://localhost:8001'
+        version='0.1.1'
+      ></mfe-application>
+
+      {/* <h3>second instance</h3> */}
+      <mfe-application
+        ref={ref1}
+        app-id='webcMFE1'
+        instance-id='mfe12'
+        style={{ '--mfe-width': 'calc(58vw)' }}
+        id='asd'
         registry-url='http://localhost:8001'
         version='0.1.1'
       ></mfe-application>

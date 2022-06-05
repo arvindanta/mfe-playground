@@ -1,5 +1,7 @@
 const stub = {
-  initialiseInstance: () => {},
+  initialiseInstance: () => {
+    return stub.namespace();
+  },
   namespace: () => {
     return {
       publish: () => {},
@@ -15,13 +17,13 @@ const stub = {
 };
 
 const MFEController = window.MFEController || stub;
-
+let MFEInstance = null;
 export function createMFEInstance(namespace) {
-  MFEController.initialiseInstance(namespace, {
+  MFEInstance = MFEController.initialiseInstance(namespace, {
     trigger: async (params) => {
       window.log(`Calling trigger in ${namespace} ${params}`);
     },
   });
 }
 
-export { MFEController };
+export { MFEController, MFEInstance };

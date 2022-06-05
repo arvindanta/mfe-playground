@@ -1,21 +1,21 @@
 import React, { useEffect, useRef } from 'react';
 import { FwButton } from '@freshworks/crayons/react';
 
-import { MFEController } from '../../controller';
+import { MFEInstance } from '../../controller';
 
 function Communication() {
   const ref = useRef(null);
-  let instanceId = null;
+  // let instanceId = null;
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    instanceId = MFEController.getInstanceId(ref.current);
+    //  eslint-disable-next-line react-hooks/exhaustive-deps
+    //  instanceId = MFEController.getInstanceId(ref.current);
   });
 
   const mfeToShell = () => {
     window.log('sending message to App Shell from MFE reactMFE1');
 
-    MFEController.namespace(instanceId).publish?.({
+    MFEInstance.publish?.({
       eventName: 'from_child_react',
       action: {
         type: 'from_child reactMFE1',
