@@ -17,13 +17,15 @@ const stub = {
 };
 
 const MFEController = window.MFEController || stub;
-
-export function createMFEInstance(namespace) {
-  MFEController.initialiseInstance(namespace, {
+let MFEInstance = null;
+let shellUrl = '';
+export function createMFEInstance(namespace, appProps) {
+  shellUrl = appProps.shellUrl;
+  MFEInstance = MFEController.initialiseInstance(namespace, {
     trigger: async (params) => {
       window.log(`Calling trigger in ${namespace} ${params}`);
     },
   });
 }
 
-export { MFEController };
+export { MFEController, MFEInstance, shellUrl };

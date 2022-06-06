@@ -17,9 +17,10 @@ const stub = {
 };
 
 const MFEController = window.MFEController || stub;
-console.info('Top Level Functions here');
 let MFEInstance = null;
-export function createMFEInstance(namespace) {
+let shellUrl = '';
+export function createMFEInstance(namespace, appProps) {
+  shellUrl = appProps.shellUrl;
   MFEInstance = MFEController.initialiseInstance(namespace, {
     trigger: async (params) => {
       window.log(`Calling trigger in ${namespace} ${params}`);
@@ -27,4 +28,4 @@ export function createMFEInstance(namespace) {
   });
 }
 
-export { MFEController, MFEInstance };
+export { MFEController, MFEInstance, shellUrl };

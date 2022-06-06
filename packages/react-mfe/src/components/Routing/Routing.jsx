@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { FwButton } from '@freshworks/crayons/react';
-import { MFEInstance } from '../../controller';
+import { MFEInstance, shellUrl } from '../../controller';
 
 function Routing() {
   const ref = useRef(null);
@@ -20,6 +20,7 @@ function Routing() {
         sender: 'reactMFE1',
       },
       payload: { from: window.location.pathname, to: route },
+      targetOrigin: shellUrl,
     });
   };
   return (

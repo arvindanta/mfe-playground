@@ -70,9 +70,10 @@ function MFE() {
         ref={ref}
         app-id='reactMFE1'
         instance-id='mfe1'
-        style={{ '--mfe-width': 'calc(58vw)' }}
+        style={{ '--mfe-width': 'calc(63vw)' }}
         id='x'
         registry-url='http://localhost:9001'
+        iframe-src='http://localhost:9001/mfe1'
         version='0.1.1'
       ></mfe-application>
 
@@ -80,9 +81,10 @@ function MFE() {
         ref={ref1}
         app-id='reactMFE1'
         instance-id='mfe14'
-        style={{ '--mfe-width': 'calc(58vw)' }}
+        style={{ '--mfe-width': 'calc(63vw)' }}
         id='y'
         registry-url='http://localhost:9001'
+        iframe-src='http://localhost:9001/mfe1'
         version='0.1.1'
       ></mfe-application>
 

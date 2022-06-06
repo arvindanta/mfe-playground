@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { FwButton } from '@freshworks/crayons/react';
 
-import { MFEInstance } from '../../controller';
+import { MFEInstance, shellUrl } from '../../controller';
 
 function Communication() {
   const ref = useRef(null);
@@ -22,6 +22,7 @@ function Communication() {
         sender: 'reactMFE1',
       },
       payload: 'from child reactMFE1',
+      targetOrigin: shellUrl,
     });
   };
 
