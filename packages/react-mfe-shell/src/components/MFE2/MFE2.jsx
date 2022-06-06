@@ -15,7 +15,7 @@ function MFE2() {
       routerBasePath: '/mfe2',
     };
 
-    const removeSubscriber = MFEController.namespace('mfe2').subscribe?.(
+    const removeSubscriber = MFEController.namespace('mfe2').subscribe(
       'from_child_react',
       (msg) => {
         window.log(
@@ -24,7 +24,7 @@ function MFE2() {
       }
     );
 
-    const removeSubscriber1 = MFEController.namespace('mfe2').subscribe?.(
+    const removeSubscriber1 = MFEController.namespace('mfe2').subscribe(
       'route_change',
       (msg) => {
         window.log(

@@ -17,7 +17,7 @@ export const sideMenu = [
           e.preventDefault();
           window.log('sending message to MFE reactMFE1 from App Shell');
 
-          MFEController.namespace('mfe1').publish?.({
+          MFEController.namespace('mfe1').publish({
             eventName: 'from_app_shell',
             action: {
               type: 'from_app_shell',
@@ -34,7 +34,7 @@ export const sideMenu = [
       //     e.preventDefault();
       //     window.log('sending message to MFE 10 reactMFE1 from App Shell');
 
-      //     MFEController.namespace('mfe10').publish?.({
+      //     MFEController.namespace('mfe10').publish({
       //       eventName: 'from_app_shell',
       //       action: {
       //         type: 'from_app_shell',
@@ -53,7 +53,7 @@ export const sideMenu = [
             'sending message to MFE reactMFE1 to change route from App Shell'
           );
 
-          MFEController.namespace('mfe1').publish?.({
+          MFEController.namespace('mfe1').publish({
             eventName: 'route_change_app_shell',
             action: {
               type: 'from_app_shell',
@@ -77,7 +77,7 @@ export const sideMenu = [
           e.preventDefault();
           window.log('sending message to MFE reactMFE2 from App Shell');
 
-          MFEController.namespace('mfe2').publish?.({
+          MFEController.namespace('mfe2').publish({
             eventName: 'from_app_shell',
             action: {
               type: 'from_app_shell',
@@ -96,7 +96,7 @@ export const sideMenu = [
             'sending message to MFE reactMFE2 to change route from App Shell'
           );
 
-          MFEController.namespace('mfe2').publish?.({
+          MFEController.namespace('mfe2').publish({
             eventName: 'route_change_app_shell',
             action: {
               type: 'from_app_shell',

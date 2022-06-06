@@ -19,7 +19,7 @@ function MFE() {
       routerBasePath: '/mfe1',
     };
 
-    const removeSubscriber = MFEController.namespace('mfe1').subscribe?.(
+    const removeSubscriber = MFEController.namespace('mfe1').subscribe(
       'from_child_react',
       (msg) => {
         window.log(
@@ -28,7 +28,7 @@ function MFE() {
       }
     );
 
-    const removeSubscriber10 = MFEController.namespace('mfe14').subscribe?.(
+    const removeSubscriber10 = MFEController.namespace('mfe14').subscribe(
       'from_child_react',
       (msg) => {
         window.log(
@@ -41,7 +41,7 @@ function MFE() {
       }
     );
 
-    const removeSubscriber1 = MFEController.namespace('mfe1').subscribe?.(
+    const removeSubscriber1 = MFEController.namespace('mfe1').subscribe(
       'route_change',
       (msg) => {
         window.log(

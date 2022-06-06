@@ -17,7 +17,7 @@ function App(props) {
     const instanceId = MFEController.getInstanceId(ref.current);
     console.info(`instance Id is ${instanceId}`);
 
-    const removeSubscriber = MFEController.namespace(instanceId)?.subscribe?.(
+    const removeSubscriber = MFEController.namespace(instanceId).subscribe(
       'from_app_shell',
       (msg) => {
         window.log(
@@ -30,7 +30,7 @@ function App(props) {
       }
     );
 
-    const removeSubscriber1 = MFEController.namespace(instanceId)?.subscribe?.(
+    const removeSubscriber1 = MFEController.namespace(instanceId).subscribe(
       'route_change_app_shell',
       (msg) => {
         console.info(`${msg}`);

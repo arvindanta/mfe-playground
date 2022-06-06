@@ -49,7 +49,7 @@ export const rootConfig = {
   },
 };
 
-// MFEController?.registerApplication?.(APP_ID, rootConfig);
+// MFEController.registerApplication(APP_ID, rootConfig);
 
 window.onload = () => {
   const appProps = MFEController.getMFEQueryParams();

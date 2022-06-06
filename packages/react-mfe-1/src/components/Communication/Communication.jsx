@@ -13,7 +13,7 @@ function Communication() {
   const mfeToShell = () => {
     window.log('sending message to App Shell from MFE reactMFE2');
 
-    MFEController.namespace(instanceId).publish?.({
+    MFEController.namespace(instanceId).publish({
       eventName: 'from_child_react',
       action: {
         type: 'from_child reactMFE2',

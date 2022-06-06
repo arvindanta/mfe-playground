@@ -23,7 +23,7 @@ export class Sample {
 
   componentWillLoad() {
     this.instanceId = MFEController.getInstanceId(this.el);
-    MFEController.namespace(this.instanceId)?.subscribe?.(
+    MFEController.namespace(this.instanceId).subscribe(
       'from_app_shell',
       (msg) => {
         (window as any).log(
@@ -42,7 +42,7 @@ export class Sample {
     (window as any).log(
       'publishing event from_child_stencil_webc from stencil webc'
     );
-    MFEController.namespace(this.instanceId)?.publish?.({
+    MFEController.namespace(this.instanceId).publish({
       eventName: 'from_child_stencil_webc',
       action: {
         type: 'from_child stencilwebc',
@@ -57,7 +57,7 @@ export class Sample {
     (window as any).log(
       'publishing event  - from_child_stencil_webc_api from stencil webc'
     );
-    MFEController.namespace(this.instanceId)?.publish?.({
+    MFEController.namespace(this.instanceId).publish({
       eventName: 'from_child_stencil_webc_api',
       action: {
         type: 'from_child stencil webc api',
@@ -77,7 +77,7 @@ export class Sample {
 
   handleSendRouteMess = () => {
     (window as any).log('sending route change message event from stencilMFE1');
-    MFEController.namespace(this.instanceId)?.publish?.({
+    MFEController.namespace(this.instanceId).publish({
       eventName: 'route_change',
       action: {
         type: 'navigate',

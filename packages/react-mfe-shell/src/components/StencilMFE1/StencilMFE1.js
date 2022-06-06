@@ -18,7 +18,7 @@ function StencilMFE1() {
       last: 'last',
     };
 
-    const removeSubscriber = MFEController.namespace('mfe4').subscribe?.(
+    const removeSubscriber = MFEController.namespace('mfe4').subscribe(
       'from_child_stencil_webc',
       (msg) => {
         window.log(
@@ -31,7 +31,7 @@ function StencilMFE1() {
       }
     );
 
-    const removeSubscriber1 = MFEController.namespace('mfe4').subscribe?.(
+    const removeSubscriber1 = MFEController.namespace('mfe4').subscribe(
       'route_change',
       (msg) => {
         window.log(
@@ -46,7 +46,7 @@ function StencilMFE1() {
       }
     );
 
-    const removeSubscriber2 = MFEController.namespace('mfe4').subscribe?.(
+    const removeSubscriber2 = MFEController.namespace('mfe4').subscribe(
       'from_child_stencil_webc_api',
       (data) => {
         window.log(
@@ -71,7 +71,7 @@ function StencilMFE1() {
   }, [navigate]);
 
   const sendToMFE = () => {
-    MFEController.namespace('mfe4').publish?.({
+    MFEController.namespace('mfe4').publish({
       eventName: 'from_app_shell',
       action: {
         type: 'from_app_shell',

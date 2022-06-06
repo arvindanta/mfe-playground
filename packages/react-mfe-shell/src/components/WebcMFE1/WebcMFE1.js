@@ -19,7 +19,7 @@ function WebcMFE1() {
       componentType: 'webc-1',
     };
 
-    const removeSubscriber = MFEController.namespace('mfe3').subscribe?.(
+    const removeSubscriber = MFEController.namespace('mfe3').subscribe(
       'from_child_webc',
       (msg) => {
         window.log(
@@ -32,7 +32,7 @@ function WebcMFE1() {
       }
     );
 
-    const removeSubscriber123 = MFEController.namespace('mfe12').subscribe?.(
+    const removeSubscriber123 = MFEController.namespace('mfe12').subscribe(
       'from_child_webc',
       (msg) => {
         window.log(
@@ -45,7 +45,7 @@ function WebcMFE1() {
       }
     );
 
-    const removeSubscriber1 = MFEController.namespace('mfe3').subscribe?.(
+    const removeSubscriber1 = MFEController.namespace('mfe3').subscribe(
       'route_change',
       (msg) => {
         window.log(
@@ -60,7 +60,7 @@ function WebcMFE1() {
       }
     );
 
-    const removeSubscriber2 = MFEController.namespace('mfe3').subscribe?.(
+    const removeSubscriber2 = MFEController.namespace('mfe3').subscribe(
       'from_child_webc_api',
       (data) => {
         window.log(
@@ -86,7 +86,7 @@ function WebcMFE1() {
   }, [navigate]);
 
   const sendToMFE = () => {
-    MFEController.namespace('mfe3').publish?.({
+    MFEController.namespace('mfe3').publish({
       eventName: 'from_app_shell',
       action: {
         type: 'from_app_shell',
@@ -104,7 +104,7 @@ function WebcMFE1() {
   };
 
   const sendToMFE12 = () => {
-    MFEController.namespace('mfe12').publish?.({
+    MFEController.namespace('mfe12').publish({
       eventName: 'from_app_shell',
       action: {
         type: 'from_app_shell',

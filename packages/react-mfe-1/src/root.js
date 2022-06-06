@@ -41,7 +41,7 @@ export const rootConfig = {
 
     return () => {
       console.info(`UNMOUNTING: instance ${instanceId} of app group ${APP_ID}`);
-      root?.unmount();
+      root.unmount();
     };
   },
 
@@ -62,7 +62,7 @@ export const rootConfig = {
       console.info(
         `UNMOUNTING: instance ${appProps.instanceId} of app group ${APP_ID}`
       );
-      root?.unmount();
+      root.unmount();
     };
   },
 
@@ -72,7 +72,7 @@ export const rootConfig = {
   },
 };
 
-MFEController?.registerAppInstance?.(instanceId, rootConfig);
+MFEController.registerAppInstance(instanceId, rootConfig);
 
 window.onload = () => {
   const appProps = MFEController.getMFEQueryParams();
