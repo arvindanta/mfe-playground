@@ -20,18 +20,15 @@ function App(props) {
   useEffect(() => {
     // const instanceId = MFEController.getInstanceId(ref.current);
     // console.info(`instance Id is ${instanceId}`);
-    const removeSubscriber = MFEInstance.subscribe(
-      'from_app_shell',
-      (msg) => {
-        window.log(
-          `Message received for instance - from app shell <pre>${JSON.stringify(
-            msg,
-            null,
-            2
-          )}</pre>`
-        );
-      }
-    );
+    const removeSubscriber = MFEInstance.subscribe('from_app_shell', (msg) => {
+      window.log(
+        `Message received for instance - from app shell <pre>${JSON.stringify(
+          msg,
+          null,
+          2
+        )}</pre>`
+      );
+    });
 
     const removeSubscriber1 = MFEInstance.subscribe(
       'route_change_app_shell',
