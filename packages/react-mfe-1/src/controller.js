@@ -10,7 +10,7 @@ const stub = {
       },
     };
   },
-  registerApplication: () => {},
+  registerAppInstance: () => {},
   getInstanceId: () => {},
   getMFEQueryParams: () => {},
   get: async () => {},

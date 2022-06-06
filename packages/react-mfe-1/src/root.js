@@ -8,7 +8,7 @@ import About from './components/About/About';
 
 import { createMFEInstance, MFEController } from './controller';
 window.log = window.log || (() => {});
-const APP_ID = 'reactMFE1';
+const APP_ID = 'reactMFE2';
 
 const instanceId = MFEController.getInstanceId();
 
