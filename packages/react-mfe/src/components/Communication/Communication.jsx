@@ -15,7 +15,7 @@ function Communication() {
   const mfeToShell = () => {
     window.log('sending message to App Shell from MFE reactMFE1');
 
-    MFEInstance.publish?.({
+    MFEInstance.publish({
       eventName: 'from_child_react',
       action: {
         type: 'from_child reactMFE1',

@@ -13,7 +13,7 @@ function Routing() {
   const mfeToShell = (route) => {
     window.log('sending message for routing to App Shell from MFE reactMFE1');
 
-    MFEInstance.publish?.({
+    MFEInstance.publish({
       eventName: 'route_change',
       action: {
         type: 'from_child reactMFE1',
