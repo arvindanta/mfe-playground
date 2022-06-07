@@ -1,4 +1,12 @@
-import { Element, Component, State, h, Method, Prop } from '@stencil/core';
+import {
+  Element,
+  Component,
+  State,
+  h,
+  Method,
+  Prop,
+  Listen,
+} from '@stencil/core';
 
 // plain import works because stencil components inside stencil project is auto identified and defined as custom elements.
 import '@freshworks/crayons/dist/components/fw-button';
@@ -7,7 +15,7 @@ import '@freshworks/crayons/dist/components/fw-button';
 // import { defineCustomElement} from '@freshworks/crayons/dist/components/fw-button';
 // defineCustomElement();
 
-import { MFEController } from '../controller';
+import { MFEController } from '../../controller';
 
 @Component({
   tag: 'fw-sample1',
@@ -16,25 +24,35 @@ import { MFEController } from '../controller';
 export class Sample {
   @Element() el;
   @State() showCard = true;
+  @State() state = '';
 
   @Prop() appProps;
 
-  instanceId: string;
-
   componentWillLoad() {
-    this.instanceId = MFEController.getInstanceId(this.el);
-    MFEController.namespace(this.instanceId).subscribe(
+    MFEController.namespace(this.appProps.instanceId).subscribe(
       'from_app_shell',
       (msg) => {
         (window as any).log(
-          `msg from outside for is <pre>${JSON.stringify(msg, null, 2)}</pre>`
+          `msg from outside for ${
+            this.appProps.instanceId
+          } is <pre>${JSON.stringify(msg, null, 2)}</pre>`
         );
+
+        this.state = JSON.stringify(msg);
       }
     );
   }
 
+  @Listen('submitForm')
+  handleEvent(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    (window as any).log(`emitting event`);
+    this.handleSendMess();
+  }
+
   handleClick = (): void => {
-    console.info('Hello');
+    console.info('handle click');
     this.showCard = !this.showCard;
   };
 
@@ -42,14 +60,14 @@ export class Sample {
     (window as any).log(
       'publishing event from_child_stencil_webc from stencil webc'
     );
-    MFEController.namespace(this.instanceId).publish({
+    MFEController.namespace(this.appProps.instanceId).publish({
       eventName: 'from_child_stencil_webc',
       action: {
         type: 'from_child stencilwebc',
         sender: 'stencilMFE1',
       },
       payload: 'from child stencilMFE1',
-      targetOrigin: this.appProps?.shellUrl,
+      targetOrigin: this.appProps.shellUrl,
     });
   };
 
@@ -57,7 +75,7 @@ export class Sample {
     (window as any).log(
       'publishing event  - from_child_stencil_webc_api from stencil webc'
     );
-    MFEController.namespace(this.instanceId).publish({
+    MFEController.namespace(this.appProps.instanceId).publish({
       eventName: 'from_child_stencil_webc_api',
       action: {
         type: 'from_child stencil webc api',
@@ -71,13 +89,13 @@ export class Sample {
           );
         },
       },
-      targetOrigin: this.appProps?.shellUrl,
+      targetOrigin: this.appProps.shellUrl,
     });
   };
 
   handleSendRouteMess = () => {
     (window as any).log('sending route change message event from stencilMFE1');
-    MFEController.namespace(this.instanceId).publish({
+    MFEController.namespace(this.appProps.instanceId).publish({
       eventName: 'route_change',
       action: {
         type: 'navigate',
@@ -87,7 +105,7 @@ export class Sample {
         from: window.origin,
         to: '/mfe1/routing',
       },
-      targetOrigin: this.appProps?.shellUrl,
+      targetOrigin: this.appProps.shellUrl,
     });
   };
 
@@ -152,6 +170,10 @@ export class Sample {
         <fw-button onClick={this.handleSendCbMess}>
           Send Message to App Shell with callback
         </fw-button>
+
+        <hr />
+        <hr />
+        <my-component first={this.state} handleSendMess={this.handleSendMess} />
       </div>
     );
   }

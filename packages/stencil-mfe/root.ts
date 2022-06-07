@@ -1,15 +1,19 @@
-import { MFEController, createMFEInstance } from './controller';
+import { MFEController, createMFEInstance } from './src/controller';
 
 (window as any).log = (window as any).log || (() => {});
 
 const APP_ID = 'stencilMFE1';
+
+const instanceId = MFEController.getInstanceId();
+
+(window as any).log(`Loading module for ${instanceId}`);
 
 const TYPE_ELEM_MAPPING = {
   'fw-sample1': { tag: 'fw-sample1' },
   'my-component': { tag: 'my-component' },
 };
 
-const rootConfig = {
+export const rootConfig = {
   mount: async (container, appProps) => {
     if (!container) {
       console.info(`APP - ${APP_ID} container not found`);
@@ -28,7 +32,7 @@ const rootConfig = {
     });
 
     // for stencil usecases , make sure the esm bundle is added to manifest. the below can be ignored
-    // if (!window.customElements.get(tag)) {
+    // if (!(window as any).customElements.get(tag)) {
     //   customElements.define(tag, cmp);
     // }
 
@@ -49,13 +53,14 @@ const rootConfig = {
   },
 };
 
-MFEController.registerApplication(APP_ID, rootConfig);
+MFEController.registerAppInstance(instanceId, rootConfig);
 
-window.onload = () => {
+(window as any).onload = () => {
   const appProps = MFEController.getMFEQueryParams();
   rootConfig.mount(document.getElementById('stencilroot'), {
     title: 'test',
     ...appProps,
     componentType: 'fw-sample1',
+    instanceId: instanceId || 'mfe5',
   });
 };

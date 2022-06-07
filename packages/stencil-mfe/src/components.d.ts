@@ -11,11 +11,11 @@ export namespace Components {
         "trigger": (params: any) => Promise<{ response: { params: any; }; }>;
     }
     interface MyComponent {
-        "appProps": any;
         /**
           * The first name
          */
         "first": string;
+        "handleSendMess": any;
         /**
           * The last name
          */
@@ -50,11 +50,11 @@ declare namespace LocalJSX {
         "appProps"?: any;
     }
     interface MyComponent {
-        "appProps"?: any;
         /**
           * The first name
          */
         "first"?: string;
+        "handleSendMess"?: any;
         /**
           * The last name
          */
@@ -63,6 +63,7 @@ declare namespace LocalJSX {
           * The middle name
          */
         "middle"?: string;
+        "onSubmitForm"?: (event: CustomEvent<any>) => void;
     }
     interface IntrinsicElements {
         "fw-sample1": FwSample1;

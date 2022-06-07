@@ -19,5 +19,5 @@ export const config: Config = {
     },
   ],
   buildEs5: true,
-  globalScript: 'src/wrapper.ts',
+  // globalScript: 'src/wrapper.ts',
 };

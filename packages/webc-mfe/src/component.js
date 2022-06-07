@@ -1,4 +1,4 @@
-import { MFEInstance } from './controller';
+import { MFEInstance, shellUrl } from './controller';
 
 const template = document.createElement('template');
 template.innerHTML = `
@@ -25,12 +25,14 @@ class MyComponent extends HTMLElement {
       this.handleSendRouteMess.bind(this)
     );
     sendCbMess.addEventListener('click', this.handleSendCbMess.bind(this));
+    console.info('appProps1', this.appProps);
   }
 
   connectedCallback() {
     // this.instanceId = MFEController.getInstanceId(this.shadowRoot);
     // window.log(`instance id is ${this.instanceId}`);
     console.info(MFEInstance);
+    console.info('appProps', this.appProps);
     MFEInstance.subscribe('from_app_shell', (msg) => {
       window.log(
         `msg from outside for is <pre>${JSON.stringify(msg, null, 2)}</pre>`
@@ -47,7 +49,7 @@ class MyComponent extends HTMLElement {
         sender: 'webcMFE1',
       },
       payload: 'from child webcMFE1',
-      // targetOrigin: this.appProps?.shellUrl,
+      targetOrigin: shellUrl,
     });
   }
 
@@ -67,7 +69,7 @@ class MyComponent extends HTMLElement {
           );
         },
       },
-      // targetOrigin: this.appProps?.shellUrl,
+      targetOrigin: shellUrl,
     });
   }
 
@@ -83,7 +85,7 @@ class MyComponent extends HTMLElement {
         from: window.origin,
         to: '/mfe1/communication',
       },
-      targetOrigin: this.appProps?.shellUrl,
+      targetOrigin: shellUrl,
     });
   }
 
