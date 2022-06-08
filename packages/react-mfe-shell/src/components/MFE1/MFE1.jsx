@@ -28,7 +28,7 @@ function MFE() {
       }
     );
 
-    const removeSubscriber10 = MFEController.namespace('mfe14').subscribe(
+    const removeSubscriber10 = MFEController.namespace('mfe10').subscribe(
       'from_child_react',
       (msg) => {
         window.log(
@@ -56,11 +56,27 @@ function MFE() {
       }
     );
 
+    const removeSubscriber12 = MFEController.namespace('mfe10').subscribe(
+      'route_change',
+      (msg) => {
+        window.log(
+          `Routing Message received from MFE 10 <pre>${JSON.stringify(
+            msg,
+            null,
+            2
+          )}</pre>`
+        );
+        window.log(`Navigation to route ${msg.payload.to}`);
+        navigate(msg.payload.to);
+      }
+    );
+
     return () => {
       window.log('Unmounting MFE - reactMFE1');
       removeSubscriber();
       removeSubscriber1();
       removeSubscriber10();
+      removeSubscriber12();
     };
   }, [navigate]);
 
@@ -80,7 +96,7 @@ function MFE() {
       <mfe-application
         ref={ref1}
         app-id='reactMFE1'
-        instance-id='mfe14'
+        instance-id='mfe10'
         style={{ '--mfe-width': 'calc(63vw)' }}
         id='y'
         registry-url='http://localhost:9001'
