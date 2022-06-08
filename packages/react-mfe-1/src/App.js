@@ -20,7 +20,6 @@ function App(props) {
   const shellUrl = props.shellUrl;
 
   useEffect(() => {
-    
     const removeSubscriber = MFEController.namespace(instanceId).subscribe(
       'from_app_shell',
       (msg) => {
