@@ -24,7 +24,7 @@ export const rootConfig = {
       return;
     }
 
-    createMFEInstance(appProps.instanceId || 'test-id', appProps);
+    createMFEInstance(instanceId || 'test-id', appProps);
 
     console.info(
       `MOUNTING: instance ${instanceId} of app group ${APP_ID}, `,
@@ -46,12 +46,13 @@ export const rootConfig = {
   },
 
   xyzmount: async (container, appProps) => {
+    const instanceId = appProps.instanceId;
     console.info(
-      `MOUNTING: xyz tree with instance ${appProps.instanceId} of app group ${APP_ID}, `,
+      `MOUNTING: xyz tree with instance ${instanceId} of app group ${APP_ID}, `,
       container,
       appProps
     );
-    createMFEInstance(appProps.instanceId || 'test-id', appProps);
+    createMFEInstance(instanceId || 'test-id', appProps);
     const root = ReactDOM.createRoot(container);
     root.render(
       <BrowserRouter basename={appProps.routerBasePath}>
@@ -59,9 +60,7 @@ export const rootConfig = {
       </BrowserRouter>
     );
     return () => {
-      console.info(
-        `UNMOUNTING: instance ${appProps.instanceId} of app group ${APP_ID}`
-      );
+      console.info(`UNMOUNTING: instance ${instanceId} of app group ${APP_ID}`);
       root.unmount();
     };
   },

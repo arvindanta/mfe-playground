@@ -6,6 +6,7 @@ import { MFEController } from '../../controller';
 
 function MFE2() {
   const ref = useRef(null);
+  const ref1 = useRef(null);
 
   const navigate = useNavigate();
 
@@ -14,12 +15,32 @@ function MFE2() {
     ref.current.appProps = {
       routerBasePath: '/mfe2',
     };
+    ref1.current.appProps = {
+      routerBasePath: '/mfe2',
+    };
 
     const removeSubscriber = MFEController.namespace('mfe2').subscribe(
       'from_child_react',
       (msg) => {
         window.log(
-          `Message received from MFE <pre>${JSON.stringify(msg, null, 2)}</pre>`
+          `Message received from MFE 2 <pre>${JSON.stringify(
+            msg,
+            null,
+            2
+          )}</pre>`
+        );
+      }
+    );
+
+    const removeSubscriber10 = MFEController.namespace('mfe20').subscribe(
+      'from_child_react',
+      (msg) => {
+        window.log(
+          `Message received from MFE 20 <pre>${JSON.stringify(
+            msg,
+            null,
+            2
+          )}</pre>`
         );
       }
     );
@@ -28,7 +49,7 @@ function MFE2() {
       'route_change',
       (msg) => {
         window.log(
-          `Routing Message received from MFE <pre>${JSON.stringify(
+          `Routing Message received from MFE 2 <pre>${JSON.stringify(
             msg,
             null,
             2
@@ -39,10 +60,61 @@ function MFE2() {
       }
     );
 
+    const removeSubscriber12 = MFEController.namespace('mfe20').subscribe(
+      'route_change',
+      (msg) => {
+        window.log(
+          `Routing Message received from MFE 20 <pre>${JSON.stringify(
+            msg,
+            null,
+            2
+          )}</pre>`
+        );
+        window.log(`Navigation to route ${msg.payload.to}`);
+        navigate(msg.payload.to);
+      }
+    );
+
+    const removeSubscriber21 = MFEController.namespace('mfe2').subscribe(
+      'from_child_react_api',
+      (data) => {
+        window.log(
+          `Message received from mfe 2 <pre>${JSON.stringify(
+            data?.payload?.params || {},
+            null,
+            2
+          )}</pre>`
+        );
+
+        const cb1 = data?.payload?.cb;
+        cb1?.({ response: { result: 112123, id: 'mfe2' } });
+      }
+    );
+
+    const removeSubscriber22 = MFEController.namespace('mfe20').subscribe(
+      'from_child_react_api',
+      (data) => {
+        window.log(
+          `Message received from mfe 20 <pre>${JSON.stringify(
+            data?.payload?.params || {},
+            null,
+            2
+          )}</pre>`
+        );
+
+        const cb1 = data?.payload?.cb;
+        cb1?.({ response: { result: 112123, id: 'mfe20' } });
+      }
+    );
+
     return () => {
       window.log('Unmounting MFE - reactMFE2');
       removeSubscriber();
       removeSubscriber1();
+      removeSubscriber10();
+      removeSubscriber12();
+      removeSubscriber22();
+      removeSubscriber21();
     };
   }, [navigate]);
 
@@ -52,11 +124,33 @@ function MFE2() {
         ref={ref}
         app-id='reactMFE2'
         instance-id='mfe2'
-        style={{ '--mfe-width': 'calc(58vw)' }}
-        id='y'
+        style={{ '--mfe-width': 'calc(63vw)' }}
+        id='x'
         registry-url='http://localhost:9002'
+        iframe-src='http://localhost:9002/mfe2'
         version='0.1.1'
       ></mfe-application>
+
+      <mfe-application
+        ref={ref1}
+        app-id='reactMFE2'
+        instance-id='mfe20'
+        style={{ '--mfe-width': 'calc(63vw)' }}
+        id='y'
+        registry-url='http://localhost:9002'
+        iframe-src='http://localhost:9002/mfe2'
+        version='0.1.1'
+      ></mfe-application>
+
+      {/* <mfe-application
+        ref={ref1}
+        app-id='reactMFE1'
+        instance-id='mfe10'
+        style={{ '--mfe-width': 'calc(58vw)' }}
+        id='y'
+        registry-url='http://localhost:9001'
+        version='0.1.1'
+      ></mfe-application> */}
     </div>
   );
 }

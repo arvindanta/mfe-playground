@@ -18,8 +18,6 @@ function App(props) {
   const ref = useRef(null);
 
   useEffect(() => {
-    // const instanceId = MFEController.getInstanceId(ref.current);
-    // console.info(`instance Id is ${instanceId}`);
     const removeSubscriber = MFEInstance.subscribe('from_app_shell', (msg) => {
       window.log(
         `Message received for instance - from app shell <pre>${JSON.stringify(
