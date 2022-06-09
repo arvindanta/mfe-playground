@@ -11,6 +11,7 @@ const instanceId = MFEController.getInstanceId();
 const TYPE_ELEM_MAPPING = {
   'fw-sample1': { tag: 'fw-sample1' },
   'my-component': { tag: 'my-component' },
+  'test-component': { tag: 'test-component' },
 };
 
 export const rootConfig = {

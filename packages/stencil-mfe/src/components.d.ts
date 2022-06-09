@@ -6,9 +6,41 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface FwPortalComponent {
+        "portalId": string;
+        "zIndex": string;
+    }
     interface FwSample1 {
         "appProps": any;
         "trigger": (params: any) => Promise<{ response: { params: any; }; }>;
+    }
+    interface FwWidgetCard {
+        "componentId": string;
+        "fetchData"?: any;
+        "loading": boolean;
+        "params": any;
+        "setValues": (args: any) => Promise<void>;
+        "value": any;
+        "variation": 'contact' | 'ticket' | '';
+    }
+    interface FwWidgetLabel {
+        "label": string;
+        "linkData": string;
+        "type": | 'section'
+    | 'header'
+    | 'label'
+    | 'link'
+    | 'sublink'
+    | 'subtext';
+    }
+    interface FwWidgetLink {
+        "componentId": any;
+        "entityLabel": string;
+        "fetchData"?: any;
+        "linkFieldLabel": string;
+        "linkFieldName": string;
+        "params": any;
+        "primaryFieldLabel": string;
     }
     interface MyComponent {
         /**
@@ -26,13 +58,42 @@ export namespace Components {
         "middle": string;
         "trigger": (params: any) => Promise<{ response: { params: any; }; }>;
     }
+    interface TestComponent {
+        "componentId"?: string;
+        "params": any;
+        "trigger": (params: any) => Promise<{ response: { params: any; }; }>;
+    }
 }
 declare global {
+    interface HTMLFwPortalComponentElement extends Components.FwPortalComponent, HTMLStencilElement {
+    }
+    var HTMLFwPortalComponentElement: {
+        prototype: HTMLFwPortalComponentElement;
+        new (): HTMLFwPortalComponentElement;
+    };
     interface HTMLFwSample1Element extends Components.FwSample1, HTMLStencilElement {
     }
     var HTMLFwSample1Element: {
         prototype: HTMLFwSample1Element;
         new (): HTMLFwSample1Element;
+    };
+    interface HTMLFwWidgetCardElement extends Components.FwWidgetCard, HTMLStencilElement {
+    }
+    var HTMLFwWidgetCardElement: {
+        prototype: HTMLFwWidgetCardElement;
+        new (): HTMLFwWidgetCardElement;
+    };
+    interface HTMLFwWidgetLabelElement extends Components.FwWidgetLabel, HTMLStencilElement {
+    }
+    var HTMLFwWidgetLabelElement: {
+        prototype: HTMLFwWidgetLabelElement;
+        new (): HTMLFwWidgetLabelElement;
+    };
+    interface HTMLFwWidgetLinkElement extends Components.FwWidgetLink, HTMLStencilElement {
+    }
+    var HTMLFwWidgetLinkElement: {
+        prototype: HTMLFwWidgetLinkElement;
+        new (): HTMLFwWidgetLinkElement;
     };
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
     }
@@ -40,14 +101,62 @@ declare global {
         prototype: HTMLMyComponentElement;
         new (): HTMLMyComponentElement;
     };
+    interface HTMLTestComponentElement extends Components.TestComponent, HTMLStencilElement {
+    }
+    var HTMLTestComponentElement: {
+        prototype: HTMLTestComponentElement;
+        new (): HTMLTestComponentElement;
+    };
     interface HTMLElementTagNameMap {
+        "fw-portal-component": HTMLFwPortalComponentElement;
         "fw-sample1": HTMLFwSample1Element;
+        "fw-widget-card": HTMLFwWidgetCardElement;
+        "fw-widget-label": HTMLFwWidgetLabelElement;
+        "fw-widget-link": HTMLFwWidgetLinkElement;
         "my-component": HTMLMyComponentElement;
+        "test-component": HTMLTestComponentElement;
     }
 }
 declare namespace LocalJSX {
+    interface FwPortalComponent {
+        "portalId"?: string;
+        "zIndex"?: string;
+    }
     interface FwSample1 {
         "appProps"?: any;
+    }
+    interface FwWidgetCard {
+        "componentId"?: string;
+        "fetchData"?: any;
+        "loading"?: boolean;
+        "onFwLinkRecord"?: (event: CustomEvent<any>) => void;
+        "onFwNavigate"?: (event: CustomEvent<any>) => void;
+        "onFwViewAllRecords"?: (event: CustomEvent<any>) => void;
+        "params"?: any;
+        "value"?: any;
+        "variation"?: 'contact' | 'ticket' | '';
+    }
+    interface FwWidgetLabel {
+        "label"?: string;
+        "linkData"?: string;
+        "onFwAnchorClick"?: (event: CustomEvent<any>) => void;
+        "type"?: | 'section'
+    | 'header'
+    | 'label'
+    | 'link'
+    | 'sublink'
+    | 'subtext';
+    }
+    interface FwWidgetLink {
+        "componentId"?: any;
+        "entityLabel"?: string;
+        "fetchData"?: any;
+        "linkFieldLabel"?: string;
+        "linkFieldName"?: string;
+        "onFwClose"?: (event: CustomEvent<any>) => void;
+        "onFwLink"?: (event: CustomEvent<any>) => void;
+        "params"?: any;
+        "primaryFieldLabel"?: string;
     }
     interface MyComponent {
         /**
@@ -65,17 +174,31 @@ declare namespace LocalJSX {
         "middle"?: string;
         "onSubmitForm"?: (event: CustomEvent<any>) => void;
     }
+    interface TestComponent {
+        "componentId"?: string;
+        "params"?: any;
+    }
     interface IntrinsicElements {
+        "fw-portal-component": FwPortalComponent;
         "fw-sample1": FwSample1;
+        "fw-widget-card": FwWidgetCard;
+        "fw-widget-label": FwWidgetLabel;
+        "fw-widget-link": FwWidgetLink;
         "my-component": MyComponent;
+        "test-component": TestComponent;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "fw-portal-component": LocalJSX.FwPortalComponent & JSXBase.HTMLAttributes<HTMLFwPortalComponentElement>;
             "fw-sample1": LocalJSX.FwSample1 & JSXBase.HTMLAttributes<HTMLFwSample1Element>;
+            "fw-widget-card": LocalJSX.FwWidgetCard & JSXBase.HTMLAttributes<HTMLFwWidgetCardElement>;
+            "fw-widget-label": LocalJSX.FwWidgetLabel & JSXBase.HTMLAttributes<HTMLFwWidgetLabelElement>;
+            "fw-widget-link": LocalJSX.FwWidgetLink & JSXBase.HTMLAttributes<HTMLFwWidgetLinkElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "test-component": LocalJSX.TestComponent & JSXBase.HTMLAttributes<HTMLTestComponentElement>;
         }
     }
 }

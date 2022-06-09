@@ -13,13 +13,13 @@ function StencilMFE1() {
   window.log('Loading MFE - StencilMFE1');
   useEffect(() => {
     ref.current.appProps = {
-      componentType: 'fw-sample1',
+      componentType: 'test-component',
       first: 'first',
       middle: 'middle',
       last: 'last',
     };
     ref1.current.appProps = {
-      componentType: 'fw-sample1',
+      componentType: 'test-component',
       first: 'first',
       middle: 'middle',
       last: 'last',
@@ -176,6 +176,7 @@ function StencilMFE1() {
       </FwButton>
 
       <br />
+      <br />
 
       <FwButton onClick={sendToMFE1}>Send message to MFE1</FwButton>
       <br />
@@ -191,7 +192,7 @@ function StencilMFE1() {
         ref={ref}
         app-id='stencilMFE1'
         instance-id='mfe4'
-        style={{ '--mfe-width': 'calc(58vw)' }}
+        style={{ '--mfe-width': 'calc(58vw)', '--mfe-height': '600px' }}
         id='z'
         registry-url='http://localhost:8002'
         version='0.1.1'
@@ -203,7 +204,7 @@ function StencilMFE1() {
         ref={ref1}
         app-id='stencilMFE1'
         instance-id='mfe5'
-        style={{ '--mfe-width': 'calc(58vw)' }}
+        style={{ '--mfe-width': 'calc(58vw)', '--mfe-height': '600px' }}
         id='yw'
         registry-url='http://localhost:8002'
         version='0.1.1'

@@ -1,0 +1,271 @@
+:host {
+  width: 100%;
+  height: auto;
+  box-sizing: border-box;
+}
+
+.fw-application-widget {
+  width: 100%;
+  height: auto;
+  box-sizing: border-box;
+
+  .fw-application-widget-empty {
+    width: 100%;
+    height: auto;
+    min-height: 60px;
+    box-sizing: border-box;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $color-milk;
+    border: 1px solid $color-smoke-50;
+    border-radius: 6px;
+
+    .fw-application-widget-empty-center-content {
+      width: 100%;
+      height: auto;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .fw-application-widget-empty-center-content-label {
+        width: 100%;
+        margin: 0;
+        pointer-events: none;
+        user-select: none;
+        text-align: center;
+        color: $color-elephant-900;
+        font-size: $font-size-14;
+        font-weight: $font-weight-400;
+        line-height: 20px;
+
+        word-wrap: break-word;
+        word-break: break-word;
+        white-space: normal;
+      }
+    }
+  }
+
+  .fw-application-widget-link-div {
+    width: 100%;
+    height: auto;
+    padding: 0;
+    box-sizing: border-box;
+
+    .fw-application-widget-link-btn {
+      max-width: 100%;
+    }
+  }
+
+  .fw-application-widget-view-all-div {
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+
+    .fw-application-widget-view-all-btn {
+      max-width: 100%;
+    }
+  }
+
+  .fw-application-widget-loading-container {
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    padding-top: 8px;
+
+    .fw-application-widget-skeleton {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+  }
+
+  .fw-application-widget-fields-list {
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .fw-application-widget-field {
+      width: 100%;
+      height: auto;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      .fw-application-widget-field-section-label {
+        width: 100%;
+        margin-left: 2px;
+        pointer-events: none;
+        user-select: none;
+        text-align: left;
+        color: $color-elephant-900;
+        font-size: $font-size-14;
+        font-weight: $font-weight-700;
+        line-height: 16px;
+
+        word-wrap: break-word;
+        word-break: break-word;
+        white-space: normal;
+      }
+
+      .fw-application-widget-field-field-separator {
+        width: calc(100% + 40px);
+        height: 1px;
+        margin-top: 8px;
+        margin-left: -20px;
+        box-sizing: border-box;
+        border-top: 1px solid $color-smoke-50;
+      }
+
+      .fw-application-widget-field-records-list {
+        width: 100%;
+        height: auto;
+        box-sizing: border-box;
+        background-color: $color-milk;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .fw-application-widget-field-record {
+          width: 100%;
+          height: auto;
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: column;
+
+          .fw-application-widget-field-record-accordion {
+            --fw-accordion-box-shadow: none;
+            --fw-accordion-title-background-color: $color-milk;
+            --fw-accordion-title-border: none;
+            --fw-accordion-body-background-color: $color-milk;
+            --fw-accordion-body-padding: 0px 20px 10px;
+            --fw-accordion-border-radius: 6px;
+            --fw-accordion-border: 1px solid #{$color-smoke-50};
+
+            .fw-application-widget-field-record-accordion-title {
+              max-width: calc(100% - 8px);
+              overflow: hidden;
+              box-sizing: border-box;
+            }
+
+            .fw-application-widget-field-record-accordion-body {
+              width: 100%;
+              height: auto;
+              box-sizing: border-box;
+              display: flex;
+              flex-direction: column;
+              background-color: $color-milk;
+              gap: 16px;
+            }
+          }
+
+          .fw-application-widget-field-record-accordion-empty-body {
+            --fw-accordion-body-padding: 0;
+          }
+
+          .fw-application-widget-field-record-row {
+            max-width: 100%;
+            width: 100%;
+            height: auto;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+
+            .fw-application-widget-field-record-row-header-link {
+              width: 100%;
+              height: auto;
+              box-sizing: border-box;
+              display: flex;
+              gap: 8px;
+            }
+
+            .fw-application-widget-field-record-row-contact {
+              max-width: 100%;
+              width: 100%;
+              height: auto;
+              box-sizing: border-box;
+              display: flex;
+              align-items: flex-start;
+              gap: 8px;
+
+              .fw-application-widget-field-record-row-contact-description {
+                max-width: calc(100% - 40px - 8px);
+                width: calc(100% - 40px - 8px);
+                height: auto;
+                box-sizing: border-box;
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+              }
+            }
+
+            .fw-application-widget-field-record-row-header-label {
+              width: 100%;
+              margin: 0;
+              pointer-events: none;
+              user-select: none;
+              text-align: left;
+              color: $terms-font-color;
+              font-size: $font-size-12;
+              font-weight: $font-weight-600;
+              line-height: 16px;
+
+              word-break: break-word;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+            }
+
+            .fw-application-widget-field-record-row-value-label {
+              width: 100%;
+              margin: 0;
+              text-align: left;
+              color: $color-elephant-900;
+              font-size: $font-size-14;
+              font-weight: $font-weight-600;
+              line-height: 20px;
+
+              display: -webkit-box;
+              -webkit-line-clamp: 4; /* number of lines to show */
+              line-clamp: 4;
+              -webkit-box-orient: vertical;
+
+              word-wrap: break-word;
+              word-break: break-word;
+              white-space: normal;
+
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+
+            .fw-application-widget-field-record-row-value-link {
+              display: inline-block;
+              max-width: 100%;
+              width: min-content;
+              margin: 0;
+              user-select: none;
+              text-align: left;
+              color: $color-azure-800;
+              font-size: $font-size-14;
+              font-weight: $font-weight-600;
+              line-height: 20px;
+              cursor: pointer;
+
+              word-break: break-word;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+            }
+          }
+        }
+      }
+    }
+  }
+}

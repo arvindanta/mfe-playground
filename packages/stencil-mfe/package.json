@@ -19,7 +19,7 @@
     "loader/"
   ],
   "scripts": {
-    "build": "stencil build --docs && yarn build:wrapper",
+    "build": "rm -rf dist && rm -rf loader && stencil build --docs && yarn build:wrapper",
     "build:wrapper": "rollup -c",
     "prestart": "kill-port 8002",
     "start": "stencil build --dev --watch --serve --port=8002",
@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "@freshworks/crayons": "^3.5.0-beta.0",
+    "@freshworks/crayons-i18n": "^3.1.2-beta.1",
     "@stencil/core": "2.9.0"
   },
   "devDependencies": {
