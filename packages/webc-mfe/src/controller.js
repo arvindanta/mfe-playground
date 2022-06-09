@@ -16,12 +16,10 @@ const stub = {
   get: async () => {},
 };
 const MFEController = window.MFEController || stub;
-let MFEInstance = null;
-let shellUrl = '';
-export function createMFEInstance(namespace, appProps, cmp) {
+
+export function createMFEInstance(namespace, cmp) {
   window.log(`setting instance ${namespace}`);
-  shellUrl = appProps.shellUrl;
-  MFEInstance = MFEController.initialiseInstance(namespace, {
+  MFEController.initialiseInstance(namespace, {
     trigger: async (params) => {
       window.log(
         `Calling trigger in ${namespace} with <pre>${JSON.stringify(
@@ -36,4 +34,4 @@ export function createMFEInstance(namespace, appProps, cmp) {
   });
 }
 
-export { MFEController, MFEInstance, shellUrl };
+export { MFEController };

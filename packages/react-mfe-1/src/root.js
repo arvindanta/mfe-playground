@@ -24,7 +24,7 @@ export const rootConfig = {
       return;
     }
 
-    createMFEInstance(instanceId || 'test-id', appProps);
+    createMFEInstance(instanceId, appProps);
 
     console.info(
       `MOUNTING: instance ${instanceId} of app group ${APP_ID}, `,
@@ -52,7 +52,7 @@ export const rootConfig = {
       container,
       appProps
     );
-    createMFEInstance(instanceId || 'test-id', appProps);
+    createMFEInstance(instanceId, appProps);
     const root = ReactDOM.createRoot(container);
     root.render(
       <BrowserRouter basename={appProps.routerBasePath}>

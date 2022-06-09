@@ -36,7 +36,7 @@ export const rootConfig = {
           customElements.define(tag, cmp);
         }
 
-        createMFEInstance(appProps.instanceId || 'test-id', appProps, webcmp);
+        createMFEInstance(appProps.instanceId, webcmp);
       }
     }
     if (webcmp) container.appendChild(webcmp);

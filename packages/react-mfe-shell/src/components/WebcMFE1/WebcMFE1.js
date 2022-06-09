@@ -49,7 +49,7 @@ function WebcMFE1() {
       'route_change',
       (msg) => {
         window.log(
-          `Routing Message received from MFE <pre>${JSON.stringify(
+          `Routing Message received from webMFE <pre>${JSON.stringify(
             msg,
             null,
             2
@@ -72,7 +72,38 @@ function WebcMFE1() {
         );
 
         const cb1 = data?.payload?.cb;
-        cb1?.({ response: { result: 1 } });
+        cb1?.({ response: { result: 1, mfe: 3 } });
+      }
+    );
+
+    const removeSubscriber12 = MFEController.namespace('mfe12').subscribe(
+      'route_change',
+      (msg) => {
+        window.log(
+          `Routing Message received from webMFE 12 <pre>${JSON.stringify(
+            msg,
+            null,
+            2
+          )}</pre>`
+        );
+        window.log(`Navigation to route ${msg.payload.to}`);
+        navigate(msg.payload.to);
+      }
+    );
+
+    const removeSubscriber22 = MFEController.namespace('mfe12').subscribe(
+      'from_child_webc_api',
+      (data) => {
+        window.log(
+          `Message received from webcMFE 12 <pre>${JSON.stringify(
+            data?.payload?.params || {},
+            null,
+            2
+          )}</pre>`
+        );
+
+        const cb1 = data?.payload?.cb;
+        cb1?.({ response: { result: 1, mfe: 12 } });
       }
     );
 
@@ -82,6 +113,8 @@ function WebcMFE1() {
       removeSubscriber1();
       removeSubscriber2();
       removeSubscriber123();
+      removeSubscriber12();
+      removeSubscriber22();
     };
   }, [navigate]);
 
@@ -97,9 +130,9 @@ function WebcMFE1() {
   };
 
   const triggerToMFE = async () => {
-    const resp = await MFEController.trigger('mfe3', { id: 1 });
+    const resp = await MFEController.trigger('mfe3', { id: 1, mfe: 'mfe3' });
     window.log(
-      `Getting response from MFE <pre>${JSON.stringify(resp, null, 2)}</pre>`
+      `Getting response from webMFE <pre>${JSON.stringify(resp, null, 2)}</pre>`
     );
   };
 
@@ -115,9 +148,13 @@ function WebcMFE1() {
   };
 
   const triggerToMFE12 = async () => {
-    const resp = await MFEController.trigger('mfe12', { id: 1 });
+    const resp = await MFEController.trigger('mfe12', { id: 1, mfe: 'mfe12' });
     window.log(
-      `Getting response from MFE <pre>${JSON.stringify(resp, null, 2)}</pre>`
+      `Getting response from webMFE 12 <pre>${JSON.stringify(
+        resp,
+        null,
+        2
+      )}</pre>`
     );
   };
 
