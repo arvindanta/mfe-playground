@@ -6,6 +6,13 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface FwApplication {
+        "applicationName"?: string;
+        "componentId"?: string;
+        "componentType"?: string;
+        "params": any;
+        "setValues": (values: any, compId: any) => Promise<void>;
+    }
     interface FwPortalComponent {
         "portalId": string;
         "zIndex": string;
@@ -65,6 +72,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLFwApplicationElement extends Components.FwApplication, HTMLStencilElement {
+    }
+    var HTMLFwApplicationElement: {
+        prototype: HTMLFwApplicationElement;
+        new (): HTMLFwApplicationElement;
+    };
     interface HTMLFwPortalComponentElement extends Components.FwPortalComponent, HTMLStencilElement {
     }
     var HTMLFwPortalComponentElement: {
@@ -108,6 +121,7 @@ declare global {
         new (): HTMLTestComponentElement;
     };
     interface HTMLElementTagNameMap {
+        "fw-application": HTMLFwApplicationElement;
         "fw-portal-component": HTMLFwPortalComponentElement;
         "fw-sample1": HTMLFwSample1Element;
         "fw-widget-card": HTMLFwWidgetCardElement;
@@ -118,6 +132,12 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface FwApplication {
+        "applicationName"?: string;
+        "componentId"?: string;
+        "componentType"?: string;
+        "params"?: any;
+    }
     interface FwPortalComponent {
         "portalId"?: string;
         "zIndex"?: string;
@@ -179,6 +199,7 @@ declare namespace LocalJSX {
         "params"?: any;
     }
     interface IntrinsicElements {
+        "fw-application": FwApplication;
         "fw-portal-component": FwPortalComponent;
         "fw-sample1": FwSample1;
         "fw-widget-card": FwWidgetCard;
@@ -192,6 +213,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "fw-application": LocalJSX.FwApplication & JSXBase.HTMLAttributes<HTMLFwApplicationElement>;
             "fw-portal-component": LocalJSX.FwPortalComponent & JSXBase.HTMLAttributes<HTMLFwPortalComponentElement>;
             "fw-sample1": LocalJSX.FwSample1 & JSXBase.HTMLAttributes<HTMLFwSample1Element>;
             "fw-widget-card": LocalJSX.FwWidgetCard & JSXBase.HTMLAttributes<HTMLFwWidgetCardElement>;

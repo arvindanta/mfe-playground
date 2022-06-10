@@ -12,6 +12,7 @@ const TYPE_ELEM_MAPPING = {
   'fw-sample1': { tag: 'fw-sample1' },
   'my-component': { tag: 'my-component' },
   'test-component': { tag: 'test-component' },
+  'fw-application': { tag: 'fw-application' },
 };
 
 export const rootConfig = {
@@ -25,7 +26,7 @@ export const rootConfig = {
 
     // eslint-disable-next-line default-case
 
-    const { tag } = TYPE_ELEM_MAPPING[appProps.componentType];
+    const { tag } = TYPE_ELEM_MAPPING[appProps.componentTag];
     webcmp = document.createElement(tag);
     webcmp.appProps = appProps;
     Object.keys(appProps).forEach((k) => {
@@ -43,7 +44,7 @@ export const rootConfig = {
 
     return () => {
       console.info(`UNMOUNT: ${APP_ID} - Instance Id - ${appProps.instanceId}`);
-      const { tag } = TYPE_ELEM_MAPPING[appProps.componentType];
+      const { tag } = TYPE_ELEM_MAPPING[appProps.componentTag];
       container.remove(tag);
     };
   },
@@ -61,7 +62,7 @@ MFEController.registerAppInstance(instanceId, rootConfig);
   rootConfig.mount(document.getElementById('stencilroot'), {
     title: 'test',
     ...appProps,
-    componentType: 'fw-sample1',
+    componentTag: 'fw-sample1',
     instanceId: instanceId || 'mfe5',
   });
 };

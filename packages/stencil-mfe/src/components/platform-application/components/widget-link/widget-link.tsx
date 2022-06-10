@@ -1,3 +1,4 @@
+/* eslint-disable no-unneeded-ternary */
 import {
   Component,
   Element,
@@ -10,7 +11,7 @@ import {
   State,
 } from '@stencil/core';
 
-import { i18nText } from '../utils/platform-app-utils';
+import { i18nText } from '../../utils/platform-app-utils';
 
 @Component({
   tag: 'fw-widget-link',
@@ -205,7 +206,8 @@ export class WidgetLink {
       fieldName: this.primaryFieldLabel,
     });
 
-    const boolErrorState = !!(this.errorMessage && this.errorMessage !== '');
+    const boolErrorState =
+      this.errorMessage && this.errorMessage !== '' ? true : false;
     const strSelectState = boolErrorState ? 'error' : 'normal';
 
     return (

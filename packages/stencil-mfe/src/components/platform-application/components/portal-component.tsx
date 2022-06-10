@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { Component, h, Host, Prop, State } from '@stencil/core';
 
 @Component({
@@ -45,8 +46,7 @@ export class PortalComponent {
       }
       this.moved = true;
     } catch (error) {
-      // eslint-disable-next-line no-console
-      console.warn('Error removing portal - ' + error);
+      console.log('Error removing portal - ' + error);
     }
   }
 

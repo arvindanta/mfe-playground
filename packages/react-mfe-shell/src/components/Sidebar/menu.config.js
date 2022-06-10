@@ -118,4 +118,9 @@ export const sideMenu = [
     Icon: 'agent',
     to: '/stencilmfe1',
   },
+  {
+    label: 'COMFE',
+    Icon: 'help',
+    to: '/comfe',
+  },
 ];

@@ -361,7 +361,7 @@ export class TestComponent {
         <fw-accordion-body>
           {boolExpanded && (
             <div>
-              <fw-widget-card
+              <fw-widget-card1
                 componentId={strCompID}
                 loading={true}
                 params={{

@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /* eslint-disable dot-notation */
 import {
   Component,
@@ -13,20 +12,16 @@ import {
   Watch,
 } from '@stencil/core';
 
-import { hasCustomProperty, i18nText } from '../utils/platform-app-utils';
-// import { FwApplicationController } from '../../../app';
-import '@freshworks/crayons/dist/components/fw-button';
+import { hasCustomProperty, i18nText } from '../../utils/platform-app-utils';
+import { FwApplicationController } from '../../app';
+
 import {
   getCouiRoutePrefix,
   getFormattedDate,
   serializeContextRecordId,
   toJson,
-  getSelectedSearchRecord,
-  linkNewRecord,
-  searchEntityRecords,
-} from '../api/coui';
-
-import FW_APP_CONSTANTS from '../constants/FwApplicationContants';
+} from '../../api/coui';
+import FW_APP_CONSTANTS from '../../constants/FwApplicationContants';
 
 @Component({
   tag: 'fw-widget-card',
@@ -141,11 +136,10 @@ export class WidgetCard {
   private refreshWidget = async () => {
     this.loading = true;
 
-    const objRefreshWidgetResponse = {};
-    // await FwApplicationController.trigger(
-    //   FW_APP_CONSTANTS.APP_CUSTOM_OBJECT,
-    //   this.componentId
-    // );
+    const objRefreshWidgetResponse = await FwApplicationController.trigger(
+      FW_APP_CONSTANTS.APP_CUSTOM_OBJECT,
+      this.componentId
+    );
     this.loading = false;
     console.info('Refresh widget response - ' + objRefreshWidgetResponse);
   };
@@ -167,46 +161,6 @@ export class WidgetCard {
   private toggleAccordionHandler = (event: CustomEvent) => {
     event.stopImmediatePropagation();
     event.stopPropagation();
-  };
-
-  // private navigateHandler = (event: CustomEvent) => {
-  //   event.stopImmediatePropagation();
-  //   event.stopPropagation();
-
-  //   console.log('navigateHandler');
-
-  //   // FwApplicationController.navigate(FW_APP_CONSTANTS.APP_CUSTOM_OBJECT, {
-  //   //   url: event.detail.route,
-  //   //   type: 'CTA_PRIMARY_FIELD',
-  //   // });
-  // };
-
-  // private viewAllRecordsHandler = (event: CustomEvent) => {
-  //   event.stopImmediatePropagation();
-  //   event.stopPropagation();
-  //   console.log('viewAllRecordsHandler');
-  //   // FwApplicationController.navigate(FW_APP_CONSTANTS.APP_CUSTOM_OBJECT, {
-  //   //   url: event.detail.route,
-  //   //   type: 'CTA_VIEW_ALL_RECORDS',
-  //   // });
-  // };
-
-  private fetchDataHandler = async (strAction, objDetails) => {
-    let objResponse;
-    console.log('fetchDataHandler');
-    switch (strAction) {
-      case 'SEARCH_RECORD':
-        objResponse = await searchEntityRecords(objDetails);
-        return objResponse;
-      case 'SEARCH_SELECT':
-        objResponse = await getSelectedSearchRecord(objDetails);
-        return objResponse;
-      case 'LINK_RECORD':
-        objResponse = await linkNewRecord(objDetails);
-        return objResponse;
-      default:
-        return {};
-    }
   };
 
   private renderContactHeader(dataItem, strDisplayValue, strDisplayHeader) {
@@ -594,7 +548,7 @@ export class WidgetCard {
                 entityLabel={objValue?.widgetLabel}
                 onFwClose={this.closeLinkModalHandler}
                 onFwLink={this.applyLinkHandler}
-                fetchData={this.fetchDataHandler}
+                fetchData={this.fetchData}
               />
             </fw-portal-component>
           )}

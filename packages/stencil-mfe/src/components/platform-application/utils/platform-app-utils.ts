@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { TranslationController } from '../Translations/Translation';
 
 // function to translate and return the language text
@@ -13,7 +14,6 @@ export function i18nText(
       return TranslationController.t(`${strParentNode}.${strKey}`);
     }
   } catch (error) {
-    // eslint-disable-next-line no-console
     console.warn(`unable to translate ${strKey} : `, error);
   }
   return '';

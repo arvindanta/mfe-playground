@@ -41,10 +41,6 @@ Type: `Promise<void>`
 
 ## Dependencies
 
-### Used by
-
- - [test-component](..)
-
 ### Depends on
 
 - [fw-widget-label](../widget-label)
@@ -105,7 +101,6 @@ graph TD;
   fw-select-option --> fw-avatar
   fw-checkbox --> fw-icon
   fw-input --> fw-icon
-  test-component --> fw-widget-card
   style fw-widget-card fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
