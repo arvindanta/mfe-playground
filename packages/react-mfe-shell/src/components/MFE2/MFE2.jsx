@@ -19,6 +19,12 @@ function MFE2() {
       routerBasePath: '/mfe2',
     };
 
+    setTimeout(() => {
+      ref.current.appProps = {
+        newProp: 'newProp',
+      };
+    }, 5000);
+
     const removeSubscriber = MFEController.namespace('mfe2').subscribe(
       'from_child_react',
       (msg) => {

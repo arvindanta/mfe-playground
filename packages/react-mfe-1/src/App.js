@@ -34,6 +34,17 @@ function App(props) {
       }
     );
 
+    const removeSubscriber123 = MFEController.namespace(instanceId).subscribe(
+      'appPropsChanged',
+      (msg) => {
+        window.log(
+          `Message received for instance - ${instanceId} from app shell appPropsChanged
+          <pre>${JSON.stringify(msg, null, 2)}</pre>`
+        );
+        setState(JSON.stringify(msg));
+      }
+    );
+
     const removeSubscriber1 = MFEController.namespace(instanceId).subscribe(
       'route_change_app_shell',
       (msg) => {
@@ -53,6 +64,7 @@ function App(props) {
     return () => {
       removeSubscriber();
       removeSubscriber1();
+      removeSubscriber123();
     };
   }, [instanceId, navigate]);
 
