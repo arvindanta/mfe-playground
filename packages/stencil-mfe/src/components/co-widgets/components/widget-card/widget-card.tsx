@@ -13,7 +13,6 @@ import {
 } from '@stencil/core';
 
 import { hasCustomProperty, i18nText } from '../../utils/platform-app-utils';
-import { FwApplicationController } from '../../app';
 
 import {
   getCouiRoutePrefix,
@@ -32,6 +31,8 @@ export class WidgetCard {
   @Element() host!: HTMLElement;
 
   @Prop() fetchData?: any;
+
+  @Prop() trigger?: any;
 
   @Prop() componentId = '';
 
@@ -136,10 +137,14 @@ export class WidgetCard {
   private refreshWidget = async () => {
     this.loading = true;
 
-    const objRefreshWidgetResponse = await FwApplicationController.trigger(
-      FW_APP_CONSTANTS.APP_CUSTOM_OBJECT,
-      this.componentId
-    );
+    const objRefreshWidgetResponse = {};
+    // await FwApplicationController.trigger(
+    //   FW_APP_CONSTANTS.APP_CUSTOM_OBJECT,
+    //   this.componentId
+    // );
+
+    this.trigger(FW_APP_CONSTANTS.APP_CUSTOM_OBJECT, this.componentId);
+
     this.loading = false;
     console.info('Refresh widget response - ' + objRefreshWidgetResponse);
   };

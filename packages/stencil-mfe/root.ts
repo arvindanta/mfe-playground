@@ -26,7 +26,7 @@ export const rootConfig = {
 
     // eslint-disable-next-line default-case
 
-    const { tag } = TYPE_ELEM_MAPPING[appProps.componentTag];
+    const { tag } = TYPE_ELEM_MAPPING[appProps.componentTag] || {};
     webcmp = document.createElement(tag);
     webcmp.appProps = appProps;
     Object.keys(appProps).forEach((k) => {
@@ -51,6 +51,8 @@ export const rootConfig = {
 
   async get(params) {
     console.info('params', APP_ID, params);
+    // get call co.ui.ts
+    // return
     return params;
   },
 };

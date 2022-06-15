@@ -2,9 +2,10 @@ import React, { useEffect, useRef } from 'react';
 
 function Mfewrapper(props) {
   const ref = useRef();
+  const propsString = JSON.stringify(props.appProps);
   useEffect(() => {
-    ref.current.appProps = props.appProps;
-  }, [props.appProps]);
+    ref.current.appProps = JSON.parse(propsString);
+  }, [propsString]);
 
   return (
     <mfe-application

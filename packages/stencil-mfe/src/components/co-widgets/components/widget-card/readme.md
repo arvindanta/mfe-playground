@@ -13,6 +13,7 @@
 | `fetchData`   | `fetch-data`   |             | `any`                         | `undefined` |
 | `loading`     | `loading`      |             | `boolean`                     | `true`      |
 | `params`      | `params`       |             | `any`                         | `null`      |
+| `trigger`     | `trigger`      |             | `any`                         | `undefined` |
 | `value`       | `value`        |             | `any`                         | `null`      |
 | `variation`   | `variation`    |             | `"" \| "contact" \| "ticket"` | `''`        |
 
@@ -40,6 +41,10 @@ Type: `Promise<void>`
 
 
 ## Dependencies
+
+### Used by
+
+ - [fw-application](../fw-application)
 
 ### Depends on
 
@@ -101,6 +106,7 @@ graph TD;
   fw-select-option --> fw-avatar
   fw-checkbox --> fw-icon
   fw-input --> fw-icon
+  fw-application --> fw-widget-card
   style fw-widget-card fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

@@ -1,4 +1,4 @@
-import { FwApplicationStore } from '../store/FwApplicationStore';
+import { FwApplicationStore } from './store';
 const _applicationStore = {};
 
 class FwApplicationController {

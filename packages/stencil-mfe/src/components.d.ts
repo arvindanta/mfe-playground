@@ -11,7 +11,8 @@ export namespace Components {
         "componentId"?: string;
         "componentType"?: string;
         "params": any;
-        "setValues": (values: any, compId: any) => Promise<void>;
+        "setValues": (values: any) => Promise<void>;
+        "trigger": (componentId: any, params?: any) => Promise<any>;
     }
     interface FwPortalComponent {
         "portalId": string;
@@ -27,6 +28,7 @@ export namespace Components {
         "loading": boolean;
         "params": any;
         "setValues": (args: any) => Promise<void>;
+        "trigger"?: any;
         "value": any;
         "variation": 'contact' | 'ticket' | '';
     }
@@ -63,11 +65,6 @@ export namespace Components {
           * The middle name
          */
         "middle": string;
-        "trigger": (params: any) => Promise<{ response: { params: any; }; }>;
-    }
-    interface TestComponent {
-        "componentId"?: string;
-        "params": any;
         "trigger": (params: any) => Promise<{ response: { params: any; }; }>;
     }
 }
@@ -114,12 +111,6 @@ declare global {
         prototype: HTMLMyComponentElement;
         new (): HTMLMyComponentElement;
     };
-    interface HTMLTestComponentElement extends Components.TestComponent, HTMLStencilElement {
-    }
-    var HTMLTestComponentElement: {
-        prototype: HTMLTestComponentElement;
-        new (): HTMLTestComponentElement;
-    };
     interface HTMLElementTagNameMap {
         "fw-application": HTMLFwApplicationElement;
         "fw-portal-component": HTMLFwPortalComponentElement;
@@ -128,7 +119,6 @@ declare global {
         "fw-widget-label": HTMLFwWidgetLabelElement;
         "fw-widget-link": HTMLFwWidgetLinkElement;
         "my-component": HTMLMyComponentElement;
-        "test-component": HTMLTestComponentElement;
     }
 }
 declare namespace LocalJSX {
@@ -153,6 +143,7 @@ declare namespace LocalJSX {
         "onFwNavigate"?: (event: CustomEvent<any>) => void;
         "onFwViewAllRecords"?: (event: CustomEvent<any>) => void;
         "params"?: any;
+        "trigger"?: any;
         "value"?: any;
         "variation"?: 'contact' | 'ticket' | '';
     }
@@ -194,10 +185,6 @@ declare namespace LocalJSX {
         "middle"?: string;
         "onSubmitForm"?: (event: CustomEvent<any>) => void;
     }
-    interface TestComponent {
-        "componentId"?: string;
-        "params"?: any;
-    }
     interface IntrinsicElements {
         "fw-application": FwApplication;
         "fw-portal-component": FwPortalComponent;
@@ -206,7 +193,6 @@ declare namespace LocalJSX {
         "fw-widget-label": FwWidgetLabel;
         "fw-widget-link": FwWidgetLink;
         "my-component": MyComponent;
-        "test-component": TestComponent;
     }
 }
 export { LocalJSX as JSX };
@@ -220,7 +206,6 @@ declare module "@stencil/core" {
             "fw-widget-label": LocalJSX.FwWidgetLabel & JSXBase.HTMLAttributes<HTMLFwWidgetLabelElement>;
             "fw-widget-link": LocalJSX.FwWidgetLink & JSXBase.HTMLAttributes<HTMLFwWidgetLinkElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
-            "test-component": LocalJSX.TestComponent & JSXBase.HTMLAttributes<HTMLTestComponentElement>;
         }
     }
 }

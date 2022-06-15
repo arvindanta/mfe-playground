@@ -3,9 +3,9 @@ import {
   fetchObjectAssociations,
   fetchWidget,
   setCouiConfig,
-} from '../api/coui';
-import FW_APP_CONSTANTS from '../constants/FwApplicationContants';
-import { hasCustomProperty } from '../utils/platform-app-utils';
+} from './api/coui';
+import FW_APP_CONSTANTS from './constants/FwApplicationContants';
+import { hasCustomProperty } from './utils/platform-app-utils';
 
 export class FwApplicationStore {
   private _config: any;

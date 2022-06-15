@@ -29,3 +29,5 @@ const FW_APP_CONSTANTS = {
 };
 
 export default FW_APP_CONSTANTS;
+
+export const APP_ID = 'stencilMFE1';

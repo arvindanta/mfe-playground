@@ -19,6 +19,10 @@ import {
 import styles from './COMFE.module.css';
 import Mfewrapper from './mfe-wrapper';
 
+import { MFEController } from '../../controller';
+
+const APP_ID = 'stencilMFE1';
+
 export default function Entities() {
   const navigate = useNavigate();
 
@@ -367,13 +371,39 @@ export default function Entities() {
   //   // // };
   // }, [onWidgetActionHandler]);
 
+  MFEController.setApplicationConfig(APP_ID, {
+    apiBasePath: 'https://coui-dev.freshworksapi.com/api/_/',
+    native_objects_enabled: ['ticket', 'contact', 'company'],
+    permissions: {
+      schema: ['create', 'read', 'update', 'delete'],
+      record: ['create', 'read', 'update', 'delete'],
+      nativeObjects: {
+        ticket: ['read', 'create', 'update'],
+        contact: ['read', 'create', 'update'],
+        company: ['read', 'create', 'update'],
+      },
+    },
+  });
+
+  MFEController.namespace(APP_ID).subscribe('NAVIGATE', (details) => {
+    const objDetails = details.payload;
+    const strNavigateUrl = objDetails.url;
+    const type = objDetails.type;
+    console.info('Navigate to - ' + strNavigateUrl, type);
+    navigate('/redirect', {
+      state: { type: 'CUSTOM', path: strNavigateUrl },
+    });
+  });
+
   const refreshWidgets = async () => {
+    window.log('fkfjfj');
     setPlatformAppWidgets(null);
-    const arrWidgets = [];
-    // (await coApp.current.get({
-    //   action: 'FETCH_ASSOCIATION_SCHEMAS',
-    //   contextObjectId: objInputData.current.contextObjectId,
-    // }));
+    const arrWidgets =
+      (await MFEController.get(APP_ID, {
+        action: 'FETCH_ASSOCIATION_SCHEMAS',
+        contextObjectId: objInputData.current.contextObjectId,
+      })) ?? [];
+
     arrWidgets.push(contactWidget);
     arrWidgets.push(ticketWidget);
     setPlatformAppWidgets(arrWidgets);
