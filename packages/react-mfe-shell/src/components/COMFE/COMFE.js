@@ -3,7 +3,7 @@
 // eslint-disable-next-line jsx-a11y/label-has-associated-control
 // eslint-disable-next-line no-case-declarations
 
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import {
@@ -320,10 +320,7 @@ export default function Entities() {
     },
   };
 
-  const [platformAppWidgets, setPlatformAppWidgets] = useState([
-    contactWidget,
-    ticketWidget,
-  ]);
+  const [platformAppWidgets, setPlatformAppWidgets] = useState([]);
 
   const objInputData = useRef({ contextObjectId: '', contextRecordId: '' });
 
@@ -350,6 +347,25 @@ export default function Entities() {
   );
   const ref = useRef();
 
+  useEffect(() => {
+    const x = MFEController.namespace(APP_ID).subscribe(
+      'NAVIGATE',
+      (details) => {
+        window.log(`naigate event from shell ${JSON.stringify(details)}`);
+        const objDetails = details.payload;
+        const strNavigateUrl = objDetails.url;
+        const type = objDetails.type;
+        console.info('Navigate to - ' + strNavigateUrl, type);
+        navigate('/redirect', {
+          state: { type: 'CUSTOM', path: strNavigateUrl },
+        });
+      }
+    );
+    return () => {
+      x();
+    };
+  }, [navigate]);
+
   // useEffect(() => {
   //   // coApp.current = FwApplicationController.init(appName);
   //   // coApp.current.setConfig({
@@ -372,7 +388,7 @@ export default function Entities() {
   // }, [onWidgetActionHandler]);
 
   MFEController.setApplicationConfig(APP_ID, {
-    apiBasePath: 'https://coui-dev.freshworksapi.com/api/_/',
+    apiBasePath: 'http://localhost/api/_/',
     native_objects_enabled: ['ticket', 'contact', 'company'],
     permissions: {
       schema: ['create', 'read', 'update', 'delete'],
@@ -385,27 +401,24 @@ export default function Entities() {
     },
   });
 
-  MFEController.namespace(APP_ID).subscribe('NAVIGATE', (details) => {
-    const objDetails = details.payload;
-    const strNavigateUrl = objDetails.url;
-    const type = objDetails.type;
-    console.info('Navigate to - ' + strNavigateUrl, type);
-    navigate('/redirect', {
-      state: { type: 'CUSTOM', path: strNavigateUrl },
-    });
-  });
+  const s = document.createElement('script');
+  s.src = './coui.js';
+  s.type = 'module';
+  document.head.appendChild(s);
 
   const refreshWidgets = async () => {
-    window.log('fkfjfj');
     setPlatformAppWidgets(null);
-    const arrWidgets =
-      (await MFEController.get(APP_ID, {
-        action: 'FETCH_ASSOCIATION_SCHEMAS',
-        contextObjectId: objInputData.current.contextObjectId,
-      })) ?? [];
+    const arrWidgets = await window.coFetchAPI({
+      action: 'FETCH_ASSOCIATION_SCHEMAS',
+      contextObjectId: objInputData.current.contextObjectId,
+    });
+    // (await MFEController.get(APP_ID, {
+    //   action: 'FETCH_ASSOCIATION_SCHEMAS',
+    //   contextObjectId: objInputData.current.contextObjectId,
+    // })) ?? [];
 
-    arrWidgets.push(contactWidget);
-    arrWidgets.push(ticketWidget);
+    // arrWidgets.push(contactWidget);
+    // arrWidgets.push(ticketWidget);
     setPlatformAppWidgets(arrWidgets);
   };
 
@@ -516,6 +529,10 @@ export default function Entities() {
           </label>
           <label className={styles.widgetDemoButtonHelpLabel}>
             {'1511621899456786432 - contact id of FD-CO'}
+          </label>
+
+          <label className={styles.widgetDemoButtonHelpLabel}>
+            {'1511621899456786432 - contact id working'}
           </label>
         </div>
 

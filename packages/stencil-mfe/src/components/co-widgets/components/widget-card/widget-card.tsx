@@ -12,7 +12,8 @@ import {
   Watch,
 } from '@stencil/core';
 
-import { hasCustomProperty, i18nText } from '../../utils/platform-app-utils';
+import { i18nText } from '../../utils/platform-app-utils';
+import { hasCustomProperty } from '../../utils/utils';
 
 import {
   getCouiRoutePrefix,

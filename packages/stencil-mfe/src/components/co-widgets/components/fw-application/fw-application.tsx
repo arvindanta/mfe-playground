@@ -16,11 +16,11 @@ import {
   getSelectedSearchRecord,
   linkNewRecord,
   searchEntityRecords,
-  fetchWidget,
   setCouiConfig,
 } from '../../api/coui';
 import { MFEController } from '../../../../controller';
 
+import { fetchWidget } from '../../api/cowidget';
 @Component({
   tag: 'fw-application',
   shadow: true,
@@ -51,6 +51,7 @@ export class FwApplication {
 
   @Method()
   async setValues(values) {
+    (window as any).log(' setting values ' + values);
     this.refDisplayComponent?.setValues(values);
     this.loading = false;
   }
@@ -74,6 +75,9 @@ export class FwApplication {
   //   }
   @Method()
   async trigger(componentId, params = null) {
+    (window as any).log(
+      `Trigger called ${componentId}, ${this.applicationName}`
+    );
     let objResponse;
 
     const config = MFEController.getApplicationConfig(APP_ID);
@@ -84,6 +88,9 @@ export class FwApplication {
           config,
           params ?? this.params,
           componentId
+        );
+        (window as any).log(
+          `Object response <pre>${JSON.stringify(objResponse)}</pre>`
         );
         this.setValues(objResponse);
         return objResponse;

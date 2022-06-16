@@ -11,7 +11,6 @@ function Mfewrapper(props) {
     <mfe-application
       app-id='stencilMFE1'
       registry-url='http://localhost:8002'
-      style={{ '--mfe-width': '100%', '--mfe-height': '200px' }}
       instance-id={props.appProps.componentId}
       ref={ref}
     />

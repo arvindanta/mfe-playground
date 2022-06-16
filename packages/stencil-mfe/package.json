@@ -43,6 +43,7 @@
     "@rollup/plugin-dynamic-import-vars": "^1.4.1",
     "@rollup/plugin-node-resolve": "^11.1.0",
     "@rollup/plugin-typescript": "^8.3.2",
+    "@stencil/sass": "^1.5.2",
     "@types/jest": "^26.0.22",
     "cors": "^2.8.5",
     "express": "^4.18.1",

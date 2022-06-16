@@ -20,6 +20,7 @@ import { MFEController } from '../../controller';
 @Component({
   tag: 'fw-sample1',
   shadow: false,
+  styleUrl: 'sample-component.scss',
 })
 export class Sample {
   @Element() el;
@@ -123,14 +124,14 @@ export class Sample {
 
   render(): JSX.Element {
     return (
-      <div>
+      <div class='test-class'>
         <fw-button onFwClick={this.handleClick}>Toogle Card</fw-button>
         <fw-button modal-trigger-id='welcome'> Open Modal </fw-button>
         <fw-modal id='welcome' title-text='Welcome'>
           This is a sample modal dialog
         </fw-modal>
         {this.showCard && (
-          <div class='fw-card-1 fw-p-24 fw-flex fw-flex-row'>
+          <div class='fw-card-1 fw-p-24 fw-flex fw-flex-row test-sub-class'>
             <div class='fw-flex-grow'>
               <div class='fw-type-h5'>Arabic</div>
               <div class='fw-type-xs'>Last updated - 25 June 2020</div>

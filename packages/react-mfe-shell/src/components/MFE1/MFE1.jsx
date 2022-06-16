@@ -81,30 +81,30 @@ function MFE() {
   }, [navigate]);
 
   return (
-    <div>
-      <mfe-application
-        ref={ref}
-        app-id='reactMFE1'
-        instance-id='mfe1'
-        style={{ '--mfe-width': 'calc(63vw)' }}
-        id='x'
-        registry-url='http://localhost:9001'
-        iframe-src='http://localhost:9001/mfe1'
-        version='0.1.1'
-      ></mfe-application>
+    <>
+      <div style={{ width: 'calc(63vw)', height: '400px' }}>
+        <mfe-application
+          ref={ref}
+          app-id='reactMFE1'
+          instance-id='mfe1'
+          id='x'
+          registry-url='http://localhost:9001'
+          iframe-src='http://localhost:9001/mfe1'
+          version='0.1.1'
+        ></mfe-application>
+      </div>
+      <div style={{ width: 'calc(63vw)', height: '400px' }}>
+        <mfe-application
+          ref={ref1}
+          app-id='reactMFE1'
+          instance-id='mfe10'
+          id='y'
+          registry-url='http://localhost:9001'
+          iframe-src='http://localhost:9001/mfe1'
+          version='0.1.1'
+        ></mfe-application>
 
-      <mfe-application
-        ref={ref1}
-        app-id='reactMFE1'
-        instance-id='mfe10'
-        style={{ '--mfe-width': 'calc(63vw)' }}
-        id='y'
-        registry-url='http://localhost:9001'
-        iframe-src='http://localhost:9001/mfe1'
-        version='0.1.1'
-      ></mfe-application>
-
-      {/* <mfe-application
+        {/* <mfe-application
         ref={ref1}
         app-id='reactMFE1'
         instance-id='mfe10'
@@ -113,7 +113,8 @@ function MFE() {
         registry-url='http://localhost:9001'
         version='0.1.1'
       ></mfe-application> */}
-    </div>
+      </div>
+    </>
   );
 }
 

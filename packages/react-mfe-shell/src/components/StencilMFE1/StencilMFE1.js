@@ -13,13 +13,13 @@ function StencilMFE1() {
   window.log('Loading MFE - StencilMFE1');
   useEffect(() => {
     ref.current.appProps = {
-      componentType: 'test-component',
+      componentTag: 'fw-sample1',
       first: 'first',
       middle: 'middle',
       last: 'last',
     };
     ref1.current.appProps = {
-      componentType: 'test-component',
+      componentTag: 'fw-sample1',
       first: 'first',
       middle: 'middle',
       last: 'last',
@@ -188,27 +188,30 @@ function StencilMFE1() {
       <hr />
       <hr />
 
-      <mfe-application
-        ref={ref}
-        app-id='stencilMFE1'
-        instance-id='mfe4'
-        style={{ '--mfe-width': 'calc(58vw)', '--mfe-height': '600px' }}
-        id='z'
-        registry-url='http://localhost:8002'
-        version='0.1.1'
-      ></mfe-application>
-
+      <div style={{ width: 'calc(58vw)', height: '600px' }}>
+        <mfe-application
+          ref={ref}
+          app-id='stencilMFE1'
+          instance-id='mfe4'
+          id='z'
+          registry-url='http://localhost:8002'
+          version='0.1.1'
+          iframe
+        ></mfe-application>
+      </div>
       <hr />
       <hr />
-      <mfe-application
-        ref={ref1}
-        app-id='stencilMFE1'
-        instance-id='mfe5'
-        style={{ '--mfe-width': 'calc(58vw)', '--mfe-height': '600px' }}
-        id='yw'
-        registry-url='http://localhost:8002'
-        version='0.1.1'
-      ></mfe-application>
+      <div style={{ width: 'calc(58vw)', height: '600px' }}>
+        <mfe-application
+          ref={ref1}
+          app-id='stencilMFE1'
+          instance-id='mfe5'
+          id='yw'
+          registry-url='http://localhost:8002'
+          version='0.1.1'
+          iframe
+        ></mfe-application>
+      </div>
     </div>
   );
 }

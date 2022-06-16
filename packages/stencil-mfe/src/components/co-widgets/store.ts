@@ -1,12 +1,7 @@
-import {
-  destroyApi,
-  fetchObjectAssociations,
-  fetchWidget,
-  setCouiConfig,
-} from './api/coui';
+import { destroyApi, setCouiConfig } from './api/coui';
+import { fetchWidget } from './api/cowidget';
 import FW_APP_CONSTANTS from './constants/FwApplicationContants';
-import { hasCustomProperty } from './utils/platform-app-utils';
-
+import { hasCustomProperty } from './utils/utils';
 export class FwApplicationStore {
   private _config: any;
   private _fnCallback: any;
@@ -66,10 +61,10 @@ export class FwApplicationStore {
     switch (this._appName) {
       case FW_APP_CONSTANTS.APP_CUSTOM_OBJECT:
         if (strAction === 'FETCH_ASSOCIATION_SCHEMAS') {
-          objResponse = await fetchObjectAssociations(
-            this._config,
-            params.contextObjectId
-          );
+          // objResponse = await fetchObjectAssociations(
+          //   this._config,
+          //   params.contextObjectId
+          // );
           return objResponse?.widgets || null;
         }
         break;

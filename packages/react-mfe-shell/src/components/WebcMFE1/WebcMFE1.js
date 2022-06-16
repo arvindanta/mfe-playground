@@ -176,26 +176,28 @@ function WebcMFE1() {
       <hr />
       <hr />
 
-      <mfe-application
-        ref={ref}
-        app-id='webcMFE1'
-        instance-id='mfe3'
-        style={{ '--mfe-width': 'calc(58vw)' }}
-        id='z'
-        registry-url='http://localhost:8001'
-        version='0.1.1'
-      ></mfe-application>
-
+      <div style={{ '--mfe-width': 'calc(58vw)' }}>
+        <mfe-application
+          ref={ref}
+          app-id='webcMFE1'
+          instance-id='mfe3'
+          id='z'
+          registry-url='http://localhost:8001'
+          version='0.1.1'
+        ></mfe-application>
+      </div>
       {/* <h3>second instance</h3> */}
-      <mfe-application
-        ref={ref1}
-        app-id='webcMFE1'
-        instance-id='mfe12'
-        style={{ '--mfe-width': 'calc(58vw)' }}
-        id='asd'
-        registry-url='http://localhost:8001'
-        version='0.1.1'
-      ></mfe-application>
+      <div style={{ '--mfe-width': 'calc(58vw)' }}>
+        <mfe-application
+          ref={ref1}
+          app-id='webcMFE1'
+          instance-id='mfe12'
+          style={{ '--mfe-width': 'calc(58vw)' }}
+          id='asd'
+          registry-url='http://localhost:8001'
+          version='0.1.1'
+        ></mfe-application>
+      </div>
     </div>
   );
 }
