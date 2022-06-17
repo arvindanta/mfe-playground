@@ -6,7 +6,7 @@ export default {
   output: [
     {
       format: 'iife',
-      file: 'dist/main.esm.js',
+      file: 'dist/main.js',
     },
   ],
   plugins: [

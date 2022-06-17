@@ -1,11 +1,14 @@
-const log = (msg) => {
+const log = (msg, isAppShell = false) => {
   const container = document.querySelector('#status-content');
+
+  let color = '#7feef4';
+  if (!isAppShell) color = '#7ff488';
   container.innerHTML +=
     '<br/><br/>' +
     '<span>' +
     new Date().toLocaleTimeString() +
     '</span>&nbsp;&nbsp;' +
-    "<span style='color:#7ff488'>" +
+    `<span style="color:${color}">` +
     msg +
     '</span>';
 };
@@ -15,4 +18,9 @@ document.querySelector('#clear-log').addEventListener('click', (e) => {
 });
 
 window.log = log;
+
+window.addEventListener('message', (d) => {
+  if (d.data?.log) log(d.data.log);
+});
+
 export { log };

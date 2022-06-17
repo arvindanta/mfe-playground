@@ -3,7 +3,7 @@
     "0.1.0": {
       "entrypoints": [
         { "src": "stencil-mfe/stencil-mfe.js" },
-        { "src": "main.esm.js" }
+        { "src": "main.js" }
       ],
       "appUrl": "http://localhost:8002/"
     }
@@ -12,7 +12,7 @@
     "0.1.0": {
       "entrypoints": [
         { "src": "stencil-mfe/stencil-mfe.js" },
-        { "src": "main.esm.js" }
+        { "src": "main.js" }
       ],
       "appUrl": "http://localhost:8002/"
     }
@@ -21,7 +21,7 @@
     "0.1.0": {
       "entrypoints": [
         { "src": "stencil-mfe/stencil-mfe.js" },
-        { "src": "main.esm.js" }
+        { "src": "main.js" }
       ],
       "appUrl": "http://localhost:8002/"
     }

@@ -13,8 +13,6 @@ import Sidebar from './components/Sidebar/Sidebar';
 // import Statusbar from './components/Statusbar/Statusbar';
 // import { MFEController } from './controller';
 
-import './util';
-
 // MFEController.setConfig('reactMFE1', {});
 // MFEController.prefetch({
 //   instanceId: 'mfe1',

@@ -33,5 +33,18 @@ export function createMFEInstance(namespace, cmp) {
     },
   });
 }
+/** for demo */
+function inIframe() {
+  try {
+    return window.self !== window.top;
+  } catch (e) {
+    return true;
+  }
+}
+const defaultLog = inIframe()
+  ? (msg) => window.top.postMessage({ log: msg }, '*')
+  : () => {};
+(window as any).log = (window as any).log || defaultLog;
+// end for demo
 
 export { MFEController };

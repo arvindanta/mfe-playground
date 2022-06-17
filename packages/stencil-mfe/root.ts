@@ -1,6 +1,4 @@
-import { MFEController, createMFEInstance } from './src/controller';
-
-(window as any).log = (window as any).log || (() => {});
+import { createMFEInstance, MFEController } from './src/controller';
 
 const APP_ID = 'stencilMFE1';
 

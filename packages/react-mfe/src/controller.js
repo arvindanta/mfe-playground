@@ -28,4 +28,18 @@ export function createMFEInstance(namespace, appProps) {
   });
 }
 
+/** for demo */
+function inIframe() {
+  try {
+    return window.self !== window.top;
+  } catch (e) {
+    return true;
+  }
+}
+const defaultLog = inIframe()
+  ? (msg) => window.top.postMessage({ log: msg }, '*')
+  : () => {};
+window.log = window.log || defaultLog;
+// end for demo
+
 export { MFEController, MFEInstance, shellUrl };

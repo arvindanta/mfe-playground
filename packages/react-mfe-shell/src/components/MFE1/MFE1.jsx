@@ -10,7 +10,7 @@ function MFE() {
 
   const navigate = useNavigate();
 
-  window.log('Loading MFE - reactMFE1');
+  window.log('Loading MFE - reactMFE1', true);
   useEffect(() => {
     ref.current.appProps = {
       routerBasePath: '/mfe1',
@@ -23,7 +23,12 @@ function MFE() {
       'from_child_react',
       (msg) => {
         window.log(
-          `Message received from MFE <pre>${JSON.stringify(msg, null, 2)}</pre>`
+          `Message received from MFE <pre>${JSON.stringify(
+            msg,
+            null,
+            2
+          )}</pre>`,
+          true
         );
       }
     );
@@ -36,7 +41,8 @@ function MFE() {
             msg,
             null,
             2
-          )}</pre>`
+          )}</pre>`,
+          true
         );
       }
     );
@@ -49,9 +55,10 @@ function MFE() {
             msg,
             null,
             2
-          )}</pre>`
+          )}</pre>`,
+          true
         );
-        window.log(`Navigation to route ${msg.payload.to}`);
+        window.log(`Navigation to route ${msg.payload.to}`, true);
         navigate(msg.payload.to);
       }
     );
@@ -64,15 +71,16 @@ function MFE() {
             msg,
             null,
             2
-          )}</pre>`
+          )}</pre>`,
+          true
         );
-        window.log(`Navigation to route ${msg.payload.to}`);
+        window.log(`Navigation to route ${msg.payload.to}`, true);
         navigate(msg.payload.to);
       }
     );
 
     return () => {
-      window.log('Unmounting MFE - reactMFE1');
+      window.log('Unmounting MFE - reactMFE1', true);
       removeSubscriber();
       removeSubscriber1();
       removeSubscriber10();

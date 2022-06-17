@@ -10,7 +10,7 @@ function MFE2() {
 
   const navigate = useNavigate();
 
-  window.log('Loading MFE - reactMFE2');
+  window.log('Loading MFE - reactMFE2', true);
   useEffect(() => {
     ref.current.appProps = {
       routerBasePath: '/mfe2',
@@ -33,7 +33,8 @@ function MFE2() {
             msg,
             null,
             2
-          )}</pre>`
+          )}</pre>`,
+          true
         );
       }
     );
@@ -46,7 +47,8 @@ function MFE2() {
             msg,
             null,
             2
-          )}</pre>`
+          )}</pre>`,
+          true
         );
       }
     );
@@ -59,9 +61,10 @@ function MFE2() {
             msg,
             null,
             2
-          )}</pre>`
+          )}</pre>`,
+          true
         );
-        window.log(`Navigation to route ${msg.payload.to}`);
+        window.log(`Navigation to route ${msg.payload.to}`, true);
         navigate(msg.payload.to);
       }
     );
@@ -74,9 +77,10 @@ function MFE2() {
             msg,
             null,
             2
-          )}</pre>`
+          )}</pre>`,
+          true
         );
-        window.log(`Navigation to route ${msg.payload.to}`);
+        window.log(`Navigation to route ${msg.payload.to}`, true);
         navigate(msg.payload.to);
       }
     );
@@ -89,7 +93,8 @@ function MFE2() {
             data?.payload?.params || {},
             null,
             2
-          )}</pre>`
+          )}</pre>`,
+          true
         );
 
         const cb1 = data?.payload?.cb;
@@ -105,7 +110,8 @@ function MFE2() {
             data?.payload?.params || {},
             null,
             2
-          )}</pre>`
+          )}</pre>`,
+          true
         );
 
         const cb1 = data?.payload?.cb;
@@ -114,7 +120,7 @@ function MFE2() {
     );
 
     return () => {
-      window.log('Unmounting MFE - reactMFE2');
+      window.log('Unmounting MFE - reactMFE2', true);
       removeSubscriber();
       removeSubscriber1();
       removeSubscriber10();

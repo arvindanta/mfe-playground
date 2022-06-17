@@ -10,7 +10,7 @@ function WebcMFE1() {
 
   const navigate = useNavigate();
 
-  window.log('Loading MFE - webcMFE1');
+  window.log('Loading MFE - webcMFE1', true);
   useEffect(() => {
     ref.current.appProps = {
       componentType: 'webc-1',
@@ -27,7 +27,8 @@ function WebcMFE1() {
             msg,
             null,
             2
-          )}</pre>`
+          )}</pre>`,
+          true
         );
       }
     );
@@ -40,7 +41,8 @@ function WebcMFE1() {
             msg,
             null,
             2
-          )}</pre>`
+          )}</pre>`,
+          true
         );
       }
     );
@@ -53,9 +55,10 @@ function WebcMFE1() {
             msg,
             null,
             2
-          )}</pre>`
+          )}</pre>`,
+          true
         );
-        window.log(`Navigation to route ${msg.payload.to}`);
+        window.log(`Navigation to route ${msg.payload.to}`, true);
         navigate(msg.payload.to);
       }
     );
@@ -68,7 +71,8 @@ function WebcMFE1() {
             data?.payload?.params || {},
             null,
             2
-          )}</pre>`
+          )}</pre>`,
+          true
         );
 
         const cb1 = data?.payload?.cb;
@@ -84,9 +88,10 @@ function WebcMFE1() {
             msg,
             null,
             2
-          )}</pre>`
+          )}</pre>`,
+          true
         );
-        window.log(`Navigation to route ${msg.payload.to}`);
+        window.log(`Navigation to route ${msg.payload.to}`, true);
         navigate(msg.payload.to);
       }
     );
@@ -99,7 +104,8 @@ function WebcMFE1() {
             data?.payload?.params || {},
             null,
             2
-          )}</pre>`
+          )}</pre>`,
+          true
         );
 
         const cb1 = data?.payload?.cb;
@@ -108,7 +114,7 @@ function WebcMFE1() {
     );
 
     return () => {
-      window.log('Unmounting MFE - webcMFE1');
+      window.log('Unmounting MFE - webcMFE1', true);
       removeSubscriber();
       removeSubscriber1();
       removeSubscriber2();
@@ -132,7 +138,12 @@ function WebcMFE1() {
   const triggerToMFE = async () => {
     const resp = await MFEController.trigger('mfe3', { id: 1, mfe: 'mfe3' });
     window.log(
-      `Getting response from webMFE <pre>${JSON.stringify(resp, null, 2)}</pre>`
+      `Getting response from webMFE <pre>${JSON.stringify(
+        resp,
+        null,
+        2
+      )}</pre>`,
+      true
     );
   };
 
@@ -154,7 +165,8 @@ function WebcMFE1() {
         resp,
         null,
         2
-      )}</pre>`
+      )}</pre>`,
+      true
     );
   };
 

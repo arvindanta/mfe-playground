@@ -10,7 +10,7 @@ export default [
     output: [
       {
         format: 'iife',
-        file: 'dist/main.esm.js',
+        file: 'dist/main.js',
         name: 'test',
       },
     ],
@@ -27,7 +27,7 @@ export default [
     input: inputFileName1,
     output: [
       {
-        format: 'es',
+        format: 'iife',
         dir: 'dist',
         name: 'test1',
       },

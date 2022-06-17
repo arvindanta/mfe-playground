@@ -1,6 +1,5 @@
 import { MFEController, createMFEInstance } from './controller';
 import { MyComponent } from './component';
-window.log = window.log || (() => {});
 
 const APP_ID = 'webcMFE1';
 

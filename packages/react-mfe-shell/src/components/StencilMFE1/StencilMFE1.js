@@ -10,7 +10,7 @@ function StencilMFE1() {
 
   const navigate = useNavigate();
 
-  window.log('Loading MFE - StencilMFE1');
+  window.log('Loading MFE - StencilMFE1', true);
   useEffect(() => {
     ref.current.appProps = {
       componentTag: 'fw-sample1',
@@ -33,7 +33,8 @@ function StencilMFE1() {
             msg,
             null,
             2
-          )}</pre>`
+          )}</pre>`,
+          true
         );
       }
     );
@@ -46,9 +47,10 @@ function StencilMFE1() {
             msg,
             null,
             2
-          )}</pre>`
+          )}</pre>`,
+          true
         );
-        window.log(`Navigation to route ${msg.payload.to}`);
+        window.log(`Navigation to route ${msg.payload.to}`, true);
         navigate(msg.payload.to);
       }
     );
@@ -61,7 +63,8 @@ function StencilMFE1() {
             data?.payload?.params || {},
             null,
             2
-          )}</pre>`
+          )}</pre>`,
+          true
         );
 
         const cb1 = data?.payload?.cb;
@@ -77,7 +80,8 @@ function StencilMFE1() {
             msg,
             null,
             2
-          )}</pre>`
+          )}</pre>`,
+          true
         );
       }
     );
@@ -90,9 +94,10 @@ function StencilMFE1() {
             msg,
             null,
             2
-          )}</pre>`
+          )}</pre>`,
+          true
         );
-        window.log(`Navigation to route ${msg.payload.to}`);
+        window.log(`Navigation to route ${msg.payload.to}`, true);
         navigate(msg.payload.to);
       }
     );
@@ -105,7 +110,8 @@ function StencilMFE1() {
             data?.payload?.params || {},
             null,
             2
-          )}</pre>`
+          )}</pre>`,
+          true
         );
 
         const cb1 = data?.payload?.cb;
@@ -114,7 +120,7 @@ function StencilMFE1() {
     );
 
     return () => {
-      window.log('Unmounting MFE - StencilMFE1');
+      window.log('Unmounting MFE - StencilMFE1', true);
       removeSubscriber();
       removeSubscriber1();
       removeSubscriber2();
@@ -141,7 +147,8 @@ function StencilMFE1() {
       ins: 'mfe4',
     });
     window.log(
-      `Getting response from MFE <pre>${JSON.stringify(resp, null, 2)}</pre>`
+      `Getting response from MFE <pre>${JSON.stringify(resp, null, 2)}</pre>`,
+      true
     );
   };
 
@@ -162,7 +169,8 @@ function StencilMFE1() {
       ins: 'mfe5',
     });
     window.log(
-      `Getting response from MFE <pre>${JSON.stringify(resp, null, 2)}</pre>`
+      `Getting response from MFE <pre>${JSON.stringify(resp, null, 2)}</pre>`,
+      true
     );
   };
 
@@ -196,7 +204,6 @@ function StencilMFE1() {
           id='z'
           registry-url='http://localhost:8002'
           version='0.1.1'
-          iframe
         ></mfe-application>
       </div>
       <hr />
@@ -209,7 +216,6 @@ function StencilMFE1() {
           id='yw'
           registry-url='http://localhost:8002'
           version='0.1.1'
-          iframe
         ></mfe-application>
       </div>
     </div>

@@ -5,9 +5,9 @@ module.exports = function () {
       configure: (webpackConfig, { env, paths }) => {
         webpackConfig.output = {
           ...{
-            filename: 'static/js/main.esm.js',
+            filename: 'static/js/main.js',
             path: path.join(__dirname, 'build'),
-            publicPath: process.env.PUBLIC_URL
+            publicPath: process.env.PUBLIC_URL,
           },
         };
         return webpackConfig;
