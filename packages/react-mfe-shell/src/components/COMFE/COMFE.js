@@ -351,10 +351,7 @@ export default function Entities() {
     const x = MFEController.namespace(APP_ID).subscribe(
       'NAVIGATE',
       (details) => {
-        window.log(
-          `navigate event from shell ${JSON.stringify(details)}`,
-          true
-        );
+        window.log(`navigate event from mfe ${JSON.stringify(details)}`, true);
         const objDetails = details.payload;
         const strNavigateUrl = objDetails.url;
         const type = objDetails.type;

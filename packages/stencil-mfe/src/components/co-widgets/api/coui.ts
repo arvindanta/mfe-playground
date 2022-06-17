@@ -591,7 +591,11 @@ export async function fetchObjectAssociations(config, objectId) {
   };
   const strStoreKey = `association_${objectId}`;
   (window as any).log(
-    `fstore key ${strStoreKey}, ${JSON.stringify(objResponse)}`
+    `store key ${strStoreKey}, <pre>${JSON.stringify(
+      objResponse,
+      null,
+      2
+    )}</pre>`
   );
   storeApiResponse(strStoreKey, objResponse);
   return objResponse;

@@ -90,7 +90,7 @@ export class FwApplication {
           componentId
         );
         (window as any).log(
-          `Object response <pre>${JSON.stringify(objResponse)}</pre>`
+          `Object response <pre>${JSON.stringify(objResponse, null, 2)}</pre>`
         );
         this.setValues(objResponse);
         return objResponse;
