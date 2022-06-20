@@ -1,0 +1,28 @@
+{{page-title "EmberMfeShell"}}
+
+{{!-- The following component displays Ember's default welcome message. --}}
+{{!-- <WelcomePage /> --}}
+{{!-- Feel free to remove this! --}}
+
+<div style="display: flex; width: 100vw">
+      <div id="root" style="flex: 2">
+          {{outlet}}
+          </div>
+      <div class="statusbar" id="statusbar">
+        <div style="text-align: center; font-weight: bold" id="status-title">
+          Statusbar
+          <a
+            id="clear-log"
+            title="clear log"
+            style="
+              cursor: pointer;
+              float: right;
+              font-size: 16px;
+              margin-right: 10px;
+            "
+            >&times;</a
+          >
+        </div>
+        <div id="status-content"></div>
+      </div>
+    </div>

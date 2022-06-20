@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>EmberMfeShell</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    {{content-for "head"}}
+
+    <link integrity="" rel="stylesheet" href="{{rootURL}}assets/vendor.css" />
+    <link
+      integrity=""
+      rel="stylesheet"
+      href="{{rootURL}}assets/ember-mfe-shell.css"
+    />
+    <style>
+      .statusbar {
+        width: 30vw;
+        background-color: rgb(38, 35, 35);
+        height: 100vh;
+        color: white;
+        font-size: medium;
+        text-align: left;
+        padding: 8px;
+        box-sizing: border-box;
+        font-family: Consolas, Monaco, Lucida Console, Liberation Mono,
+          DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+        overflow-y: auto;
+        padding-bottom: 16px;
+      }
+      .statusbar pre {
+        color: white;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    {{content-for "head-footer"}}
+  </head>
+  <body>
+    {{content-for "body"}}
+    <script
+      type="module"
+      src="https://d3el5jsqgryo0a.cloudfront.net/platform-application/platform-application.esm.js"
+    ></script>
+    <script src="{{rootURL}}assets/vendor.js"></script>
+    <script src="{{rootURL}}assets/ember-mfe-shell.js"></script>
+
+    {{content-for "body-footer"}}
+    <script>
+      const log = (msg, isAppShell = false) => {
+        const container = document.querySelector('#status-content');
+
+        let color = '#7feef4';
+        if (!isAppShell) color = '#7ff488';
+        container.innerHTML +=
+          '<br/><br/>' +
+          '<span>' +
+          new Date().toLocaleTimeString() +
+          '</span>&nbsp;&nbsp;' +
+          `<span style="color:${color}">` +
+          msg +
+          '</span>';
+        document.querySelector('#clear-log').onclick = (e) => {
+          e.preventDefault();
+          document.querySelector('#status-content').innerHTML = '';
+        };
+      };
+
+      window.log = log;
+    </script>
+  </body>
+</html>
