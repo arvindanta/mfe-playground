@@ -32,6 +32,7 @@ Type: `Promise<{ response: { params: any; }; }>`
 - fw-button
 - fw-modal
 - fw-icon
+- [my-component](../my-component)
 
 ### Graph
 ```mermaid
@@ -39,6 +40,7 @@ graph TD;
   fw-sample1 --> fw-button
   fw-sample1 --> fw-modal
   fw-sample1 --> fw-icon
+  fw-sample1 --> my-component
   fw-button --> fw-spinner
   fw-button --> fw-icon
   fw-modal --> fw-icon
@@ -47,6 +49,7 @@ graph TD;
   fw-modal --> fw-modal-footer
   fw-modal-title --> fw-icon
   fw-modal-footer --> fw-button
+  my-component --> fw-button
   style fw-sample1 fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

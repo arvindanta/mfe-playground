@@ -7,7 +7,6 @@
     "test": "",
     "start": "rollup --mode development",
     "build": "rollup -c",
-    "build1": "webpack --mode production",
     "server": "kill-port 8001 && node server"
   },
   "keywords": [],

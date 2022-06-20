@@ -5,7 +5,7 @@
         {
           "src": "static/css/main.05c7345a.css"
         },
-        { "src": "static/js/main.839ad191.js" }
+        { "src": "static/js/main.js" }
       ],
       "appUrl": "http://localhost:9002/"
     }
@@ -16,7 +16,7 @@
         {
           "src": "static/css/main.05c7345a.css"
         },
-        { "src": "static/js/main.839ad191.js" }
+        { "src": "static/js/main.js" }
       ],
       "appUrl": "http://localhost:9002/"
     }
@@ -28,7 +28,7 @@
         {
           "src": "static/css/main.05c7345a.css"
         },
-        { "src": "static/js/main.839ad191.js" }
+        { "src": "static/js/main.js" }
       ],
       "appUrl": "http://localhost:9002/"
     }

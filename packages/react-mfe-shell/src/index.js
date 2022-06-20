@@ -5,8 +5,8 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './util';
-window.log('MFEController scripts loaded');
-window.log('Rendering App Shell');
+window.log('MFEController scripts loaded', true);
+window.log('Rendering App Shell', true);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>

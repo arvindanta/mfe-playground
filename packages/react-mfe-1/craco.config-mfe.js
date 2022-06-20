@@ -7,14 +7,14 @@ module.exports = function () {
       configure: (webpackConfig, { env, paths }) => {
         webpackConfig.output = {
           ...{
-            filename: 'static/js/main.esm.js',
+            filename: 'static/js/main.js',
             path: path.join(__dirname, 'build'),
             publicPath: process.env.PUBLIC_URL,
-            libraryTarget: 'system', 
+            libraryTarget: 'system',
           },
         };
         const htmlWebpackPluginInstance = webpackConfig.plugins.find(
-          webpackPlugin => webpackPlugin instanceof HtmlWebpackPlugin
+          (webpackPlugin) => webpackPlugin instanceof HtmlWebpackPlugin
         );
         if (htmlWebpackPluginInstance) {
           htmlWebpackPluginInstance.userOptions.inject = false;

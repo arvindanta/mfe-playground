@@ -1,4 +1,4 @@
-const stub: any = {
+const stub = {
   initialiseInstance: () => {
     return stub.namespace();
   },
@@ -10,15 +10,15 @@ const stub: any = {
       },
     };
   },
-  registerApplication: () => {},
+  registerAppInstance: () => {},
   getInstanceId: () => {},
   getMFEQueryParams: () => {},
   get: async () => {},
 };
-
 const MFEController = (window as any).MFEController || stub;
 
-export function createMFEInstance(namespace: string, cmp: any) {
+export function createMFEInstance(namespace, cmp) {
+  (window as any).log(`setting instance ${namespace}`);
   MFEController.initialiseInstance(namespace, {
     trigger: async (params) => {
       (window as any).log(
@@ -33,5 +33,18 @@ export function createMFEInstance(namespace: string, cmp: any) {
     },
   });
 }
+/** for demo */
+function inIframe() {
+  try {
+    return window.self !== window.top;
+  } catch (e) {
+    return true;
+  }
+}
+const defaultLog = inIframe()
+  ? (msg) => window.top.postMessage({ log: msg }, '*')
+  : () => {};
+(window as any).log = (window as any).log || defaultLog;
+// end for demo
 
 export { MFEController };

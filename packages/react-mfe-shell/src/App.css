@@ -40,12 +40,14 @@
 .App_container {
   display: flex;
   justify-content: flex-start;
+  height: 100%;
 }
 .sidebar {
   flex: 1;
 }
 .content {
   flex: 2;
+  overflow-y: auto;
 }
 .statusbar {
   flex: 1;

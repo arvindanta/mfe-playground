@@ -1,29 +1,23 @@
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 import { FwButton } from '@freshworks/crayons/react';
-import { MFEInstance } from '../../controller';
+import { MFEInstance, shellUrl } from '../../controller';
 
 function Routing() {
-  const ref = useRef(null);
-  // const instanceId = useRef(null);
-
-  useEffect(() => {
-    //  instanceId.current = MFEController.getInstanceId(ref.current);
-  }, []);
-
   const mfeToShell = (route) => {
     window.log('sending message for routing to App Shell from MFE reactMFE1');
 
-    MFEInstance.publish?.({
+    MFEInstance.publish({
       eventName: 'route_change',
       action: {
         type: 'from_child reactMFE1',
         sender: 'reactMFE1',
       },
       payload: { from: window.location.pathname, to: route },
+      targetOrigin: shellUrl,
     });
   };
   return (
-    <div ref={ref}>
+    <div>
       <h1>Routing</h1>
       <FwButton onClick={() => mfeToShell('/about')}>
         Inter routing. Change Route in App Shell

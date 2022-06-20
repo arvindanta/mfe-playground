@@ -10,16 +10,16 @@ const stub = {
       },
     };
   },
-  registerApplication: () => {},
+  registerAppInstance: () => {},
   getInstanceId: () => {},
   getMFEQueryParams: () => {},
   get: async () => {},
 };
 const MFEController = window.MFEController || stub;
-let MFEInstance = null;
+
 export function createMFEInstance(namespace, cmp) {
   window.log(`setting instance ${namespace}`);
-  MFEInstance = MFEController.initialiseInstance(namespace, {
+  MFEController.initialiseInstance(namespace, {
     trigger: async (params) => {
       window.log(
         `Calling trigger in ${namespace} with <pre>${JSON.stringify(
@@ -33,5 +33,18 @@ export function createMFEInstance(namespace, cmp) {
     },
   });
 }
+/** for demo */
+function inIframe() {
+  try {
+    return window.self !== window.top;
+  } catch (e) {
+    return true;
+  }
+}
+const defaultLog = inIframe()
+  ? (msg) => window.top.postMessage({ log: msg }, '*')
+  : () => {};
+window.log = window.log || defaultLog;
+// end for demo
 
-export { MFEController, MFEInstance };
+export { MFEController };

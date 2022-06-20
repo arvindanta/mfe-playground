@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 
@@ -7,21 +7,27 @@ import App from './App';
 import About from './components/About/About';
 
 import { createMFEInstance, MFEController } from './controller';
-window.log = window.log || (() => {});
+
 const APP_ID = 'reactMFE1';
+
+const instanceId = MFEController.getInstanceId();
+
+window.log(`Loading module for ${instanceId}`);
 
 export const rootConfig = {
   mount: async (container, appProps) => {
+    const instanceId = appProps.instanceId;
+
     let root = null;
     if (!container) {
       console.info(`APP - ${APP_ID} container not found`);
       return;
     }
 
-    createMFEInstance(appProps.instanceId || 'test-id');
+    createMFEInstance(appProps.instanceId, appProps);
 
     console.info(
-      `MOUNTING: instance ${appProps.instanceId} of app group ${APP_ID}, `,
+      `MOUNTING: instance ${instanceId} of app group ${APP_ID}, `,
       container,
       appProps
     );
@@ -34,10 +40,8 @@ export const rootConfig = {
     );
 
     return () => {
-      console.info(
-        `UNMOUNTING: instance ${appProps.instanceId} of app group ${APP_ID}`
-      );
-      root?.unmount();
+      console.info(`UNMOUNTING: instance ${instanceId} of app group ${APP_ID}`);
+      root.unmount();
     };
   },
 
@@ -47,7 +51,7 @@ export const rootConfig = {
       container,
       appProps
     );
-    createMFEInstance(appProps.instanceId || 'test-id');
+    createMFEInstance(appProps.instanceId, appProps);
     const root = ReactDOM.createRoot(container);
     root.render(
       <BrowserRouter basename={appProps.routerBasePath}>
@@ -58,7 +62,7 @@ export const rootConfig = {
       console.info(
         `UNMOUNTING: instance ${appProps.instanceId} of app group ${APP_ID}`
       );
-      root?.unmount();
+      root.unmount();
     };
   },
 
@@ -68,12 +72,14 @@ export const rootConfig = {
   },
 };
 
-MFEController?.registerApplication?.(APP_ID, rootConfig);
+MFEController.registerAppInstance(instanceId, rootConfig);
+
 window.onload = () => {
   const appProps = MFEController.getMFEQueryParams();
 
   rootConfig.mount(document.getElementById('root'), {
     ...appProps,
     title: 'test',
+    instanceId: instanceId ?? 'mfe1',
   });
 };

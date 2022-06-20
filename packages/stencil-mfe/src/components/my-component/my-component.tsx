@@ -1,4 +1,4 @@
-import { Component, Prop, Host, h, Method } from '@stencil/core';
+import { Component, Prop, Host, h, Method, Event } from '@stencil/core';
 import { format } from '../../utils/utils';
 
 @Component({
@@ -22,7 +22,9 @@ export class MyComponent {
    */
   @Prop() last: string;
 
-  @Prop() appProps;
+  @Prop() handleSendMess;
+
+  @Event() submitForm;
 
   private getText(): string {
     return format(this.first, this.middle, this.last);
@@ -40,10 +42,22 @@ export class MyComponent {
     return { response: { params } };
   }
 
+  sendEvent = () => {
+    this.submitForm.emit();
+  };
+
   render() {
     return (
       <Host>
         <div>Hello, World! I'm {this.getText()}</div>
+        <br />
+        <fw-button onClick={this.handleSendMess}>
+          send message from inner child
+        </fw-button>
+
+        <fw-button onClick={this.sendEvent}>
+          send message from inner child via events
+        </fw-button>
       </Host>
     );
   }

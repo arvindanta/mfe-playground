@@ -1,5 +1,5 @@
 import { Config } from '@stencil/core';
-
+import { sass } from '@stencil/sass';
 export const config: Config = {
   namespace: 'stencil-mfe',
   outputTargets: [
@@ -19,5 +19,10 @@ export const config: Config = {
     },
   ],
   buildEs5: true,
-  globalScript: 'src/wrapper.ts',
+  plugins: [
+    sass({
+      injectGlobalPaths: ['src/styles/index.scss'],
+    }),
+  ],
+  // globalScript: 'src/wrapper.ts',
 };

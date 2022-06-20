@@ -10,7 +10,7 @@ function WebcMFE1() {
 
   const navigate = useNavigate();
 
-  window.log('Loading MFE - webcMFE1');
+  window.log('Loading MFE - webcMFE1', true);
   useEffect(() => {
     ref.current.appProps = {
       componentType: 'webc-1',
@@ -19,7 +19,7 @@ function WebcMFE1() {
       componentType: 'webc-1',
     };
 
-    const removeSubscriber = MFEController.namespace('mfe3').subscribe?.(
+    const removeSubscriber = MFEController.namespace('mfe3').subscribe(
       'from_child_webc',
       (msg) => {
         window.log(
@@ -27,12 +27,13 @@ function WebcMFE1() {
             msg,
             null,
             2
-          )}</pre>`
+          )}</pre>`,
+          true
         );
       }
     );
 
-    const removeSubscriber123 = MFEController.namespace('mfe12').subscribe?.(
+    const removeSubscriber123 = MFEController.namespace('mfe12').subscribe(
       'from_child_webc',
       (msg) => {
         window.log(
@@ -40,27 +41,29 @@ function WebcMFE1() {
             msg,
             null,
             2
-          )}</pre>`
+          )}</pre>`,
+          true
         );
       }
     );
 
-    const removeSubscriber1 = MFEController.namespace('mfe3').subscribe?.(
+    const removeSubscriber1 = MFEController.namespace('mfe3').subscribe(
       'route_change',
       (msg) => {
         window.log(
-          `Routing Message received from MFE <pre>${JSON.stringify(
+          `Routing Message received from webMFE <pre>${JSON.stringify(
             msg,
             null,
             2
-          )}</pre>`
+          )}</pre>`,
+          true
         );
-        window.log(`Navigation to route ${msg.payload.to}`);
+        window.log(`Navigation to route ${msg.payload.to}`, true);
         navigate(msg.payload.to);
       }
     );
 
-    const removeSubscriber2 = MFEController.namespace('mfe3').subscribe?.(
+    const removeSubscriber2 = MFEController.namespace('mfe3').subscribe(
       'from_child_webc_api',
       (data) => {
         window.log(
@@ -68,25 +71,61 @@ function WebcMFE1() {
             data?.payload?.params || {},
             null,
             2
-          )}</pre>`
+          )}</pre>`,
+          true
         );
 
         const cb1 = data?.payload?.cb;
-        cb1?.({ response: { result: 1 } });
+        cb1?.({ response: { result: 1, mfe: 3 } });
+      }
+    );
+
+    const removeSubscriber12 = MFEController.namespace('mfe12').subscribe(
+      'route_change',
+      (msg) => {
+        window.log(
+          `Routing Message received from webMFE 12 <pre>${JSON.stringify(
+            msg,
+            null,
+            2
+          )}</pre>`,
+          true
+        );
+        window.log(`Navigation to route ${msg.payload.to}`, true);
+        navigate(msg.payload.to);
+      }
+    );
+
+    const removeSubscriber22 = MFEController.namespace('mfe12').subscribe(
+      'from_child_webc_api',
+      (data) => {
+        window.log(
+          `Message received from webcMFE 12 <pre>${JSON.stringify(
+            data?.payload?.params || {},
+            null,
+            2
+          )}</pre>`,
+          true
+        );
+
+        const cb1 = data?.payload?.cb;
+        cb1?.({ response: { result: 1, mfe: 12 } });
       }
     );
 
     return () => {
-      window.log('Unmounting MFE - webcMFE1');
+      window.log('Unmounting MFE - webcMFE1', true);
       removeSubscriber();
       removeSubscriber1();
       removeSubscriber2();
       removeSubscriber123();
+      removeSubscriber12();
+      removeSubscriber22();
     };
   }, [navigate]);
 
   const sendToMFE = () => {
-    MFEController.namespace('mfe3').publish?.({
+    MFEController.namespace('mfe3').publish({
       eventName: 'from_app_shell',
       action: {
         type: 'from_app_shell',
@@ -97,14 +136,19 @@ function WebcMFE1() {
   };
 
   const triggerToMFE = async () => {
-    const resp = await MFEController.trigger('mfe3', { id: 1 });
+    const resp = await MFEController.trigger('mfe3', { id: 1, mfe: 'mfe3' });
     window.log(
-      `Getting response from MFE <pre>${JSON.stringify(resp, null, 2)}</pre>`
+      `Getting response from webMFE <pre>${JSON.stringify(
+        resp,
+        null,
+        2
+      )}</pre>`,
+      true
     );
   };
 
   const sendToMFE12 = () => {
-    MFEController.namespace('mfe12').publish?.({
+    MFEController.namespace('mfe12').publish({
       eventName: 'from_app_shell',
       action: {
         type: 'from_app_shell',
@@ -115,9 +159,14 @@ function WebcMFE1() {
   };
 
   const triggerToMFE12 = async () => {
-    const resp = await MFEController.trigger('mfe12', { id: 1 });
+    const resp = await MFEController.trigger('mfe12', { id: 1, mfe: 'mfe12' });
     window.log(
-      `Getting response from MFE <pre>${JSON.stringify(resp, null, 2)}</pre>`
+      `Getting response from webMFE 12 <pre>${JSON.stringify(
+        resp,
+        null,
+        2
+      )}</pre>`,
+      true
     );
   };
 
@@ -139,26 +188,28 @@ function WebcMFE1() {
       <hr />
       <hr />
 
-      <mfe-application
-        ref={ref}
-        app-id='webcMFE1'
-        instance-id='mfe3'
-        style={{ '--mfe-width': 'calc(58vw)' }}
-        id='z'
-        registry-url='http://localhost:8001'
-        version='0.1.1'
-      ></mfe-application>
-
+      <div style={{ '--mfe-width': 'calc(58vw)' }}>
+        <mfe-application
+          ref={ref}
+          app-id='webcMFE1'
+          instance-id='mfe3'
+          id='z'
+          registry-url='http://localhost:8001'
+          version='0.1.1'
+        ></mfe-application>
+      </div>
       {/* <h3>second instance</h3> */}
-      <mfe-application
-        ref={ref1}
-        app-id='webcMFE1'
-        instance-id='mfe12'
-        style={{ '--mfe-width': 'calc(58vw)' }}
-        id='asd'
-        registry-url='http://localhost:8001'
-        version='0.1.1'
-      ></mfe-application>
+      <div style={{ '--mfe-width': 'calc(58vw)' }}>
+        <mfe-application
+          ref={ref1}
+          app-id='webcMFE1'
+          instance-id='mfe12'
+          style={{ '--mfe-width': 'calc(58vw)' }}
+          id='asd'
+          registry-url='http://localhost:8001'
+          version='0.1.1'
+        ></mfe-application>
+      </div>
     </div>
   );
 }

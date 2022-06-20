@@ -1,4 +1,4 @@
-import { MFEInstance } from './controller';
+import { MFEController } from './controller';
 
 const template = document.createElement('template');
 template.innerHTML = `
@@ -25,35 +25,37 @@ class MyComponent extends HTMLElement {
       this.handleSendRouteMess.bind(this)
     );
     sendCbMess.addEventListener('click', this.handleSendCbMess.bind(this));
+    console.info('appProps1', this.appProps);
   }
 
   connectedCallback() {
-    // this.instanceId = MFEController.getInstanceId(this.shadowRoot);
-    // window.log(`instance id is ${this.instanceId}`);
-    console.info(MFEInstance);
-    MFEInstance?.subscribe?.('from_app_shell', (msg) => {
-      window.log(
-        `msg from outside for is <pre>${JSON.stringify(msg, null, 2)}</pre>`
-      );
-    });
+    console.info('appProps', this.appProps);
+    MFEController.namespace(this.appProps.instanceId).subscribe(
+      'from_app_shell',
+      (msg) => {
+        window.log(
+          `msg from outside for is <pre>${JSON.stringify(msg, null, 2)}</pre>`
+        );
+      }
+    );
   }
 
   handleSendMess() {
     window.log('publishing event from_child_webc from webc');
-    MFEInstance?.publish?.({
+    MFEController.namespace(this.appProps.instanceId).publish({
       eventName: 'from_child_webc',
       action: {
         type: 'from_child webc',
         sender: 'webcMFE1',
       },
       payload: 'from child webcMFE1',
-      // targetOrigin: this.appProps?.shellUrl,
+      targetOrigin: this.appProps.shellUrl,
     });
   }
 
   handleSendCbMess() {
     window.log('publishing event  - from_child_webc_api from webc');
-    MFEInstance?.publish?.({
+    MFEController.namespace(this.appProps.instanceId).publish({
       eventName: 'from_child_webc_api',
       action: {
         type: 'from_child webc api',
@@ -67,13 +69,13 @@ class MyComponent extends HTMLElement {
           );
         },
       },
-      // targetOrigin: this.appProps?.shellUrl,
+      targetOrigin: this.appProps.shellUrl,
     });
   }
 
   handleSendRouteMess() {
     window.log('sending route change message event from webcMFE1');
-    MFEInstance?.publish?.({
+    MFEController.namespace(this.appProps.instanceId).publish({
       eventName: 'route_change',
       action: {
         type: 'navigate',
@@ -83,7 +85,7 @@ class MyComponent extends HTMLElement {
         from: window.origin,
         to: '/mfe1/communication',
       },
-      targetOrigin: this.appProps?.shellUrl,
+      targetOrigin: this.appProps.shellUrl,
     });
   }
 
