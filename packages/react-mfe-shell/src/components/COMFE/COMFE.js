@@ -408,7 +408,7 @@ export default function Entities() {
 
   const refreshWidgets = async () => {
     setPlatformAppWidgets(null);
-    const arrWidgets = await window.coFetchAPI({
+    const arrWidgets = await window.coAPISDK?.get({
       action: 'FETCH_ASSOCIATION_SCHEMAS',
       contextObjectId: objInputData.current.contextObjectId,
     });

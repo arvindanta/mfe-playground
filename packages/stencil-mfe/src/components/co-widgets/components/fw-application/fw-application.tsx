@@ -17,6 +17,7 @@ import {
   linkNewRecord,
   searchEntityRecords,
   setCouiConfig,
+  destroyApi,
 } from '../../api/coui';
 import { MFEController } from '../../../../controller';
 
@@ -75,6 +76,8 @@ export class FwApplication {
   //   }
   @Method()
   async trigger(componentId, params = null) {
+    this.loading = true;
+
     (window as any).log(
       `Trigger called ${componentId}, ${this.applicationName}`
     );
@@ -117,6 +120,7 @@ export class FwApplication {
           } from app shell appPropsChanged
           <pre>${JSON.stringify(msg, null, 2)}</pre>`
         );
+        console.info(`app props changed ${JSON.stringify(msg, null, 2)}`);
         this.trigger(this.componentId, this.params);
       }
     );
@@ -132,6 +136,7 @@ export class FwApplication {
     //   this.storeInstance.deRegisterComponent(this.componentId);
     // }
     this.loading = false;
+    destroyApi();
   }
 
   private navigateHandler = (event: CustomEvent) => {
@@ -185,6 +190,10 @@ export class FwApplication {
     }
   };
 
+  private triggerHandler = (componentId, params) => {
+    this.trigger(componentId, params);
+  };
+
   renderWebComponent() {
     let template: JSX.Element = null;
     template = (
@@ -196,7 +205,7 @@ export class FwApplication {
         onFwNavigate={this.navigateHandler}
         onFwViewAllRecords={this.viewAllRecordsHandler}
         fetchData={this.fetchDataHandler}
-        trigger={this.trigger}
+        trigger={this.triggerHandler}
       ></fw-widget-card>
     );
 

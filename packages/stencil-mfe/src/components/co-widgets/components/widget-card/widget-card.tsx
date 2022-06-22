@@ -144,7 +144,7 @@ export class WidgetCard {
     //   this.componentId
     // );
 
-    this.trigger(FW_APP_CONSTANTS.APP_CUSTOM_OBJECT, this.componentId);
+    this.trigger(this.componentId);
 
     this.loading = false;
     console.info('Refresh widget response - ' + objRefreshWidgetResponse);
