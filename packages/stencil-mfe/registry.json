@@ -2,7 +2,7 @@
   "production": {
     "0.1.0": {
       "entrypoints": [
-        { "src": "stencil-mfe/stencil-mfe.js" },
+        { "src": "stencil-mfe/stencil-mfe.esm.js", "type": "module" },
         { "src": "main.js" }
       ],
       "appUrl": "http://localhost:8002/"
@@ -11,7 +11,7 @@
   "staging": {
     "0.1.0": {
       "entrypoints": [
-        { "src": "stencil-mfe/stencil-mfe.js" },
+        { "src": "stencil-mfe/stencil-mfe.esm.js", "type": "module" },
         { "src": "main.js" }
       ],
       "appUrl": "http://localhost:8002/"
@@ -20,7 +20,7 @@
   "dev": {
     "0.1.0": {
       "entrypoints": [
-        { "src": "stencil-mfe/stencil-mfe.js" },
+        { "src": "stencil-mfe/stencil-mfe.esm.js", "type": "module" },
         { "src": "main.js" }
       ],
       "appUrl": "http://localhost:8002/"
