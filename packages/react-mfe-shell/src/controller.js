@@ -14,7 +14,7 @@ const stub = {
   getInstanceId: () => {},
   getMFEQueryParams: () => {},
   get: async () => {},
-  prefetch: () => {},
+  preload: () => {},
 };
 
 const MFEController = window.MFEController || stub;

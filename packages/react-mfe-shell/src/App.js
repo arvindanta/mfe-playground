@@ -14,7 +14,7 @@ import Sidebar from './components/Sidebar/Sidebar';
 // import { MFEController } from './controller';
 
 // MFEController.setConfig('reactMFE1', {});
-// MFEController.prefetch({
+// MFEController.preload({
 //   instanceId: 'mfe1',
 //   appId: 'reactMFE1',
 //   registryUrl: 'http://localhost:9001',
