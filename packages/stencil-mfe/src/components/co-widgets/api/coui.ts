@@ -857,7 +857,7 @@ export function toJson(data) {
   }
 }
 
-export async function getAPI(params) {
+export async function getApi(params) {
   const config = MFEController.getApplicationConfig(APP_ID);
   const objResponse = await fetchObjectAssociations(
     config,
@@ -866,6 +866,8 @@ export async function getAPI(params) {
   return objResponse?.widgets || null;
 }
 
-const coFetchAPI = ((window as any).coFetchAPI =
-  (window as any).coFetchAPI || getAPI);
-export { coFetchAPI };
+const coAPISDK = ((window as any).coAPISDK = (window as any).coAPISDK || {
+  get: getApi,
+  destroy: destroyApi,
+});
+export { coAPISDK };

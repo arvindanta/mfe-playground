@@ -20,7 +20,8 @@
       "**/jest-**/**",
       "**/jest/**",
       "**/jest-cli",
-      "**/puppeteer"
+      "**/puppeteer",
+      "**/@stencil/**"
     ]
   },
   "scripts": {
