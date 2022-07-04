@@ -5,4 +5,10 @@ export default class Test extends Component {
   get appProps() {
     return { routerBasePath: '/mfe1' };
   }
+  handleClick(e) {
+    console.log('ebet ', e);
+  }
+  handleClick1(e) {
+    console.log('sht ', e);
+  }
 }
