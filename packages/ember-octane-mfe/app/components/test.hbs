@@ -1,0 +1,15 @@
+{{yield}}
+<h1>hello world ember mfe</h1>
+<button type='button' {{on 'click' this.mfeToShell}}>MFE to App Shell</button>
+<br />
+<br />
+<button type='button' {{on 'click' (fn this.mfeToShellRouting '/mfe1') }}>
+  Inter routing. Change Route in App Shell
+</button>
+
+<br />
+<br />
+
+<button type='button' {{on 'click' (fn this.mfeToShellRouting '/mfe1/about')}}>
+  Inter routing. Change Route in App Shell to load another MFE - Deep Linking
+</button>
