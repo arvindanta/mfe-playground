@@ -128,4 +128,48 @@ export const sideMenu = [
     Icon: 'help',
     to: '/comfe',
   },
+  {
+    label: 'EmberMFE',
+    Icon: 'alert',
+    to: '/embermfe',
+    children: [
+      {
+        label: 'send message to emberMFE1',
+        Icon: 'freshchat',
+        onClick: (e) => {
+          e.preventDefault();
+          window.log('sending message to MFE emberMFE1 from App Shell', true);
+
+          MFEController.namespace('embmfe').publish({
+            eventName: 'from_app_shell',
+            action: {
+              type: 'from_app_shell',
+              sender: 'app shell',
+            },
+            payload: 'from app shell',
+          });
+        },
+      },
+      {
+        label: 'change route in emberMFE1',
+        Icon: 'forward',
+        onClick: (e) => {
+          e.preventDefault();
+          window.log(
+            'sending message to MFE emberMFE1 to change route from App Shell',
+            true
+          );
+
+          MFEController.namespace('embmfe').publish({
+            eventName: 'route_change_app_shell',
+            action: {
+              type: 'from_app_shell',
+              sender: 'app shell',
+            },
+            payload: { to: 'route2' },
+          });
+        },
+      },
+    ],
+  },
 ];

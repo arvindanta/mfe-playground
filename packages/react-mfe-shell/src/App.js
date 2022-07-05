@@ -10,6 +10,7 @@ import WebcMFE1 from './components/WebcMFE1/WebcMFE1';
 import StencilMFE1 from './components/StencilMFE1/StencilMFE1';
 import COMFE from './components/COMFE/COMFE';
 import Sidebar from './components/Sidebar/Sidebar';
+import EmberMFE from './components/EmberMFE/EmberMFE';
 // import Statusbar from './components/Statusbar/Statusbar';
 // import { MFEController } from './controller';
 
@@ -34,6 +35,7 @@ function App(props) {
             <Route path='/webcmfe1/*' element={<WebcMFE1 {...props} />} />
             <Route path='/stencilmfe1/*' element={<StencilMFE1 {...props} />} />
             <Route path='/comfe/*' element={<COMFE {...props} />} />
+            <Route path='/embermfe/*' element={<EmberMFE {...props} />} />
             <Route path='*' element={<NotFound />} />
           </Routes>
         </div>

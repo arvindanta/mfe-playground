@@ -20,7 +20,8 @@
     "lint:js:fix": "eslint . --fix",
     "start": "kill-port 8001 && ember serve --port 8001",
     "test": "npm-run-all lint test:*",
-    "test:ember": "ember test"
+    "test:ember": "ember test",
+    "server": "kill-port 8001 && node serve"
   },
   "devDependencies": {
     "@ember/optional-features": "^2.0.0",

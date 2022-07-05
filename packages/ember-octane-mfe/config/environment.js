@@ -4,7 +4,7 @@ module.exports = function (environment) {
   let ENV = {
     modulePrefix: 'ember-octane-mfe',
     environment,
-    rootURL: '/',
+    rootURL: '/embermfe',
     locationType: 'history',
     EmberENV: {
       FEATURES: {

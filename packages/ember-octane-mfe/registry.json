@@ -1,0 +1,38 @@
+{
+  "production": {
+    "0.1.0": {
+      "entrypoints": [
+        {
+          "src": "assets/vendor.js"
+        },
+        { "src": "assets/ember-octane-mfe.js" },
+        { "src": "assets/wrapper.js" }
+      ],
+      "appUrl": "http://localhost:8001/"
+    }
+  },
+  "staging": {
+    "0.1.0": {
+      "entrypoints": [
+        {
+          "src": "assets/vendor.js"
+        },
+        { "src": "assets/ember-octane-mfe.js" },
+        { "src": "assets/wrapper.js" }
+      ],
+      "appUrl": "http://localhost:8001/"
+    }
+  },
+  "dev": {
+    "0.1.0": {
+      "entrypoints": [
+        {
+          "src": "assets/vendor.js"
+        },
+        { "src": "assets/ember-octane-mfe.js" },
+        { "src": "assets/wrapper.js" }
+      ],
+      "appUrl": "http://localhost:8001/"
+    }
+  }
+}
