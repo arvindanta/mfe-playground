@@ -12,7 +12,7 @@ const APP_ID = 'reactMFE1';
 
 const instanceId = MFEController.getInstanceId();
 
-window.log(`Loading module for ${instanceId}`);
+window.log(`Loading module for ${APP_ID}`);
 
 export const rootConfig = {
   mount: async (container, appProps) => {
@@ -80,6 +80,6 @@ window.onload = () => {
   rootConfig.mount(document.getElementById('root'), {
     ...appProps,
     title: 'test',
-    instanceId: instanceId ?? 'mfe1',
+    instanceId: appProps.instanceId ?? 'mfe1',
   });
 };

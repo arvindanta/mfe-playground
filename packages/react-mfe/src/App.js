@@ -20,11 +20,9 @@ function App(props) {
   useEffect(() => {
     const removeSubscriber = MFEInstance.subscribe('from_app_shell', (msg) => {
       window.log(
-        `Message received for instance - from app shell <pre>${JSON.stringify(
-          msg,
-          null,
-          2
-        )}</pre>`
+        `Message received for instance ${
+          props.instanceId
+        } - from app shell <pre>${JSON.stringify(msg, null, 2)}</pre>`
       );
     });
 
@@ -48,7 +46,7 @@ function App(props) {
       removeSubscriber();
       removeSubscriber1();
     };
-  }, [navigate]);
+  }, [navigate, props.instanceId]);
 
   return (
     <div className='App-mfe' ref={ref}>
