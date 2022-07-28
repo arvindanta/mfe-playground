@@ -40,6 +40,11 @@
     {{content-for "head-footer"}}
     <script
       type="module"
+      src="https://d3el5jsqgryo0a.cloudfront.net/platform-application/dist/platform-application/platform-application.esm.js"
+    ></script>
+
+    <script
+      type="module"
       src="https://unpkg.com/@freshworks/crayons@next/dist/crayons/crayons.esm.js"
     ></script>
     <script
@@ -49,10 +54,6 @@
   </head>
   <body>
     {{content-for "body"}}
-    <script
-      type="module"
-      src="https://d3el5jsqgryo0a.cloudfront.net/platform-application/platform-application.esm.js"
-    ></script>
     <script src="{{rootURL}}assets/vendor.js"></script>
     <script src="{{rootURL}}assets/ember-mfe-shell.js"></script>
 

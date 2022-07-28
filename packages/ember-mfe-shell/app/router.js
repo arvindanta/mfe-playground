@@ -8,5 +8,6 @@ export default class Router extends EmberRouter {
 
 Router.map(function () {
   this.route('mfe1');
+  this.route('mfe1', { path: 'mfe1/*' });
   this.route('comfe');
 });
