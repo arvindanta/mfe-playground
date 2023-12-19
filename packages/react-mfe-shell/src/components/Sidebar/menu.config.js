@@ -113,6 +113,71 @@ export const sideMenu = [
       },
     ],
   },
+
+  {
+    label: 'MFE3',
+    Icon: 'help',
+    to: '/mfe3',
+    children: [
+      {
+        label: 'send message to MFE3',
+        Icon: 'freshchat',
+        onClick: (e) => {
+          e.preventDefault();
+          window.log('sending message to MFE reactMFE3 from App Shell', true);
+
+          MFEController.namespace('mfe3').publish({
+            eventName: 'from_app_shell',
+            action: {
+              type: 'from_app_shell',
+              sender: 'app shell',
+            },
+            payload: 'from app shell',
+          });
+        },
+      },
+      {
+        label: 'send message to MFE10',
+        Icon: 'freshchat',
+        onClick: (e) => {
+          e.preventDefault();
+          window.log(
+            'sending message to MFE 10 reactMFE3 from App Shell',
+            true
+          );
+
+          MFEController.namespace('mfe10').publish({
+            eventName: 'from_app_shell',
+            action: {
+              type: 'from_app_shell',
+              sender: 'app shell',
+            },
+            payload: 'from app shell',
+          });
+        },
+      },
+      {
+        label: 'change route in MFE3',
+        Icon: 'forward',
+        onClick: (e) => {
+          e.preventDefault();
+          window.log(
+            'sending message to MFE reactMFE3 to change route from App Shell',
+            true
+          );
+
+          MFEController.namespace('mfe3').publish({
+            eventName: 'route_change_app_shell',
+            action: {
+              type: 'from_app_shell',
+              sender: 'app shell',
+            },
+            payload: { to: 'about' },
+          });
+        },
+      },
+    ],
+  },
   {
     label: 'WebcMFE1',
     Icon: 'alert',
